@@ -1,0 +1,19 @@
+{
+  "name": "cms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Strapi CMS for ZephorTech - To be configured in Phase 2",
+  "scripts": {
+    "dev": "echo 'Strapi CMS setup deferred to Phase 2' && exit 0",
+    "build": "echo 'Strapi CMS setup deferred to Phase 2' && exit 0",
+    "start": "echo 'Strapi CMS setup deferred to Phase 2' && exit 0"
+  },
+  "keywords": [
+    "strapi",
+    "cms",
+    "headless-cms"
+  ],
+  "author": "Muhammad Junaid (for Zephortech)",
+  "license": "UNLICENSED"
+}
+
