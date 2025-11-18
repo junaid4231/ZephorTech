@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -16,6 +16,13 @@ const poppins = Poppins({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#0076D1",
+};
+
 export const metadata: Metadata = {
   title: {
     default: "ZephorTech - IT Solutions & Digital Transformation",
@@ -31,8 +38,16 @@ export const metadata: Metadata = {
     "SaaS",
     "e-commerce",
     "digital transformation",
+    "cloud computing",
+    "DevOps",
   ],
   authors: [{ name: "ZephorTech" }],
+  creator: "ZephorTech",
+  publisher: "ZephorTech",
+  metadataBase: new URL("https://zephortech.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -48,6 +63,17 @@ export const metadata: Metadata = {
     description:
       "ZephorTech offers cutting-edge IT services including web & mobile development, AI agents, SaaS solutions, e-commerce, and digital transformation.",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -56,8 +82,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="font-inter antialiased bg-background text-text-dark">{children}</body>
+    <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
+      <body className="font-inter antialiased bg-background text-text-dark min-h-screen flex flex-col">
+        <main className="flex-1">{children}</main>
+      </body>
     </html>
   );
 }
