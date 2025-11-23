@@ -137,14 +137,20 @@ zephortech/
    # Edit .env.local with your configuration
    ```
 
-4. **Start development server:**
+4. **Start development servers (recommended workflow):**
    ```bash
-   # From root directory
-   pnpm dev
-   
-   # Or run specific app
+   # Terminal 1 – Strapi CMS (port 1337)
+   pnpm dev:cms
+
+   # Terminal 2 – Next.js frontend (port 3000)
    pnpm dev:web
    ```
+   > ℹ️ Running `pnpm dev` at the repository root will try to start both processes via Turborepo, but Strapi’s admin rebuild can spawn a second instance and trigger a “port 1337 already in use” error.  
+   > If that happens, free the port before restarting:
+   > ```bash
+   > netstat -ano | findstr :1337
+   > taskkill /PID <PID_FROM_PREVIOUS_COMMAND> /F
+   > ```
 
 5. **Open browser:**
    - Web app: http://localhost:3000
@@ -286,9 +292,10 @@ pnpm clean            # Remove build artifacts
 ### Web App (.env.local)
 
 ```env
-# CMS API Configuration
+# CMS Feature Flag & Endpoint
+NEXT_PUBLIC_USE_CMS=true
 NEXT_PUBLIC_CMS_URL=http://localhost:1337
-CMS_API_TOKEN=your_cms_api_token
+STRAPI_API_TOKEN=your_strapi_api_token
 
 # Analytics
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
@@ -304,6 +311,41 @@ CONTACT_EMAIL=info@zephortech.com
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_site_key
 RECAPTCHA_SECRET_KEY=your_secret_key
 ```
+
+## 🗄 CMS Setup & Content Seeding
+
+The Strapi v5 instance that powers services/testimonials lives in `apps/cms`.
+
+1. **Configure environment variables**
+   ```bash
+   cd apps/cms
+   cp .env.example .env   # if you have the template committed
+   ```
+   Required keys:
+   - `DATABASE_URL` or individual Supabase credentials (`DATABASE_HOST`, `DATABASE_PORT`, `DATABASE_NAME`, `DATABASE_USERNAME`, `DATABASE_PASSWORD`)
+   - `SUPABASE_API_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_BUCKET`, `SUPABASE_DIRECTORY`
+   - `SEED_SERVICES=true` and `SEED_TESTIMONIALS=true` to auto-seed on boot (disable once production content is managed through the CMS UI)
+
+2. **Run Strapi locally (dedicated terminal)**
+   ```bash
+   pnpm dev:cms   # from the repo root
+   ```
+   The seed scripts will:
+   - ensure all services/testimonials exist,
+   - publish content,
+   - auto-create public GraphQL permissions so the frontend can read without manual steps.
+
+3. **Troubleshooting**
+   - Port already in use?  
+     ```bash
+     netstat -ano | findstr :1337
+     taskkill /PID <PID> /F
+     ```
+   - Need to re-run seeds manually? Set `SEED_SERVICES=true` / `SEED_TESTIMONIALS=true` before restarting Strapi.
+
+4. **Docs**
+   - `apps/cms/README.md` – in-depth Strapi instructions
+   - `apps/web/CMS_MIGRATION.md` – architectural decisions and migration notes
 
 ## 🏗 Architecture
 

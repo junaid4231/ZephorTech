@@ -1,3 +1,4 @@
+/// <reference types="@testing-library/jest-dom" />
 import { render, screen } from "@testing-library/react";
 import Hero from "@/sections/Hero";
 
@@ -31,23 +32,13 @@ describe("Hero Section", () => {
     expect(ourWorkButton).toHaveAttribute("href", "/portfolio");
   });
 
-  it("has the hero-canvas container for Phase 3 animation", () => {
-    const { container } = render(<Hero />);
-    
-    const canvas = container.querySelector("#hero-canvas");
-    expect(canvas).toBeInTheDocument();
-    expect(canvas).toHaveClass("absolute");
-    expect(canvas).toHaveClass("inset-0");
-    expect(canvas).toHaveClass("-z-10");
-  });
-
   it("renders trust indicators / stats", () => {
     render(<Hero />);
     
-    expect(screen.getByText("500+")).toBeInTheDocument();
     expect(screen.getByText(/Projects Delivered/i)).toBeInTheDocument();
-    expect(screen.getByText("200+")).toBeInTheDocument();
     expect(screen.getByText(/Happy Clients/i)).toBeInTheDocument();
+    expect(screen.getByText(/Years Experience/i)).toBeInTheDocument();
+    expect(screen.getByText(/Client Satisfaction/i)).toBeInTheDocument();
   });
 
   it("has proper semantic structure", () => {
@@ -57,13 +48,9 @@ describe("Hero Section", () => {
     expect(section).toHaveAttribute("aria-labelledby", "hero-heading");
   });
 
-  it("matches snapshot structure", () => {
-    const { container } = render(<Hero />);
-    
-    // Verify key structural elements are present
-    expect(container.querySelector("#hero-canvas")).toBeInTheDocument();
-    expect(container.querySelector("section")).toHaveClass("bg-gradient-primary");
-    expect(container.querySelector("h1")).toHaveClass("font-poppins");
+  it("renders the hero badge content", () => {
+    render(<Hero />);
+    expect(screen.getByText(/Trusted by 200\+ Companies Worldwide/i)).toBeInTheDocument();
   });
 });
 

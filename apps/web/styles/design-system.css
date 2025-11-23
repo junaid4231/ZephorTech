@@ -1,0 +1,105 @@
+/* ============================================
+   ZephorTech Global Design System
+   ============================================ */
+
+:root {
+  /* Typography Scale */
+  --h1: clamp(2.5rem, 5vw, 3.5rem);
+  --h2: clamp(2rem, 4vw, 2.75rem);
+  --h3: clamp(1.5rem, 3vw, 2rem);
+  --body: 1rem;
+  --small: 0.875rem;
+
+  /* Spacing Scale */
+  --section-y: clamp(4rem, 8vw, 7rem);
+  --section-inner-gap: clamp(1.5rem, 3vw, 3rem);
+  --card-padding: clamp(1rem, 2vw, 2rem);
+
+  /* Hero Section Height */
+  --hero-height: 85vh;
+}
+
+/* Typography Classes */
+.heading-1 {
+  font-size: var(--h1);
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.heading-2 {
+  font-size: var(--h2);
+  line-height: 1.2;
+  font-weight: 900;
+}
+
+.heading-3 {
+  font-size: var(--h3);
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.body-text {
+  font-size: var(--body);
+  line-height: 1.6;
+}
+
+.small-text {
+  font-size: var(--small);
+  line-height: 1.5;
+}
+
+/* Container Standard */
+.container-standard {
+  width: 100%;
+  max-width: 80rem; /* 7xl = 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-standard {
+    padding-left: 1.5rem; /* md:px-6 */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-standard {
+    padding-left: 2rem; /* lg:px-8 */
+    padding-right: 2rem;
+  }
+}
+
+/* Section Spacing */
+.section-padding {
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+}
+
+.section-gap {
+  gap: var(--section-inner-gap);
+}
+
+/* Card Standard */
+.card-standard {
+  padding: var(--card-padding);
+  border-radius: 1rem; /* rounded-2xl */
+}
+
+/* Button Standard */
+.btn-standard {
+  border-radius: 0.75rem; /* rounded-xl */
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem;
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem;
+  font-size: var(--body);
+}
+
+/* Hero Height */
+.hero-height {
+  min-height: var(--hero-height);
+}
+

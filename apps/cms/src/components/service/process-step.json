@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_service_process_steps",
+  "info": {
+    "displayName": "Service Process Step",
+    "description": "A step in the service delivery process"
+  },
+  "options": {},
+  "attributes": {
+    "step": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "duration": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
+

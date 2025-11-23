@@ -1,0 +1,267 @@
+[
+  {
+    "title": "Apex NeoBank Platform",
+    "slug": "apex-neobank-platform",
+    "client": "Apex Finance",
+    "industry": "FinTech",
+    "summary": "A cloud-native banking platform that unified KYC, payments, and analytics for a fast-scaling digital bank serving 4 regions.",
+    "excerpt": "Modernized the entire fintech stack with composable services, automated compliance workflows, and blazing-fast client onboarding.",
+    "timeline": "16 Weeks",
+    "headquarters": "Singapore / Remote",
+    "heroSubtitle": "Digital Banking Transformation",
+    "heroDescription": "We partnered with Apex Finance to design, build, and launch a modular banking core with automated compliance and real-time analytics.",
+    "heroStats": [
+      { "value": 420000, "suffix": "+", "label": "Accounts Migrated", "delay": 200 },
+      { "value": 38, "suffix": "%", "label": "Faster Onboarding", "delay": 300 },
+      { "value": 4, "suffix": "x", "label": "Uptime Improvement", "delay": 400 },
+      { "value": 12, "suffix": "ms", "label": "Avg. API Latency", "delay": 500 }
+    ],
+    "highlights": [
+      "Multi-region deployment with blue/green releases",
+      "Automated AML/KYC risk scoring engine",
+      "Unified design system across web + mobile"
+    ],
+    "metrics": [
+      { "label": "Time-to-market", "value": "16 weeks", "detail": "Full rollout across APAC" },
+      { "label": "Ops load", "value": "-45%", "detail": "Automated compliance workflows" },
+      { "label": "Customer NPS", "value": "+18pts", "detail": "New onboarding experience" }
+    ],
+    "challenge": {
+      "title": "Legacy stack blocking growth",
+      "description": "Apex Finance faced a fragmented architecture and manual compliance reviews that limited expansion. The internal team needed a partner to deliver a new platform without disrupting active customers.",
+      "bullets": [
+        "Manual onboarding queues created week-long delays",
+        "No single source of truth for customer identity",
+        "Infrastructure sprawl caused frequent downtime during releases"
+      ]
+    },
+    "strategy": {
+      "title": "Composable banking core",
+      "description": "We modernized the platform in parallel tracks—data, experience, and compliance—using a composable domain architecture and progressive migration plan.",
+      "bullets": [
+        "Designed event-driven services for onboarding, compliance, and notifications",
+        "Implemented a shared design language across dashboard + client portal",
+        "Automated AML/KYC reviews with a risk rules engine backed by AI scoring"
+      ]
+    },
+    "outcome": {
+      "title": "Launch without disruption",
+      "description": "The new platform launched across four regions with zero downtime, empowering the internal team with observability and automated playbooks.",
+      "bullets": [
+        "Cut manual reviews from 3 days to under 4 hours",
+        "Reduced release times from bi-weekly to on-demand",
+        "Enabled regulatory exports in minutes, not days"
+      ],
+      "highlights": [
+        "ISO 27001-ready controls baked into CI/CD",
+        "Playbooks for security + compliance hand-offs"
+      ]
+    },
+    "testimonial": {
+      "quote": "ZephorTech rebuilt our banking core while we stayed online. Their discipline around architecture and delivery gave us confidence to scale into new markets.",
+      "author": "Priya Natarajan",
+      "role": "Chief Technology Officer",
+      "company": "Apex Finance"
+    },
+    "technologies": ["Next.js", "Node.js", "AWS EKS", "Kafka", "LangChain", "Supabase"],
+    "serviceSlugs": ["cloud-devops", "web-development", "ai-agents"],
+    "order": 1,
+    "featured": true
+  },
+  {
+    "title": "Velora Commerce Experience",
+    "slug": "velora-commerce-experience",
+    "client": "Velora Retail Group",
+    "industry": "E-commerce",
+    "summary": "Unified B2C + B2B commerce channels with a headless storefront, AI merchandising, and a blazing-fast global CDN.",
+    "excerpt": "Delivered a future-proof commerce stack with personalized storefronts, automated merchandising, and deep analytics.",
+    "timeline": "12 Weeks",
+    "headquarters": "Berlin / Remote",
+    "heroSubtitle": "Headless Commerce Acceleration",
+    "heroDescription": "Velora wanted a unified experience for retail buyers, wholesale partners, and marketing. We shipped a composable storefront powered by a CMS and AI product discovery.",
+    "heroStats": [
+      { "value": 68, "suffix": "%", "label": "Faster Page Loads", "delay": 200 },
+      { "value": 35, "suffix": "%", "label": "Lift in Conversion", "delay": 300 },
+      { "value": 120, "suffix": "+", "label": "Personalized Campaigns", "delay": 400 },
+      { "value": 4, "suffix": "weeks", "label": "Campaign Launch Cycle", "delay": 500 }
+    ],
+    "highlights": [
+      "Segment-aware storefront with localized pricing",
+      "On-site AI assistant recommending bundles",
+      "Composable CMS powering campaigns + landing pages"
+    ],
+    "metrics": [
+      { "label": "Check-out speed", "value": "-42%", "detail": "Reduced steps with wallet integration" },
+      { "label": "Marketing ops", "value": "3 hrs", "detail": "Campaign launch time down from 2 days" },
+      { "label": "Inventory accuracy", "value": "99.4%", "detail": "Real-time ERP sync" }
+    ],
+    "challenge": {
+      "title": "Fragmented buyer journeys",
+      "description": "Wholesale partners and direct consumers were maintained on different platforms with mismatched promotions and inventory visibility.",
+      "bullets": [
+        "Marketing teams couldn't launch localized landing pages quickly",
+        "Merchandisers lacked tools to test bundles or promotions",
+        "Wholesale buyers used a legacy portal with no personalization"
+      ]
+    },
+    "strategy": {
+      "title": "Composable commerce foundation",
+      "description": "We separated content, commerce, and personalization so teams could move fast without engineering bottlenecks.",
+      "bullets": [
+        "Headless storefront built with Next.js + commerce API",
+        "Strapi drives collections, campaigns, and editorial storytelling",
+        "AI-driven merchandising rules tuned for buyer personas"
+      ]
+    },
+    "outcome": {
+      "title": "Measurable growth in 90 days",
+      "description": "Velora now launches collections weekly while wholesale partners enjoy the same fast experience as consumers.",
+      "bullets": [
+        "Global CDN + edge rendering for millisecond responses",
+        "Unified loyalty program across B2B/B2C",
+        "Embedded analytics revealing drop-offs per persona"
+      ]
+    },
+    "testimonial": {
+      "quote": "The ZephorTech team gave us a modern commerce engine and taught our marketers how to own it. We now launch campaigns the same day ideas are approved.",
+      "author": "Lena Vogt",
+      "role": "VP Digital Experience",
+      "company": "Velora Retail Group"
+    },
+    "technologies": ["Next.js", "Tailwind CSS", "Strapi", "Shopify Plus", "Algolia", "Cloudinary"],
+    "serviceSlugs": ["web-development", "cloud-devops", "ecommerce"],
+    "order": 2,
+    "featured": true
+  },
+  {
+    "title": "MedSync Care Collaboration",
+    "slug": "medsync-care-collaboration",
+    "client": "MedSync Health",
+    "industry": "Healthcare",
+    "summary": "Built a secure collaboration portal for clinicians, patients, and insurers with HIPAA-grade auditing and AI triage.",
+    "excerpt": "Modernized care coordination with real-time messaging, workflow automation, and predictive discharge planning.",
+    "timeline": "20 Weeks",
+    "headquarters": "Austin / Remote",
+    "heroSubtitle": "Care Coordination Platform",
+    "heroDescription": "We partnered with MedSync Health to digitize the discharge and follow-up workflow across clinics, payers, and families.",
+    "heroStats": [
+      { "value": 27, "suffix": "%", "label": "Readmission Reduction", "delay": 200 },
+      { "value": 2, "suffix": "hrs", "label": "Avg. Case Review", "delay": 300 },
+      { "value": 11, "suffix": "Bx", "label": "HIPAA Audits Passed", "delay": 400 },
+      { "value": 180, "suffix": "+", "label": "Clinics Onboarded", "delay": 500 }
+    ],
+    "highlights": [
+      "HIPAA-compliant messaging + document exchange",
+      "AI triage assistant prioritizing follow-ups",
+      "Audit-ready event log for every action"
+    ],
+    "metrics": [
+      { "label": "Care team adoption", "value": "92%", "detail": "Measured after 8 weeks" },
+      { "label": "Admin workload", "value": "-55%", "detail": "Automated discharge packets" },
+      { "label": "Payer approvals", "value": "+31%", "detail": "Complete documentation at submission" }
+    ],
+    "challenge": {
+      "title": "Manual, error-prone coordination",
+      "description": "Faxed discharge packets, phone calls, and spreadsheets made collaboration slow and risky. MedSync needed a digital system that satisfied compliance teams.",
+      "bullets": [
+        "Clinics tracked tasks in spreadsheets with no audit trail",
+        "Patients lacked visibility into follow-up actions",
+        "Insurers rejected claims due to incomplete records"
+      ]
+    },
+    "strategy": {
+      "title": "Secure workflow automation",
+      "description": "We co-designed a HIPAA-ready architecture and introduced AI agents to summarize notes, flag missing documents, and prioritize outreach.",
+      "bullets": [
+        "Encrypted messaging + document sharing with retention policies",
+        "Workflow engine generating discharge packets automatically",
+        "AI triage assistant highlighting risky cases using historical data"
+      ]
+    },
+    "outcome": {
+      "title": "Delight clinicians, satisfy compliance",
+      "description": "The platform now powers care collaboration across 180 clinics, with real-time insight for patients and payers.",
+      "bullets": [
+        "Reduced re-admissions by surfacing at-risk patients sooner",
+        "Every action logged with user, device, and record metadata",
+        "APIs for EHR and payer integration launched in phase two"
+      ]
+    },
+    "testimonial": {
+      "quote": "ZephorTech made care coordination intuitive without compromising security. Their AI triage agent feels like another member of the team.",
+      "author": "Dr. Melissa Hart",
+      "role": "Chief Medical Information Officer",
+      "company": "MedSync Health"
+    },
+    "technologies": ["Next.js", "Node.js", "Supabase", "Azure", "OpenAI", "Twilio"],
+    "serviceSlugs": ["cloud-devops", "ai-agents"],
+    "order": 3,
+    "featured": false
+  },
+  {
+    "title": "Orbit Analytics SaaS Suite",
+    "slug": "orbit-analytics-saas-suite",
+    "client": "Orbit Labs",
+    "industry": "Analytics / SaaS",
+    "summary": "Launched a self-serve analytics SaaS with collaborative dashboards, usage-based billing, and multi-tenant governance.",
+    "excerpt": "Scaled Orbit from beta to 500+ paying teams with an enterprise-ready platform featuring real-time collaboration and secure workspaces.",
+    "timeline": "18 Weeks",
+    "headquarters": "Toronto / Remote",
+    "heroSubtitle": "Enterprise SaaS Launch",
+    "heroDescription": "Orbit Labs needed a partner to productionize their analytics prototype with enterprise authentication, billing, and observability.",
+    "heroStats": [
+      { "value": 500, "suffix": "+", "label": "Paying Teams", "delay": 200 },
+      { "value": 99, "suffix": ".95%", "label": "Uptime", "delay": 300 },
+      { "value": 6, "suffix": "weeks", "label": "MVP to GA", "delay": 400 },
+      { "value": 3, "suffix": "mins", "label": "Workspace Provisioning", "delay": 500 }
+    ],
+    "highlights": [
+      "Role-based access with workspace isolation",
+      "Usage-based billing + Stripe metered events",
+      "Real-time collaboration with CRDT engine"
+    ],
+    "metrics": [
+      { "label": "Provisioning speed", "value": "3 min", "detail": "Down from 45 minutes" },
+      { "label": "Support tickets", "value": "-62%", "detail": "Self-serve onboarding flows" },
+      { "label": "Churn", "value": "-14%", "detail": "In-app activation playbooks" }
+    ],
+    "challenge": {
+      "title": "Prototype stuck in beta",
+      "description": "Orbit's internal team built brilliant analytics but lacked the platform plumbing for secure multi-tenant delivery, billing, and observability.",
+      "bullets": [
+        "Manual workspace provisioning through scripts",
+        "No enterprise authentication or RBAC",
+        "Billing limited to flat monthly invoices"
+      ]
+    },
+    "strategy": {
+      "title": "Production readiness sprint",
+      "description": "We built a multi-tenant foundation, integrated usage-based billing, and layered in collaboration features to differentiate the product.",
+      "bullets": [
+        "Isolated workspaces with automated provisioning + teardown",
+        "Stripe usage-based events powering invoices + alerts",
+        "Live collaboration using CRDT-powered timelines"
+      ]
+    },
+    "outcome": {
+      "title": "Ready for hyper-growth",
+      "description": "Orbit now operates a premium SaaS suite with enterprise security, billing controls, and proactive observability.",
+      "bullets": [
+        "SOC2-ready logging and automated evidence collection",
+        "Feature flags + rollout framework for progressive delivery",
+        "Admin analytics showing adoption per workspace"
+      ]
+    },
+    "testimonial": {
+      "quote": "We went from a fragile beta to a polished SaaS suite in under five months. ZephorTech treated reliability, billing, and UX as first-class citizens.",
+      "author": "Mateo Alvarez",
+      "role": "Founder & CEO",
+      "company": "Orbit Labs"
+    },
+    "technologies": ["Next.js", "NestJS", "PostgreSQL", "Stripe", "Redis", "Vercel"],
+    "serviceSlugs": ["web-development", "cloud-devops", "saas"],
+    "order": 4,
+    "featured": false
+  }
+]
+

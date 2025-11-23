@@ -2,18 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Global Design System */
+@import "../styles/design-system.css";
+
+/* Import UI Scale Reset (takes precedence) */
+@import "../styles/reset.css";
+
 @layer base {
   :root {
     --font-inter: "Inter", sans-serif;
     --font-poppins: "Poppins", sans-serif;
   }
 
+  /* Global font rendering optimizations for all text elements */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Enhanced text rendering for all text content */
+  p,
+  span,
+  a,
+  li,
+  td,
+  th,
+  label,
+  input,
+  textarea,
+  select,
+  button {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   html {
     @apply scroll-smooth;
+    /* Professional font rendering optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
   }
 
   body {
     @apply min-h-screen;
+    /* Enhanced font clarity for body text */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -23,6 +62,132 @@
   h5,
   h6 {
     @apply font-poppins font-semibold;
+    /* Enhanced clarity for headings */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+  }
+
+  /* Enhanced font rendering for numeric values and bold text */
+  .numeric-value,
+  [class*="font-black"],
+  [class*="font-bold"] {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings:
+      "kern" 1,
+      "tnum" 1;
+    font-kerning: normal;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  /* Specific optimization for Poppins bold/black numeric values */
+  .font-poppins.font-black,
+  .font-poppins.font-bold {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings:
+      "kern" 1,
+      "tnum" 1;
+    font-kerning: normal;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.015em;
+  }
+
+  /* Accessibility: Focus indicators */
+  *:focus-visible {
+    outline: 2px solid #0076d1;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Skip to content link (hidden until focused) */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only:focus,
+  .sr-only:active {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Form Input Styling - White text for manual typing */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  textarea,
+  select {
+    color: #ffffff;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+    opacity: 1;
+  }
+
+  /* Autofill: Dark text (browser default) with lighter background for visibility */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    /* Lighter background so dark autofill text is visible */
+    -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset !important;
+    box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.2) inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    /* Dark text for autofill - browser default (visible on lighter background) */
+    -webkit-text-fill-color: #000000 !important;
+    color: #000000 !important;
+  }
+
+  /* Select dropdown text color */
+  select option {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+
+  /* Improved reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -30,5 +195,243 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Floating animation for service icons */
+  .icon-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Futuristic glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient text animations */
+  .gradient-text {
+    background: linear-gradient(135deg, #004e8f 0%, #0076d1 50%, #00a8ff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* 3D card hover effect */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow:
+      0 0 20px rgba(0, 118, 209, 0.3),
+      0 0 40px rgba(0, 118, 209, 0.2),
+      0 0 60px rgba(0, 118, 209, 0.1);
+  }
+
+  .glow-primary-hover:hover {
+    box-shadow:
+      0 0 30px rgba(0, 118, 209, 0.5),
+      0 0 60px rgba(0, 118, 209, 0.3),
+      0 0 90px rgba(0, 118, 209, 0.2);
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #004e8f, #0076d1);
+    padding: 2px;
+    border-radius: 1rem;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, #004e8f, #0076d1, #00a8ff);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: border-rotate 3s linear infinite;
+  }
+
+  @keyframes border-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Pulse animation */
+  .pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Slide in from bottom */
+  .slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
+@layer components {
+  /* Standardized Section Padding */
+  .section-padding {
+    padding-top: var(--section-y);
+    padding-bottom: var(--section-y);
+  }
+
+  .section-padding-lg {
+    @apply py-20 md:py-32;
+  }
+
+  /* Standardized Container */
+  .container-standard {
+    @apply mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8;
+  }
+
+  /* Standardized Button Sizes */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-base font-semibold transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-6 py-3 text-base font-semibold transition-all duration-300;
+  }
+
+  /* Standardized Card */
+  .card-standard {
+    @apply rounded-2xl border p-6 transition-all duration-300 md:p-8;
+  }
+
+  /* Standardized Typography */
+  .heading-1 {
+    font-size: var(--h1);
+    line-height: 1.1;
+    @apply font-poppins font-black;
+    /* Professional font rendering for large headings */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+    font-kerning: normal;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-2 {
+    font-size: var(--h2);
+    line-height: 1.2;
+    @apply font-poppins font-black;
+    /* Professional font rendering for medium headings */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
+    font-kerning: normal;
+    letter-spacing: -0.01em;
+  }
+
+  .heading-3 {
+    font-size: var(--h3);
+    line-height: 1.3;
+    @apply font-poppins font-bold;
+    /* Professional font rendering for small headings */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+  }
+
+  .body-text {
+    @apply text-base leading-relaxed;
+    /* Enhanced clarity for body text */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .subtitle {
+    @apply text-lg leading-relaxed;
+    /* Enhanced clarity for subtitles */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .small-text {
+    @apply text-sm leading-relaxed;
+    /* Enhanced clarity for small text */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}

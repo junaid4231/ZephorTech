@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_service_use_cases",
+  "info": {
+    "displayName": "Service Use Case",
+    "description": "Use case for a service"
+  },
+  "options": {},
+  "attributes": {
+    "industry": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "examples": {
+      "type": "json",
+      "required": false
+    }
+  }
+}
+

@@ -1,0 +1,143 @@
+# All blog posts (listing)
+query GetAllBlogPosts {
+  blogPosts(sort: ["publishedAt:desc"]) {
+    documentId
+    title
+    slug
+    excerpt
+    heroKicker
+    heroDescription
+    readingTime
+    featured
+    tags
+    keyTakeaways
+    publishedAt
+    heroVideoUrl
+    seoTitle
+    seoDescription
+    ctaLabel
+    ctaLink
+    author {
+      documentId
+      name
+      slug
+      role
+      bio
+      avatar {
+        url
+      }
+      linkedinUrl
+      twitterUrl
+      websiteUrl
+    }
+  }
+}
+
+# Single blog post by slug
+query GetBlogPostBySlug($slug: String!) {
+  blogPosts(filters: { slug: { eq: $slug } }, pagination: { pageSize: 1 }) {
+    documentId
+    title
+    slug
+    excerpt
+    heroKicker
+    heroDescription
+    readingTime
+    featured
+    tags
+    keyTakeaways
+    publishedAt
+    heroVideoUrl
+    seoTitle
+    seoDescription
+    ctaLabel
+    ctaLink
+    content
+    contentSections {
+      eyebrow
+      title
+      description
+      bullets
+      mediaUrl
+      mediaCaption
+      layout
+      highlight
+    }
+    pullQuote {
+      quote
+      attribution
+      title
+    }
+    impactStats {
+      label
+      value
+      description
+    }
+    author {
+      documentId
+      name
+      slug
+      role
+      bio
+      linkedinUrl
+      twitterUrl
+      websiteUrl
+    }
+    relatedPosts {
+      documentId
+      title
+      slug
+      excerpt
+      heroKicker
+      readingTime
+      tags
+      keyTakeaways
+      author {
+        documentId
+        name
+        role
+      }
+    }
+  }
+}
+
+# Featured posts (e.g., homepage highlights)
+query GetFeaturedBlogPosts($limit: Int = 3) {
+  blogPosts(
+    filters: { featured: { eq: true } }
+    pagination: { pageSize: $limit }
+    sort: ["publishedAt:desc"]
+  ) {
+    documentId
+    title
+    slug
+    excerpt
+    heroKicker
+    heroDescription
+    readingTime
+    featured
+    tags
+    keyTakeaways
+    publishedAt
+    heroVideoUrl
+    seoTitle
+    seoDescription
+    ctaLabel
+    ctaLink
+    author {
+      documentId
+      name
+      slug
+      role
+      bio
+      avatar {
+        url
+      }
+      linkedinUrl
+      twitterUrl
+      websiteUrl
+    }
+  }
+}
+
+

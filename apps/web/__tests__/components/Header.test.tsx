@@ -1,3 +1,4 @@
+/// <reference types="@testing-library/jest-dom" />
 import { render, screen } from "@testing-library/react";
 import Header from "@/components/Header";
 import { mainNavigation } from "@/config";

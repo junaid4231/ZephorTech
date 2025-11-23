@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Maya Han",
+    "slug": "maya-han",
+    "role": "Chief Strategy Officer",
+    "bio": "Maya leads ZephorTech's transformation studio, pairing enterprise change management with pragmatic delivery. She architected over 80 large-scale launches across fintech, energy, and telco.",
+    "linkedinUrl": "https://www.linkedin.com/in/mayahan",
+    "twitterUrl": "https://twitter.com/mayahan",
+    "websiteUrl": "https://zephortech.com"
+  },
+  {
+    "name": "Luca Moretti",
+    "slug": "luca-moretti",
+    "role": "Head of Platform Engineering",
+    "bio": "Luca owns our platform engineering practice—designing resilient infrastructure, observability pipelines, and delivery frameworks that keep multi-region workloads singing.",
+    "linkedinUrl": "https://www.linkedin.com/in/lucamoretti",
+    "twitterUrl": "https://twitter.com/lucaplatform",
+    "websiteUrl": "https://zephortech.com"
+  },
+  {
+    "name": "Priya Kapoor",
+    "slug": "priya-kapoor",
+    "role": "Director of Growth & Intelligence",
+    "bio": "Priya builds data-backed growth engines that align content, SEO, and lifecycle automation. She previously scaled demand gen for three unicorn SaaS companies.",
+    "linkedinUrl": "https://www.linkedin.com/in/priyak",
+    "twitterUrl": "https://twitter.com/priyagrows",
+    "websiteUrl": "https://zephortech.com"
+  }
+]
+
+

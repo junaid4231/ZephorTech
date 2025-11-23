@@ -1,0 +1,141 @@
+[
+  {
+    "title": "Composable AI Ops: Designing Agentic Platforms for Enterprise Scale",
+    "slug": "composable-ai-ops-agentic-platforms",
+    "excerpt": "How regulated enterprises are shipping agent-powered workflows with the right guardrails, observability, and delivery rituals.",
+    "heroKicker": "AI Platforms",
+    "heroDescription": "A practical blueprint for going from one-off copilots to a unified agentic platform that your security team and business stakeholders trust.",
+    "readingTime": 9,
+    "featured": true,
+    "heroVideoUrl": "https://cdn.zephortech.com/videos/ai-platform-loop.mp4",
+    "tags": ["AI Ops", "Platform Engineering", "LLM"],
+    "ctaLabel": "Architect your AI platform",
+    "ctaLink": "/contact#quote",
+    "seoTitle": "Composable AI Ops | ZephorTech Thought Leadership",
+    "seoDescription": "Design patterns for secure, observable, and scalable AI agent platforms.",
+    "keyTakeaways": [
+      "Treat prompts, tools, and guardrails as first-class modules.",
+      "Stand up evaluation harnesses before shipping to production users.",
+      "Blend vector search with policy-aware tool orchestration."
+    ],
+    "impactStats": [
+      { "label": "Latency drop", "value": "37%", "description": "after streaming inference rollout" },
+      { "label": "Policy coverage", "value": "100%", "description": "automated guardrail scenarios" }
+    ],
+    "content": "<p>Agentic use cases escalate quickly—from internal copilots to revenue generating automations. Without a platform mindset, teams ship brittle one-offs that silently break when prompts drift or dependencies change.</p><p>We break agent programs into three surfaces: orchestration core, evaluation harness, and observability plane. Each surface has owners, backlog, and release criteria. That clarity turns AI experimentation into shippable roadmaps.</p>",
+    "contentSections": [
+      {
+        "eyebrow": "01 — Operating Model",
+        "title": "Platform squads, not shadow pilots",
+        "description": "<p>Dedicated platform squads keep prompt libraries, retrieval pipelines, and guardrails aligned. Feature teams compose capabilities, but platform teams own the rails.</p>",
+        "bullets": ["Reusable prompt kits with governance baked in", "Evaluation suites that block regressions", "Telemetry correlated with business KPIs"],
+        "highlight": "Platform squads unlock predictable delivery."
+      },
+      {
+        "eyebrow": "02 — Observability",
+        "title": "Instrument everything (including humans)",
+        "description": "<p>LLM experiences fail silently without deep telemetry. Capture user feedback loops, tool traces, and model deltas so you know when automation drifts.</p>",
+        "layout": "text-right",
+        "bullets": ["Structured prompt/version metadata", "Session replays for approval chains", "Guardrail scoring surfaced in Looker"]
+      }
+    ],
+    "pullQuote": {
+      "quote": "The most successful AI programs look suspiciously like great platform teams with a new stack.",
+      "attribution": "Maya Han",
+      "title": "Chief Strategy Officer"
+    },
+    "authorSlug": "maya-han",
+    "relatedSlugs": ["from-monolith-to-edge-high-velocity-commerce", "full-funnel-growth-os"]
+  },
+  {
+    "title": "From Monolith to Edge: Blueprint for High-Velocity Commerce",
+    "slug": "from-monolith-to-edge-high-velocity-commerce",
+    "excerpt": "Commerce teams are escaping slow monolith releases by pairing federated design systems with edge rendering and zero-downtime pipelines.",
+    "heroKicker": "Commerce Engineering",
+    "heroDescription": "A field guide for replatforming without burning a quarter on rewriting everything.",
+    "readingTime": 8,
+    "featured": true,
+    "tags": ["Commerce", "Edge", "Next.js"],
+    "ctaLabel": "Plan your replatform",
+    "ctaLink": "/contact#quote",
+    "seoTitle": "Edge Commerce Blueprint | ZephorTech",
+    "seoDescription": "Pragmatic steps to modernize commerce stacks with edge and composable architectures.",
+    "keyTakeaways": [
+      "Break releases into experience slices coordinated through design tokens.",
+      "Keep checkout + pricing systems untouched until observability is solid.",
+      "Automate rollbacks with traffic shadowing at the CDN layer."
+    ],
+    "impactStats": [
+      { "label": "Time-to-ship", "value": "4x faster", "description": "after federated releases" },
+      { "label": "Conversion lift", "value": "+18%", "description": "from instant edge personalization" }
+    ],
+    "content": "<p>Edge-centric commerce isn't about rewriting everything. It's about sequencing. We migrate read-heavy journeys first, leaving transactional cores to follow once telemetry proves stability.</p>",
+    "contentSections": [
+      {
+        "eyebrow": "Launch kits",
+        "title": "Experience slices with shared primitives",
+        "description": "<p>Bundle design tokens, QA scripts, and performance budgets into each slice. When every release shares the same launch kit, multiple squads can ship weekly without collisions.</p>",
+        "layout": "text-left"
+      },
+      {
+        "eyebrow": "Runtime control",
+        "title": "Edge flags + traffic shadowing",
+        "description": "<p>Use edge functions to shadow 5-10% of traffic through the new stack while observability validates parity. Roll forward, never back.</p>",
+        "bullets": ["Cloudflare Workers + LaunchDarkly", "Synthetic monitors tied to feature flags", "CDN logs piped into Honeycomb"]
+      }
+    ],
+    "pullQuote": {
+      "quote": "Commerce velocity is a release discipline, not a framework choice.",
+      "attribution": "Luca Moretti",
+      "title": "Head of Platform Engineering"
+    },
+    "authorSlug": "luca-moretti",
+    "relatedSlugs": ["composable-ai-ops-agentic-platforms"]
+  },
+  {
+    "title": "Full-Funnel Growth OS: Integrating SEO, Content, and RevOps",
+    "slug": "full-funnel-growth-os",
+    "excerpt": "Growth teams win when experimentation, content engines, and revenue operations share the same telemetry and prioritization model.",
+    "heroKicker": "Growth & Intelligence",
+    "heroDescription": "A framework for replacing disconnected campaigns with a programmable growth operating system.",
+    "readingTime": 7,
+    "featured": false,
+    "tags": ["Growth", "SEO", "Automation"],
+    "ctaLabel": "Design your growth OS",
+    "ctaLink": "/contact#quote",
+    "seoTitle": "Full-Funnel Growth OS | ZephorTech",
+    "seoDescription": "How to align SEO, paid, lifecycle, and RevOps into one programmable system.",
+    "keyTakeaways": [
+      "Centralize demand telemetry so every channel shares the same truth.",
+      "Codify playbooks as reusable automations instead of one-off campaigns.",
+      "Obsess over time-to-signal, not just pipeline volume."
+    ],
+    "impactStats": [
+      { "label": "Pipeline attribution", "value": "92%", "description": "visibility into sourced ARR" },
+      { "label": "Experiment velocity", "value": "3.4x", "description": "after automation" }
+    ],
+    "content": "<p>We connect content operations, marketing automation, and revenue teams through a single growth OS—complete with shared backlog, OKRs, and experimentation rituals.</p>",
+    "contentSections": [
+      {
+        "eyebrow": "System of record",
+        "title": "Telemetry or it didn't happen",
+        "description": "<p>Every landing page, nurture step, and sales touch pushes events into the growth OS. Reporting is no longer a quarterly archaeology project.</p>"
+      },
+      {
+        "eyebrow": "Automation fabric",
+        "title": "Reusable playbooks beat bespoke campaigns",
+        "description": "<p>We model nurture arcs, paid amplification, and success stories as programmable modules. Teams drag, drop, and localize instead of reinventing.</p>",
+        "layout": "text-right"
+      }
+    ],
+    "pullQuote": {
+      "quote": "Growth isn't luck—it's the byproduct of consistent, automated rituals.",
+      "attribution": "Priya Kapoor",
+      "title": "Director of Growth & Intelligence"
+    },
+    "authorSlug": "priya-kapoor",
+    "relatedSlugs": ["composable-ai-ops-agentic-platforms"]
+  }
+]
+
+

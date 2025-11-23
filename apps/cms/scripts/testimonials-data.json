@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah Chen",
+    "role": "CEO",
+    "company": "TechCorp",
+    "image": "SC",
+    "quote": "ZephorTech transformed our entire digital infrastructure. Their AI-powered solutions increased our efficiency by 300% and reduced costs significantly. Exceptional team!",
+    "rating": 5
+  },
+  {
+    "id": "2",
+    "name": "Michael Rodriguez",
+    "role": "CTO",
+    "company": "InnovateLab",
+    "image": "MR",
+    "quote": "Working with ZephorTech was a game-changer. They delivered a cutting-edge SaaS platform that scaled perfectly with our growth. Professional, innovative, and results-driven.",
+    "rating": 5
+  },
+  {
+    "id": "3",
+    "name": "Emily Watson",
+    "role": "Product Director",
+    "company": "DigitalFlow",
+    "image": "EW",
+    "quote": "The mobile app they built exceeded all expectations. User engagement skyrocketed, and the technical execution was flawless. Highly recommend their services!",
+    "rating": 5
+  },
+  {
+    "id": "4",
+    "name": "David Kim",
+    "role": "Founder",
+    "company": "CloudScale",
+    "image": "DK",
+    "quote": "Outstanding cloud infrastructure setup. The team's expertise in DevOps and automation saved us months of development time. Highly professional!",
+    "rating": 5
+  },
+  {
+    "id": "5",
+    "name": "Lisa Anderson",
+    "role": "CMO",
+    "company": "DataVault",
+    "image": "LA",
+    "quote": "Their e-commerce solution transformed our online presence. Sales increased dramatically and the user experience is exceptional. Best investment we made!",
+    "rating": 5
+  },
+  {
+    "id": "6",
+    "name": "James Wilson",
+    "role": "CTO",
+    "company": "NextGen",
+    "image": "JW",
+    "quote": "ZephorTech's web development team delivered beyond expectations. The platform is fast, scalable, and beautifully designed. Couldn't be happier!",
+    "rating": 5
+  }
+]

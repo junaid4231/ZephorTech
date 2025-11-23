@@ -1,0 +1,44 @@
+# Query to fetch all testimonials
+# In Strapi v5 with shadowCRUD, testimonials returns [Testimonial] with fields directly
+query GetAllTestimonials {
+  testimonials(sort: "order:asc") {
+    documentId
+    clientName
+    role
+    company
+    quote
+    rating
+    featured
+    order
+    avatar {
+      url
+      alternativeText
+    }
+    companyLogo {
+      url
+      alternativeText
+    }
+  }
+}
+
+# Query to fetch featured testimonials
+query GetFeaturedTestimonials {
+  testimonials(filters: { featured: { eq: true } }, sort: "order:asc") {
+    documentId
+    clientName
+    role
+    company
+    quote
+    rating
+    featured
+    order
+    avatar {
+      url
+      alternativeText
+    }
+    companyLogo {
+      url
+      alternativeText
+    }
+  }
+}

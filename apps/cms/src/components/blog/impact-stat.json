@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blog_impact_stats",
+  "info": {
+    "displayName": "Impact Stat",
+    "description": "Metric highlight for blog posts"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
+
+

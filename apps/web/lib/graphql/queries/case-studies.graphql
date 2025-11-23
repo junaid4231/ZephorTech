@@ -1,0 +1,107 @@
+# Query to fetch all case studies
+# In Strapi v5 with shadowCRUD, caseStudies returns [CaseStudy] with fields directly
+query GetAllCaseStudies {
+  caseStudies(sort: "order:asc") {
+    documentId
+    title
+    slug
+    client
+    industry
+    summary
+    excerpt
+    timeline
+    headquarters
+    heroSubtitle
+    heroDescription
+    heroStats
+    highlights
+    metrics
+    challenge
+    strategy
+    outcome
+    testimonial
+    technologies
+    order
+    featured
+    publishedAt
+    seoTitle
+    seoDescription
+    services {
+      documentId
+      title
+      slug
+    }
+  }
+}
+
+# Query to fetch featured case studies
+query GetFeaturedCaseStudies {
+  caseStudies(filters: { featured: { eq: true } }, sort: "order:asc") {
+    documentId
+    title
+    slug
+    client
+    industry
+    summary
+    excerpt
+    timeline
+    headquarters
+    heroSubtitle
+    heroDescription
+    heroStats
+    highlights
+    metrics
+    challenge
+    strategy
+    outcome
+    testimonial
+    technologies
+    order
+    featured
+    publishedAt
+    seoTitle
+    seoDescription
+    services {
+      documentId
+      title
+      slug
+    }
+  }
+}
+
+# Query to fetch a single case study by slug
+query GetCaseStudyBySlug($slug: String!) {
+  caseStudies(filters: { slug: { eq: $slug } }) {
+    documentId
+    title
+    slug
+    client
+    industry
+    summary
+    excerpt
+    timeline
+    headquarters
+    heroSubtitle
+    heroDescription
+    heroStats
+    highlights
+    metrics
+    challenge
+    strategy
+    outcome
+    testimonial
+    technologies
+    order
+    featured
+    publishedAt
+    seoTitle
+    seoDescription
+    services {
+      documentId
+      title
+      slug
+      shortDescription
+    }
+  }
+}
+

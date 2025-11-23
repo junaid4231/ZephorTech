@@ -1,0 +1,114 @@
+{
+  "kind": "collectionType",
+  "collectionName": "case_studies",
+  "info": {
+    "singularName": "case-study",
+    "pluralName": "case-studies",
+    "displayName": "Case Study",
+    "description": "Real client project stories with results and metrics"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "unique": true
+    },
+    "client": {
+      "type": "string",
+      "required": true
+    },
+    "industry": {
+      "type": "string",
+      "required": true
+    },
+    "summary": {
+      "type": "text",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true
+    },
+    "timeline": {
+      "type": "string",
+      "required": false
+    },
+    "headquarters": {
+      "type": "string",
+      "required": false
+    },
+    "heroSubtitle": {
+      "type": "string",
+      "required": false
+    },
+    "heroDescription": {
+      "type": "text",
+      "required": false
+    },
+    "heroStats": {
+      "type": "json",
+      "required": false
+    },
+    "highlights": {
+      "type": "json",
+      "required": false
+    },
+    "metrics": {
+      "type": "json",
+      "required": false
+    },
+    "challenge": {
+      "type": "json",
+      "required": false
+    },
+    "strategy": {
+      "type": "json",
+      "required": false
+    },
+    "outcome": {
+      "type": "json",
+      "required": false
+    },
+    "testimonial": {
+      "type": "json",
+      "required": false
+    },
+    "technologies": {
+      "type": "json",
+      "required": false
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "required": false
+    },
+    "seoTitle": {
+      "type": "string",
+      "required": false
+    },
+    "seoDescription": {
+      "type": "text",
+      "required": false
+    }
+  }
+}
+

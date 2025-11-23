@@ -1,109 +1,61 @@
-# ZephorTech CMS (Strapi v5)
+# 🚀 Getting started with Strapi
 
-This directory is reserved for the Strapi v5 CMS backend.
+Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/dev-docs/cli) (CLI) which lets you scaffold and manage your project in seconds.
 
-## Status
+### `develop`
 
-⏳ **Setup Deferred to Phase 2**
+Start your Strapi application with autoReload enabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-develop)
 
-The actual Strapi installation and configuration will be completed in a later phase after the frontend foundation is established.
-
-## Planned Tech Stack
-
-- **CMS:** Strapi v5 (self-hosted)
-- **Database:** PostgreSQL (production), SQLite (development)
-- **API:** REST & GraphQL endpoints
-- **Auth:** Strapi built-in authentication
-- **Media:** Cloudinary/Imgix integration
-
-## Planned Content Types
-
-### Collections
-
-1. **Service**
-   - title, slug, summary, body (rich text)
-   - features (list), hero image, icons
-   - SEO meta (title, description)
-   - order
-
-2. **Portfolio**
-   - title, slug, client, industry
-   - summary, problem, solution
-   - techStack (relation), images (gallery)
-   - date, outcome metrics
-
-3. **BlogPost**
-   - title, slug, author (relation)
-   - category, tags, content
-   - excerpt, featured image
-   - publishedAt, SEO meta
-
-4. **TeamMember**
-   - name, role, bio, photo
-   - social links
-
-5. **Testimonial**
-   - clientName, role, company
-   - quote, logo (optional)
-
-6. **Technology**
-   - name, logo, category
-   - description
-
-7. **ContactSubmission**
-   - name, email, company
-   - message, serviceInterest
-   - budgetRange, createdAt
-
-### Singletons
-
-8. **SiteSettings**
-   - siteTitle, defaultMeta
-   - socialLinks, footerText
-   - contactEmail
-
-## Future Setup Commands
-
-```bash
-# Install Strapi v5
-npx create-strapi-app@latest . --quickstart
-
-# Development
+```
 npm run develop
+# or
+yarn develop
+```
 
-# Production build
-npm run build
+### `start`
+
+Start your Strapi application with autoReload disabled. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-start)
+
+```
 npm run start
+# or
+yarn start
 ```
 
-## Environment Variables (Future)
+### `build`
 
-```env
-HOST=0.0.0.0
-PORT=1337
-APP_KEYS=
-API_TOKEN_SALT=
-ADMIN_JWT_SECRET=
-TRANSFER_TOKEN_SALT=
-JWT_SECRET=
+Build your admin panel. [Learn more](https://docs.strapi.io/dev-docs/cli#strapi-build)
 
-DATABASE_CLIENT=postgres
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-DATABASE_NAME=zephortech_cms
-DATABASE_USERNAME=
-DATABASE_PASSWORD=
-DATABASE_SSL=false
-
-CLOUDINARY_NAME=
-CLOUDINARY_KEY=
-CLOUDINARY_SECRET=
+```
+npm run build
+# or
+yarn build
 ```
 
-## Deployment Plan
+## ⚙️ Deployment
 
-- **Development:** Local SQLite
-- **Production:** Render/DigitalOcean with PostgreSQL
-- **Domain:** cms.zephortech.com (subdomain)
-- **SSL:** Automatic via hosting provider
+Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
 
+```
+yarn strapi deploy
+```
+
+## 📚 Learn more
+
+- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
+- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
+- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
+- [Strapi blog](https://strapi.io/blog) - Official Strapi blog containing articles made by the Strapi team and the community.
+- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
+
+Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
+
+## ✨ Community
+
+- [Discord](https://discord.strapi.io) - Come chat with the Strapi community including the core team.
+- [Forum](https://forum.strapi.io/) - Place to discuss, ask questions and find answers, show your Strapi project and get feedback or just talk with other Community members.
+- [Awesome Strapi](https://github.com/strapi/awesome-strapi) - A curated list of awesome things related to Strapi.
+
+---
+
+<sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>

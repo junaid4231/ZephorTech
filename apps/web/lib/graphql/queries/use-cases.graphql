@@ -1,0 +1,77 @@
+# Query to fetch all use cases
+# In Strapi v5 with shadowCRUD, useCases returns [UseCase] with fields directly
+query GetAllUseCases {
+  useCases(sort: "order:asc") {
+    documentId
+    title
+    slug
+    industry
+    description
+    examples
+    icon
+    image {
+      url
+      alternativeText
+    }
+    order
+    featured
+    publishedAt
+    services {
+      documentId
+      title
+      slug
+    }
+  }
+}
+
+# Query to fetch featured use cases
+query GetFeaturedUseCases {
+  useCases(filters: { featured: { eq: true } }, sort: "order:asc") {
+    documentId
+    title
+    slug
+    industry
+    description
+    examples
+    icon
+    image {
+      url
+      alternativeText
+    }
+    order
+    featured
+    publishedAt
+    services {
+      documentId
+      title
+      slug
+    }
+  }
+}
+
+# Query to fetch a single use case by slug
+query GetUseCaseBySlug($slug: String!) {
+  useCases(filters: { slug: { eq: $slug } }) {
+    documentId
+    title
+    slug
+    industry
+    description
+    examples
+    icon
+    image {
+      url
+      alternativeText
+    }
+    order
+    featured
+    publishedAt
+    services {
+      documentId
+      title
+      slug
+      shortDescription
+    }
+  }
+}
+

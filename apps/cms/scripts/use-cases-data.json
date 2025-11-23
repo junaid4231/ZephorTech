@@ -1,0 +1,131 @@
+[
+  {
+    "title": "E-Commerce Platform Development",
+    "slug": "e-commerce-platform-development",
+    "industry": "Retail & E-Commerce",
+    "description": "Build scalable e-commerce platforms with modern payment processing, inventory management, and customer experience features.",
+    "examples": [
+      "Multi-vendor marketplace",
+      "B2B wholesale platform",
+      "Subscription-based commerce",
+      "Mobile-first shopping experience"
+    ],
+    "icon": "ShoppingCart",
+    "order": 1,
+    "featured": true,
+    "serviceSlugs": ["web-development", "cloud-architecture"]
+  },
+  {
+    "title": "AI-Powered Business Automation",
+    "slug": "ai-powered-business-automation",
+    "industry": "Enterprise",
+    "description": "Implement AI agents and automation workflows to streamline business processes and reduce manual work.",
+    "examples": [
+      "Customer service chatbots",
+      "Document processing automation",
+      "Predictive analytics dashboards",
+      "Intelligent data extraction"
+    ],
+    "icon": "Bot",
+    "order": 2,
+    "featured": true,
+    "serviceSlugs": ["ai-automation", "cloud-architecture"]
+  },
+  {
+    "title": "SaaS Product Development",
+    "slug": "saas-product-development",
+    "industry": "SaaS",
+    "description": "Create scalable SaaS platforms with subscription management, multi-tenancy, and enterprise features.",
+    "examples": [
+      "B2B SaaS applications",
+      "Platform-as-a-Service solutions",
+      "API-first products",
+      "White-label SaaS platforms"
+    ],
+    "icon": "Cloud",
+    "order": 3,
+    "featured": true,
+    "serviceSlugs": ["web-development", "cloud-architecture", "devops-automation"]
+  },
+  {
+    "title": "FinTech Application Development",
+    "slug": "fintech-application-development",
+    "industry": "FinTech",
+    "description": "Build secure financial technology applications with compliance, real-time processing, and advanced security.",
+    "examples": [
+      "Digital banking platforms",
+      "Payment processing systems",
+      "Cryptocurrency exchanges",
+      "Investment management tools"
+    ],
+    "icon": "CreditCard",
+    "order": 4,
+    "featured": false,
+    "serviceSlugs": ["web-development", "cloud-architecture"]
+  },
+  {
+    "title": "Healthcare Technology Solutions",
+    "slug": "healthcare-technology-solutions",
+    "industry": "Healthcare",
+    "description": "Develop HIPAA-compliant healthcare applications with patient management, telemedicine, and data analytics.",
+    "examples": [
+      "Electronic health records (EHR)",
+      "Telemedicine platforms",
+      "Medical device integration",
+      "Health data analytics"
+    ],
+    "icon": "Heart",
+    "order": 5,
+    "featured": false,
+    "serviceSlugs": ["web-development", "cloud-architecture"]
+  },
+  {
+    "title": "Real-Time Collaboration Tools",
+    "slug": "real-time-collaboration-tools",
+    "industry": "Enterprise",
+    "description": "Build real-time collaboration platforms with live editing, video conferencing, and team management features.",
+    "examples": [
+      "Document collaboration platforms",
+      "Project management tools",
+      "Video conferencing solutions",
+      "Team communication apps"
+    ],
+    "icon": "Users",
+    "order": 6,
+    "featured": false,
+    "serviceSlugs": ["web-development", "cloud-architecture"]
+  },
+  {
+    "title": "Data Analytics & Business Intelligence",
+    "slug": "data-analytics-business-intelligence",
+    "industry": "Enterprise",
+    "description": "Create powerful analytics platforms with data visualization, reporting, and predictive insights.",
+    "examples": [
+      "Business intelligence dashboards",
+      "Data warehousing solutions",
+      "Real-time analytics platforms",
+      "Custom reporting tools"
+    ],
+    "icon": "BarChart",
+    "order": 7,
+    "featured": false,
+    "serviceSlugs": ["cloud-architecture", "ai-automation"]
+  },
+  {
+    "title": "Mobile App Development",
+    "slug": "mobile-app-development",
+    "industry": "Mobile",
+    "description": "Develop native and cross-platform mobile applications with modern frameworks and best practices.",
+    "examples": [
+      "iOS and Android apps",
+      "React Native applications",
+      "Flutter mobile apps",
+      "Progressive web apps (PWA)"
+    ],
+    "icon": "Smartphone",
+    "order": 8,
+    "featured": false,
+    "serviceSlugs": ["web-development"]
+  }
+]
+

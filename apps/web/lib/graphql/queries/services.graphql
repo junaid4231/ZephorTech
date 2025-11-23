@@ -1,0 +1,91 @@
+# Query to fetch all services
+# In Strapi v5 with shadowCRUD, services returns [Service] with fields directly
+query GetAllServices {
+  services {
+    documentId
+    title
+    slug
+    shortDescription
+    fullDescription
+    iconName
+    heroStats
+    features {
+      icon
+      title
+      description
+    }
+    useCases {
+      industry
+      title
+      description
+      examples
+    }
+    techStack
+    process {
+      step
+      title
+      description
+      duration
+    }
+    faq {
+      question
+      answer
+    }
+    benefits
+    seoTitle
+    seoDescription
+    order
+    publishedAt
+    relatedServices {
+      documentId
+      title
+      slug
+    }
+  }
+}
+
+# Query to fetch a single service by slug
+query GetServiceBySlug($slug: String!) {
+  services(filters: { slug: { eq: $slug } }) {
+    documentId
+    title
+    slug
+    shortDescription
+    fullDescription
+    iconName
+    heroStats
+    features {
+      icon
+      title
+      description
+    }
+    useCases {
+      industry
+      title
+      description
+      examples
+    }
+    techStack
+    process {
+      step
+      title
+      description
+      duration
+    }
+    faq {
+      question
+      answer
+    }
+    benefits
+    seoTitle
+    seoDescription
+    order
+    publishedAt
+    relatedServices {
+      documentId
+      title
+      slug
+      shortDescription
+    }
+  }
+}

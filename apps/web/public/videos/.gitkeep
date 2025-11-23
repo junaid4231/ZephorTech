@@ -1,0 +1,8 @@
+# Videos Directory
+# Place hero-video.mp4 and hero-poster.jpg here
+# Video specifications:
+# - Format: MP4 (H.264)
+# - Resolution: 1920x1080 (Full HD)
+# - Duration: 15-30 seconds (loop)
+# - File size: < 5MB (optimized)
+# - Muted, autoplay, loop

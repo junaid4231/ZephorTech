@@ -1,19 +1,53 @@
 {
   "name": "cms",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
-  "description": "Strapi CMS for ZephorTech - To be configured in Phase 2",
+  "description": "A Strapi application",
   "scripts": {
-    "dev": "echo 'Strapi CMS setup deferred to Phase 2' && exit 0",
-    "build": "echo 'Strapi CMS setup deferred to Phase 2' && exit 0",
-    "start": "echo 'Strapi CMS setup deferred to Phase 2' && exit 0"
+    "build": "strapi build",
+    "console": "strapi console",
+    "deploy": "strapi deploy",
+    "dev": "strapi develop",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi",
+    "upgrade": "npx @strapi/upgrade latest",
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "seed:services": "strapi ts scripts/seed-services.ts",
+    "seed:testimonials": "strapi ts scripts/seed-testimonials.ts",
+    "seed:use-cases": "ts-node scripts/seed-use-cases-api.ts"
   },
-  "keywords": [
-    "strapi",
-    "cms",
-    "headless-cms"
-  ],
-  "author": "Muhammad Junaid (for Zephortech)",
-  "license": "UNLICENSED"
+  "dependencies": {
+    "@strapi/plugin-cloud": "5.31.1",
+    "@strapi/plugin-graphql": "^5.31.1",
+    "@strapi/plugin-users-permissions": "5.31.1",
+    "@strapi/strapi": "5.31.1",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.0.0",
+    "strapi-provider-upload-supabase": "^1.0.0",
+    "styled-components": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.25",
+    "@types/pg": "^8.15.6",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=24.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "3d6cad16-1311-4c43-aa8e-7ec63de8dfed",
+    "installId": "a647203291c098fd5e6ee7f8c2803cb89369d6f72fcc166a604c7c4a2ede3f13"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
-

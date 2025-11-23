@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "Service offerings of ZephorTech"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "unique": true
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true
+    },
+    "fullDescription": {
+      "type": "richtext",
+      "required": true
+    },
+    "iconName": {
+      "type": "string",
+      "required": true
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "heroStats": {
+      "type": "json",
+      "required": true
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.feature",
+      "required": false
+    },
+    "useCases": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.use-case",
+      "required": false
+    },
+    "techStack": {
+      "type": "json",
+      "required": false
+    },
+    "process": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.process-step",
+      "required": false
+    },
+    "faq": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.faq",
+      "required": false
+    },
+    "relatedServices": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service"
+    },
+    "benefits": {
+      "type": "json",
+      "required": false
+    },
+    "seoTitle": {
+      "type": "string",
+      "required": false
+    },
+    "seoDescription": {
+      "type": "text",
+      "required": false
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "required": false
+    }
+  }
+}
+

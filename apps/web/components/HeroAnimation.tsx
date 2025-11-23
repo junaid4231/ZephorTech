@@ -1,30 +1,40 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
 /**
  * HeroAnimation Component
  * 
- * PHASE 3 PLACEHOLDER
+ * Dynamically imports the 3D animation component with SSR disabled.
+ * This ensures the Three.js canvas only loads on the client side,
+ * preventing server-side rendering issues and improving initial page load.
  * 
- * This component will integrate react-three-fiber for a 3D geometric animation.
- * The animation will feature:
- * - Floating geometric shapes (polygons, icosahedrons)
- * - Subtle rotation and movement
- * - Network of connecting lines reacting to cursor movement
- * - Blue gradient lighting (#0076D1) with reflections
- * - Orbs of light moving through shapes symbolizing data flow
- * - Transparent background with white/gray base
- * - 60fps performance target with graceful degradation on mobile
+ * Features (PROFESSIONAL VERSION):
+ * - Electron-orbital spheres (8 spheres on 3 orbital planes like electrons)
+ * - Interactive cursor-connected grid lines (lines connect from floor grid to cursor)
+ * - Advanced particle trail system (particles follow cursor)
+ * - Dynamic spotlight following cursor
+ * - Post-processing effects (Bloom & Chromatic Aberration for premium look)
+ * - Enhanced nucleus geometry (morphing rings, fractal elements)
+ * - Professional 6-point lighting + dynamic spotlight
+ * - Full gradient color system (#004E8F → #0076D1 with cyan accents)
+ * - Network connection lines between particles
+ * - Mobile optimization (effects disabled, still smooth)
+ * - Automatic fallback for reduced motion preference
+ * - Error handling with branded SVG fallback
+ * - Performance monitoring with FPS tracking
  * 
- * Technology Stack (Phase 3):
- * - three.js
- * - @react-three/fiber
- * - @react-three/drei
- * 
- * Implementation will use dynamic imports for performance optimization
- * and will include fallback for devices with limited GPU capabilities.
+ * Version History:
+ * - Basic: "./HeroAnimationComp" (Current - Simple with cursor interactive lines)
+ * - Enhanced: "./HeroAnimationEnhanced" (Complex version - not in use)
+ * - Professional: "./HeroAnimationPro" (Alternative version - not in use)
  */
+const HeroAnimationComp = dynamic(() => import("./HeroAnimationComp"), {
+  ssr: false,
+  loading: () => null,
+});
 
 export default function HeroAnimation() {
-  // Phase 3: Will return the Three.js canvas with geometric animation
-  // For now, return null to maintain clean structure
-  return null;
+  return <HeroAnimationComp />;
 }
 

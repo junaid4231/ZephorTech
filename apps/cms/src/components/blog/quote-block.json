@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blog_quote_blocks",
+  "info": {
+    "displayName": "Quote Block",
+    "description": "Featured pull-quote for articles"
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text",
+      "required": true
+    },
+    "attribution": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
+
+

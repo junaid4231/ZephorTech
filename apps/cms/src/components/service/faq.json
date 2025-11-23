@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_service_faqs",
+  "info": {
+    "displayName": "Service FAQ",
+    "description": "Frequently asked question for a service"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
+

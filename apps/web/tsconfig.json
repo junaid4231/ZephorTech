@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./*"]
     },
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

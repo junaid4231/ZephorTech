@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_blog_content_sections",
+  "info": {
+    "displayName": "Content Section",
+    "description": "Structured block for article storytelling"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "bullets": {
+      "type": "json"
+    },
+    "mediaUrl": {
+      "type": "string"
+    },
+    "mediaCaption": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "enumeration",
+      "enum": [
+        "text-left",
+        "text-right",
+        "full"
+      ],
+      "default": "full"
+    },
+    "highlight": {
+      "type": "string"
+    }
+  }
+}
+
+
