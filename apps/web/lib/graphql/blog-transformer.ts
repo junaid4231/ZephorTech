@@ -11,10 +11,14 @@ import type {
   BlogPost,
 } from "../blog";
 
-type BlogNode =
+type BlogListItemNode =
   | GetAllBlogPostsQuery["blogPosts"][number]
-  | GetFeaturedBlogPostsQuery["blogPosts"][number]
-  | GetBlogPostBySlugQuery["blogPosts"][number];
+  | GetFeaturedBlogPostsQuery["blogPosts"][number];
+
+type AuthorType =
+  | NonNullable<GetAllBlogPostsQuery["blogPosts"][number]>["author"]
+  | NonNullable<GetFeaturedBlogPostsQuery["blogPosts"][number]>["author"]
+  | NonNullable<GetBlogPostBySlugQuery["blogPosts"][number]>["author"];
 
 function buildMediaUrl(url?: string | null) {
   if (!url) return undefined;
@@ -24,10 +28,7 @@ function buildMediaUrl(url?: string | null) {
 }
 
 function transformAuthor(
-  author:
-    | GetAllBlogPostsQuery["blogPosts"][number]["author"]
-    | GetFeaturedBlogPostsQuery["blogPosts"][number]["author"]
-    | GetBlogPostBySlugQuery["blogPosts"][number]["author"]
+  author: AuthorType | null | undefined
 ): BlogAuthor | null {
   if (!author) return null;
 
@@ -35,7 +36,7 @@ function transformAuthor(
   return {
     id: castAuthor.documentId,
     name: castAuthor.name,
-    slug: castAuthor.slug,
+    slug: castAuthor.slug ?? "",
     role: castAuthor.role,
     bio: castAuthor.bio ?? null,
     avatarUrl: castAuthor.avatar?.url ? buildMediaUrl(castAuthor.avatar.url) : undefined,
@@ -77,7 +78,7 @@ function normalizeImpactStats(stats: any[] | null | undefined): BlogImpactStat[]
     }));
 }
 
-function toBlogListItem(node: BlogNode): BlogListItem | null {
+function toBlogListItem(node: BlogListItemNode | null): BlogListItem | null {
   if (!node) return null;
   const post = node as Record<string, any>;
 
@@ -98,7 +99,7 @@ function toBlogListItem(node: BlogNode): BlogListItem | null {
     seoDescription: post.seoDescription ?? null,
     ctaLabel: post.ctaLabel ?? null,
     ctaLink: post.ctaLink ?? null,
-    author: transformAuthor(post.author),
+    author: transformAuthor(post.author as AuthorType | null | undefined),
   };
 }
 
@@ -111,14 +112,55 @@ export function transformBlogPostListItem(
 }
 
 export function transformBlogPostDetail(
-  post: GetBlogPostBySlugQuery["blogPosts"][number]
+  post: GetBlogPostBySlugQuery["blogPosts"][number] | null
 ): BlogPost | null {
-  const base = toBlogListItem(post);
-  if (!base) return null;
+  if (!post) return null;
+  
+  // Create base list item manually since post has additional fields
+  const postData = post as Record<string, any>;
+  const base: BlogListItem = {
+    id: postData.documentId,
+    slug: postData.slug,
+    title: postData.title,
+    excerpt: postData.excerpt,
+    heroKicker: postData.heroKicker ?? null,
+    heroDescription: postData.heroDescription ?? null,
+    readingTime: postData.readingTime ?? null,
+    featured: postData.featured ?? false,
+    tags: Array.isArray(postData.tags) ? (postData.tags as string[]) : [],
+    keyTakeaways: Array.isArray(postData.keyTakeaways) ? (postData.keyTakeaways as string[]) : [],
+    publishedAt: postData.publishedAt ?? null,
+    heroVideoUrl: postData.heroVideoUrl ?? null,
+    seoTitle: postData.seoTitle ?? null,
+    seoDescription: postData.seoDescription ?? null,
+    ctaLabel: postData.ctaLabel ?? null,
+    ctaLink: postData.ctaLink ?? null,
+    author: transformAuthor(postData.author as AuthorType | null | undefined),
+  };
 
+  // Transform related posts - they are simpler list items without content/relatedPosts
   const related = (post.relatedPosts || []).map((relatedPost) => {
     if (!relatedPost) return null;
-    return toBlogListItem(relatedPost);
+    const relatedData = relatedPost as Record<string, any>;
+    return {
+      id: relatedData.documentId,
+      slug: relatedData.slug,
+      title: relatedData.title,
+      excerpt: relatedData.excerpt,
+      heroKicker: relatedData.heroKicker ?? null,
+      heroDescription: null,
+      readingTime: relatedData.readingTime ?? null,
+      featured: false,
+      tags: Array.isArray(relatedData.tags) ? (relatedData.tags as string[]) : [],
+      keyTakeaways: Array.isArray(relatedData.keyTakeaways) ? (relatedData.keyTakeaways as string[]) : [],
+      publishedAt: null,
+      heroVideoUrl: null,
+      seoTitle: null,
+      seoDescription: null,
+      ctaLabel: null,
+      ctaLink: null,
+      author: transformAuthor(relatedData.author as AuthorType | null | undefined),
+    } as BlogListItem;
   });
 
   return {

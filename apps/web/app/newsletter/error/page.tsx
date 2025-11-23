@@ -13,11 +13,11 @@ const errorMessages: Record<string, string> = {
 };
 
 interface PageProps {
-  searchParams: { reason?: string };
+  searchParams: Promise<{ reason?: string }>;
 }
 
-export default function NewsletterErrorPage({ searchParams }: PageProps) {
-  const { reason } = searchParams;
+export default async function NewsletterErrorPage({ searchParams }: PageProps) {
+  const { reason } = await searchParams;
   const message = reason ? errorMessages[reason] ?? errorMessages["invalid-token"] : errorMessages["invalid-token"];
 
   return (

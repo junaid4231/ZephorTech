@@ -10,7 +10,7 @@ import {
 } from "@/lib/blog-cms";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -19,7 +19,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const post = await getBlogPostBySlugCached(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPostBySlugCached(slug);
   if (!post) {
     return {
       title: "Insight not found — ZephorTech",
@@ -40,7 +41,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogDetailPage({ params }: PageProps) {
-  const post = await getBlogPostBySlugCached(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPostBySlugCached(slug);
   if (!post) {
     notFound();
   }

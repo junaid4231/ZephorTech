@@ -108,8 +108,6 @@ export function AboutHero() {
       style={{
         minHeight: "85vh",
         paddingTop: "5rem", // Account for fixed header
-      }}
-      style={{
         background: "linear-gradient(135deg, #001529 0%, #003355 50%, #004E8F 100%)",
       }}
     >
@@ -199,8 +197,9 @@ export function AboutHero() {
         {/* Stats Grid */}
         <div
           className="grid grid-cols-2 transition-all duration-1000 md:grid-cols-4"
-          style={{ gap: "var(--section-inner-gap)", marginBottom: "var(--section-inner-gap)" }}
           style={{
+            gap: "var(--section-inner-gap)",
+            marginBottom: "var(--section-inner-gap)",
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(30px)",
             transitionDelay: "300ms",

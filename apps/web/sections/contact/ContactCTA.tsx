@@ -160,7 +160,6 @@ export function ContactCTA() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 }

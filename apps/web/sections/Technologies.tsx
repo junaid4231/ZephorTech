@@ -11,7 +11,6 @@ import {
   GitBranch,
   Layers,
   Shield,
-  Target,
 } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 

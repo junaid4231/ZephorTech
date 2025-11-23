@@ -12,7 +12,7 @@ interface AnimatedCounterProps {
   duration?: number;
   startDelay?: number;
   className?: string;
-  label: string;
+  label?: string;
   labelClassName?: string;
 }
 
@@ -54,16 +54,18 @@ export function AnimatedCounter({
       >
         {displayValue}
       </div>
-      <div
-        className={`font-inter text-blue-50/90 ${labelClassName}`}
-        style={{
-          fontSize: "clamp(0.875rem, 1vw + 0.25rem, 1rem)",
-          lineHeight: "1.5",
-          fontWeight: 400,
-        }}
-      >
-        {label}
-      </div>
+      {label && (
+        <div
+          className={`font-inter text-blue-50/90 ${labelClassName}`}
+          style={{
+            fontSize: "clamp(0.875rem, 1vw + 0.25rem, 1rem)",
+            lineHeight: "1.5",
+            fontWeight: 400,
+          }}
+        >
+          {label}
+        </div>
+      )}
     </div>
   );
 }

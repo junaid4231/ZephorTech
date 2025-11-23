@@ -94,7 +94,7 @@ export default function Header() {
                     maxWidth: "140px",
                     height: "auto",
                   }}
-                  onError={(e) => {
+                  onError={() => {
                     console.error("Logo failed to load");
                   }}
                 />

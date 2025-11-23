@@ -31,20 +31,21 @@ export interface Portfolio {
   outcomeMetrics?: Record<string, string>;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  author: string;
-  category: string;
-  tags: string[];
-  content: string;
-  excerpt: string;
-  featuredImage: string;
-  publishedAt: string;
-  seoTitle?: string;
-  seoDescription?: string;
-}
+// Legacy BlogPost interface - use BlogPost from ./blog instead
+// export interface BlogPost {
+//   id: string;
+//   title: string;
+//   slug: string;
+//   author: string;
+//   category: string;
+//   tags: string[];
+//   content: string;
+//   excerpt: string;
+//   featuredImage: string;
+//   publishedAt: string;
+//   seoTitle?: string;
+//   seoDescription?: string;
+// }
 
 export interface ContactSubmission {
   name: string;

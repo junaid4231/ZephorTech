@@ -22,8 +22,6 @@ export function ContactHero() {
       style={{
         minHeight: "85vh",
         paddingTop: "5rem", // Account for fixed header
-      }}
-      style={{
         background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
       }}
     >
