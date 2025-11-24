@@ -258,7 +258,7 @@ export function AboutStats() {
                 <stat.icon className="h-6 w-6 md:h-7 md:w-7" style={{ color: stat.color }} />
               </div>
 
-              <div className="heading-2 mb-2 text-white transition-colors duration-300 group-hover:text-[#00A8FF]">
+              <div className="mb-2 text-3xl font-bold text-white transition-colors duration-300 group-hover:text-[#00A8FF] md:text-4xl">
                 {stat.value}
               </div>
 

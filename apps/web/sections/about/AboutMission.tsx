@@ -209,14 +209,14 @@ export function AboutMission() {
               {/* Central icon/badge */}
               <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2">
                 <div
-                  className="flex h-32 w-32 items-center justify-center rounded-3xl border backdrop-blur-xl"
+                  className="flex h-20 w-20 items-center justify-center rounded-3xl border backdrop-blur-xl md:h-24 md:w-24"
                   style={{
                     background: "rgba(0, 118, 209, 0.2)",
                     borderColor: "rgba(255, 255, 255, 0.2)",
                     boxShadow: "0 8px 32px rgba(0, 118, 209, 0.4)",
                   }}
                 >
-                  <Target className="h-16 w-16 text-white" />
+                  <Target className="h-10 w-10 text-white md:h-12 md:w-12" />
                 </div>
               </div>
 
@@ -230,13 +230,13 @@ export function AboutMission() {
                   }}
                 >
                   <div
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl border backdrop-blur-xl"
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border backdrop-blur-xl md:h-14 md:w-14"
                     style={{
                       background: "rgba(0, 118, 209, 0.2)",
                       borderColor: "rgba(255, 255, 255, 0.2)",
                     }}
                   >
-                    <Code className="h-8 w-8 text-[#0076D1]" />
+                    <Code className="h-6 w-6 text-[#0076D1] md:h-7 md:w-7" />
                   </div>
                 </div>
 
@@ -248,13 +248,13 @@ export function AboutMission() {
                   }}
                 >
                   <div
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl border backdrop-blur-xl"
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border backdrop-blur-xl md:h-14 md:w-14"
                     style={{
                       background: "rgba(0, 168, 255, 0.2)",
                       borderColor: "rgba(255, 255, 255, 0.2)",
                     }}
                   >
-                    <Heart className="h-8 w-8 text-[#00A8FF]" />
+                    <Heart className="h-6 w-6 text-[#00A8FF] md:h-7 md:w-7" />
                   </div>
                 </div>
 
@@ -267,13 +267,13 @@ export function AboutMission() {
                   }}
                 >
                   <div
-                    className="flex h-16 w-16 items-center justify-center rounded-2xl border backdrop-blur-xl"
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border backdrop-blur-xl md:h-14 md:w-14"
                     style={{
                       background: "rgba(125, 211, 252, 0.2)",
                       borderColor: "rgba(255, 255, 255, 0.2)",
                     }}
                   >
-                    <Lightbulb className="h-8 w-8 text-[#7DD3FC]" />
+                    <Lightbulb className="h-6 w-6 text-[#7DD3FC] md:h-7 md:w-7" />
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Quote, TrendingUp, CheckCircle2 } from "lucide-react";
 import type { BlogPost } from "@/lib/blog";
@@ -11,24 +11,53 @@ interface BlogContentProps {
 }
 
 export function BlogContent({ post }: BlogContentProps) {
+  const articleRef = useRef<HTMLElement | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const { ref, isVisible } = useScrollAnimation({
     threshold: 0.1,
     rootMargin: "0px 0px -100px 0px",
   });
 
+  useEffect(() => {
+    articleRef.current = ref.current;
+  }, [ref]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!articleRef.current) return;
+      const element = articleRef.current;
+      const articleTop = element.offsetTop - 120;
+      const articleHeight = element.scrollHeight - window.innerHeight + 200;
+      const scrolled = window.scrollY - articleTop;
+      const progress = Math.min(Math.max(scrolled / articleHeight, 0), 1);
+      setScrollProgress(Number.isFinite(progress) ? progress : 0);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <article
       ref={ref}
-      className="relative py-12 md:py-16"
+      className="relative pt-10 pb-16 md:pt-12 md:pb-20"
       style={{
         background: "linear-gradient(180deg, #05070B 0%, #0A111C 50%, #05070B 100%)",
       }}
     >
+      <div className="pointer-events-none fixed left-0 right-0 top-20 z-40 hidden h-1 bg-white/5 backdrop-blur lg:block">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-[#004E8F] via-[#0076D1] to-[#00A8FF] transition-[width]"
+          style={{ width: `${scrollProgress * 100}%` }}
+          aria-hidden="true"
+        />
+      </div>
       <div className="container-standard max-w-4xl">
         {/* Main Content */}
         {post.content && (
           <div
-            className="prose prose-invert prose-lg mb-6 max-w-none md:mb-8"
+            className="prose-zt mb-8"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(30px)",
@@ -40,7 +69,7 @@ export function BlogContent({ post }: BlogContentProps) {
 
         {/* Content Sections */}
         {post.contentSections && post.contentSections.length > 0 && (
-          <div className="mb-6 space-y-4 md:mb-8 md:space-y-5">
+          <div className="mb-8 space-y-5 md:mb-12 md:space-y-6">
             {post.contentSections.map((section, index) => (
               <ContentSection key={index} section={section} index={index} isVisible={isVisible} />
             ))}
@@ -155,8 +184,8 @@ function ContentSection({
 
   return (
     <section
-      className={`rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl md:rounded-2xl md:p-6 ${
-        layout === "full" ? "" : "grid items-center gap-4 md:grid-cols-2 md:gap-5"
+      className={`rounded-2xl border border-white/5 bg-white/[0.04] p-5 backdrop-blur-2xl md:p-6 ${
+        layout === "full" ? "" : "grid items-center gap-5 md:grid-cols-2"
       }`}
       style={{
         opacity: isVisible ? 1 : 0,
@@ -180,7 +209,7 @@ function ContentSection({
         <div className="space-y-6">
           {section.description && (
             <div
-              className="prose prose-invert max-w-none leading-relaxed text-white/80"
+              className="prose-zt max-w-none"
               dangerouslySetInnerHTML={{ __html: section.description }}
             />
           )}
@@ -197,8 +226,8 @@ function ContentSection({
           )}
 
           {hasMedia && (
-            <div className="mt-5 md:mt-6">
-              <div className="relative aspect-video overflow-hidden rounded-xl border border-white/10 md:rounded-2xl">
+            <div className="mt-6">
+              <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10">
                 <Image
                   src={section.mediaUrl!}
                   alt={section.mediaCaption || section.title || "Content media"}
@@ -222,10 +251,10 @@ function ContentSection({
 
       {layout !== "full" && (
         <>
-          <div className={layout === "text-left" ? "order-1" : "order-2"}>
+            <div className={layout === "text-left" ? "order-1" : "order-2"}>
             {section.description && (
               <div
-                className="prose prose-invert mb-4 max-w-none leading-relaxed text-white/80"
+                  className="prose-zt mb-4 max-w-none"
                 dangerouslySetInnerHTML={{ __html: section.description }}
               />
             )}

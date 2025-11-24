@@ -1,28 +1,10 @@
 "use client";
 
 import React from "react";
-import {
-  Heart,
-  Home,
-  Plane,
-  GraduationCap,
-  TrendingUp,
-  Users,
-  Coffee,
-  Shield,
-  Clock,
-  Laptop,
-  Gift,
-} from "lucide-react";
+import { Home, Plane, TrendingUp, Users, Clock } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
 const benefits = [
-  {
-    icon: Heart,
-    title: "Health & Wellness",
-    description: "Comprehensive health, dental, and vision insurance for you and your family.",
-    color: "#FF6B6B",
-  },
   {
     icon: Home,
     title: "Remote-First Culture",
@@ -34,12 +16,6 @@ const benefits = [
     title: "Unlimited PTO",
     description: "Take the time you need to recharge with our unlimited vacation policy.",
     color: "#95E1D3",
-  },
-  {
-    icon: GraduationCap,
-    title: "Learning & Development",
-    description: "$2,000 annual budget for courses, conferences, and certifications.",
-    color: "#F38181",
   },
   {
     icon: TrendingUp,
@@ -54,40 +30,10 @@ const benefits = [
     color: "#AA96DA",
   },
   {
-    icon: Coffee,
-    title: "Home Office Setup",
-    description: "$3,000 budget for your dream home office setup and equipment.",
-    color: "#FCBAD3",
-  },
-  {
-    icon: Laptop,
-    title: "Latest Technology",
-    description: "Work with cutting-edge tools, frameworks, and infrastructure.",
-    color: "#FFFFD2",
-  },
-  {
-    icon: Shield,
-    title: "401(k) Matching",
-    description: "We match up to 6% of your salary for retirement savings.",
-    color: "#A8D8EA",
-  },
-  {
     icon: Clock,
     title: "Flexible Schedule",
     description: "Asynchronous work culture that respects your time and productivity patterns.",
     color: "#FFD93D",
-  },
-  {
-    icon: Laptop,
-    title: "MacBook Pro",
-    description: "Latest MacBook Pro or PC of your choice plus all necessary peripherals.",
-    color: "#6BCB77",
-  },
-  {
-    icon: Gift,
-    title: "Parental Leave",
-    description: "16 weeks fully paid parental leave for all new parents.",
-    color: "#FF6B9D",
   },
 ];
 
@@ -103,7 +49,7 @@ export function BenefitsSection() {
         background: "linear-gradient(180deg, #0A111C 0%, #05070B 50%, #0A111C 100%)",
       }}
     >
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div
           className="mb-6 text-center md:mb-8"
@@ -113,14 +59,13 @@ export function BenefitsSection() {
             transition: "all 0.8s ease",
           }}
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary md:text-sm">
+          <p className="text-primary mb-3 text-xs font-semibold uppercase tracking-[0.2em] md:text-sm">
             Benefits & Perks
           </p>
-          <h2 className="heading-2 mb-3 font-bold text-white">
-            We Take Care of Our Team
-          </h2>
+          <h2 className="heading-2 mb-3 font-bold text-white">We Take Care of Our Team</h2>
           <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
-            Competitive benefits and perks designed to help you thrive both professionally and personally.
+            Competitive benefits and perks designed to help you thrive both professionally and
+            personally.
           </p>
         </div>
 
@@ -148,17 +93,16 @@ export function BenefitsSection() {
                     border: `1px solid ${benefit.color}30`,
                   }}
                 >
-                  <Icon
-                    className="h-6 w-6"
-                    style={{ color: benefit.color }}
-                  />
+                  <Icon className="h-6 w-6" style={{ color: benefit.color }} />
                 </div>
 
                 {/* Content */}
-                <h3 className="font-poppins mb-2 text-lg font-bold text-white transition-colors group-hover:text-primary md:text-xl">
+                <h3 className="font-poppins group-hover:text-primary mb-2 text-lg font-bold text-white transition-colors md:text-xl">
                   {benefit.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-white/60 md:text-base">{benefit.description}</p>
+                <p className="text-sm leading-relaxed text-white/60 md:text-base">
+                  {benefit.description}
+                </p>
               </div>
             );
           })}
@@ -184,4 +128,3 @@ export function BenefitsSection() {
     </section>
   );
 }
-

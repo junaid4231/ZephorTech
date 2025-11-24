@@ -22,6 +22,8 @@ async function ensurePublicAPIReadPermissions(strapi: any) {
       'api::use-case.use-case.findOne',
       'api::case-study.case-study.find',
       'api::case-study.case-study.findOne',
+      'api::newsletter.newsletter.find',
+      'api::newsletter.newsletter.findOne',
     ];
 
     for (const action of permissionsToEnable) {
@@ -57,7 +59,7 @@ async function ensurePublicAPIReadPermissions(strapi: any) {
       }
     }
 
-    console.log('✅ Public API permissions ensured for services, testimonials, blog posts, use cases, and case studies');
+    console.log('✅ Public API permissions ensured for services, testimonials, blog posts, use cases, case studies, and newsletters');
   } catch (error) {
     console.error('❌ Failed to configure public API permissions:', error);
   }

@@ -27,7 +27,7 @@ export function AboutCTA() {
 
       <div className="container-standard relative z-10 max-w-6xl">
         <div
-          className="grid gap-6 md:gap-8 lg:grid-cols-2"
+          className="grid gap-4 md:gap-5 lg:grid-cols-2"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(30px)",
@@ -36,8 +36,8 @@ export function AboutCTA() {
         >
           {/* Start a Project CTA */}
           <Link
-            href="/contact"
-            className="group relative rounded-xl border p-5 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-6"
+            href="/careers"
+            className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
             style={{
               background: "rgba(255, 255, 255, 0.03)",
               backdropFilter: "blur(20px)",
@@ -54,16 +54,16 @@ export function AboutCTA() {
             }}
           >
             <div
-              className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 md:h-14 md:w-14"
+              className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 md:h-12 md:w-12"
               style={{
                 background: "linear-gradient(135deg, #004E8F, #0076D1)",
               }}
             >
-              <MessageCircle className="h-6 w-6 text-white md:h-7 md:w-7" />
+              <MessageCircle className="h-5 w-5 text-white md:h-6 md:w-6" />
             </div>
 
-            <h3 className="heading-3 mb-3 text-white">Start Your Project</h3>
-            <p className="mb-5 text-sm text-gray-400 md:mb-6 md:text-base">
+            <h3 className="mb-2 text-lg font-bold text-white md:text-xl">Start Your Project</h3>
+            <p className="mb-4 text-sm text-gray-400 md:mb-5 md:text-base">
               Ready to transform your business with cutting-edge technology? Let's discuss your
               vision.
             </p>
@@ -88,7 +88,7 @@ export function AboutCTA() {
           {/* Join Team CTA */}
           <Link
             href="/contact"
-            className="group relative rounded-xl border p-5 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-6"
+            className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
             style={{
               background: "rgba(255, 255, 255, 0.03)",
               backdropFilter: "blur(20px)",
@@ -105,16 +105,16 @@ export function AboutCTA() {
             }}
           >
             <div
-              className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 md:h-14 md:w-14"
+              className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-300 group-hover:rotate-12 group-hover:scale-110 md:h-12 md:w-12"
               style={{
                 background: "linear-gradient(135deg, #0076D1, #00A8FF)",
               }}
             >
-              <Briefcase className="h-6 w-6 text-white md:h-7 md:w-7" />
+              <Briefcase className="h-5 w-5 text-white md:h-6 md:w-6" />
             </div>
 
-            <h3 className="heading-3 mb-3 text-white">Join Our Team</h3>
-            <p className="mb-5 text-sm text-gray-400 md:mb-6 md:text-base">
+            <h3 className="mb-2 text-lg font-bold text-white md:text-xl">Join Our Team</h3>
+            <p className="mb-4 text-sm text-gray-400 md:mb-5 md:text-base">
               Be part of a world-class team building the future of technology. Explore career
               opportunities.
             </p>

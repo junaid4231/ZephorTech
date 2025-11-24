@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -356,14 +356,47 @@ export function ServicesPreview({ services = [] }: ServicesPreviewProps) {
     resolvedServices[0] || null
   );
 
+  const [activeTechTab, setActiveTechTab] = useState<"frontend" | "backend" | "tools" | "cloud">(
+    "frontend"
+  );
+
+  // Get available tech categories for selected service
+  const getAvailableCategories = useCallback(
+    (service: ServiceCardData | null): Array<"frontend" | "backend" | "tools" | "cloud"> => {
+      if (!service?.techStack) return [];
+      const categories: Array<"frontend" | "backend" | "tools" | "cloud"> = [];
+      if (service.techStack.frontend?.length > 0) categories.push("frontend");
+      if (service.techStack.backend?.length > 0) categories.push("backend");
+      if (service.techStack.tools?.length > 0) categories.push("tools");
+      if (service.techStack.cloud?.length > 0) categories.push("cloud");
+      return categories;
+    },
+    []
+  );
+
   useEffect(() => {
     if (resolvedServices.length > 0 && !selectedService) {
       setSelectedService(resolvedServices[0]);
     }
   }, [resolvedServices, selectedService]);
 
+  // Reset active tab when service changes
+  useEffect(() => {
+    if (selectedService) {
+      const available = getAvailableCategories(selectedService);
+      if (available.length > 0 && !available.includes(activeTechTab)) {
+        setActiveTechTab(available[0]);
+      }
+    }
+  }, [selectedService, activeTechTab, getAvailableCategories]);
+
   const handleServiceClick = (service: ServiceCardData) => {
     setSelectedService(service);
+    // Set active tab to first available category
+    const available = getAvailableCategories(service);
+    if (available.length > 0) {
+      setActiveTechTab(available[0]);
+    }
   };
 
   return (
@@ -563,7 +596,7 @@ export function ServicesPreview({ services = [] }: ServicesPreviewProps) {
                 </div>
               )}
 
-              {/* Technology Stack with Colored Logos */}
+              {/* Technology Stack with Clickable Categories */}
               {selectedService.techStack && (
                 <div className="relative mb-6">
                   <div className="mb-4 flex items-center gap-2">
@@ -572,182 +605,78 @@ export function ServicesPreview({ services = [] }: ServicesPreviewProps) {
                       Technologies We Use
                     </h4>
                   </div>
-                  <div className="space-y-3">
-                    {/* Frontend */}
-                    {selectedService.techStack.frontend.length > 0 && (
-                      <div>
-                        <p className="mb-2.5 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                          <Layers className="h-3 w-3" />
-                          Frontend
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedService.techStack.frontend.map((tech, idx) => {
-                            const TechIcon = getTechIcon(tech);
-                            const techColor = getTechColor(tech);
-                            return (
-                              <div
-                                key={idx}
-                                className="group/tech inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/15"
-                                style={{
-                                  boxShadow: `0 2px 8px ${techColor}20`,
-                                }}
-                                onMouseEnter={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 4px 12px ${techColor}40`;
-                                  e.currentTarget.style.borderColor = `${techColor}60`;
-                                }}
-                                onMouseLeave={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 2px 8px ${techColor}20`;
-                                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                                }}
-                              >
-                                <div
-                                  className="rounded p-1"
-                                  style={{
-                                    background: `${techColor}20`,
-                                    color: techColor,
-                                  }}
-                                >
-                                  <TechIcon className="h-3.5 w-3.5" />
-                                </div>
-                                <span>{tech}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
 
-                    {/* Backend */}
-                    {selectedService.techStack.backend.length > 0 && (
-                      <div>
-                        <p className="mb-2.5 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                          <Server className="h-3 w-3" />
-                          Backend
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedService.techStack.backend.map((tech, idx) => {
-                            const TechIcon = getTechIcon(tech);
-                            const techColor = getTechColor(tech);
-                            return (
-                              <div
-                                key={idx}
-                                className="group/tech inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/15"
-                                style={{
-                                  boxShadow: `0 2px 8px ${techColor}20`,
-                                }}
-                                onMouseEnter={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 4px 12px ${techColor}40`;
-                                  e.currentTarget.style.borderColor = `${techColor}60`;
-                                }}
-                                onMouseLeave={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 2px 8px ${techColor}20`;
-                                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                                }}
-                              >
-                                <div
-                                  className="rounded p-1"
-                                  style={{
-                                    background: `${techColor}20`,
-                                    color: techColor,
-                                  }}
-                                >
-                                  <TechIcon className="h-3.5 w-3.5" />
-                                </div>
-                                <span>{tech}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
+                  {/* Category Buttons */}
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {getAvailableCategories(selectedService).map((category) => {
+                      const isActive = activeTechTab === category;
+                      const categoryIcons = {
+                        frontend: Layers,
+                        backend: Server,
+                        tools: GitBranch,
+                        cloud: Cloud,
+                      };
+                      const CategoryIcon = categoryIcons[category];
+                      const categoryLabels = {
+                        frontend: "Frontend",
+                        backend: "Backend",
+                        tools: "Tools",
+                        cloud: "Cloud",
+                      };
 
-                    {/* Tools */}
-                    {selectedService.techStack.tools.length > 0 && (
-                      <div>
-                        <p className="mb-2.5 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                          <GitBranch className="h-3 w-3" />
-                          Tools
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedService.techStack.tools.map((tech, idx) => {
-                            const TechIcon = getTechIcon(tech);
-                            const techColor = getTechColor(tech);
-                            return (
-                              <div
-                                key={idx}
-                                className="group/tech inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/15"
-                                style={{
-                                  boxShadow: `0 2px 8px ${techColor}20`,
-                                }}
-                                onMouseEnter={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 4px 12px ${techColor}40`;
-                                  e.currentTarget.style.borderColor = `${techColor}60`;
-                                }}
-                                onMouseLeave={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 2px 8px ${techColor}20`;
-                                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                                }}
-                              >
-                                <div
-                                  className="rounded p-1"
-                                  style={{
-                                    background: `${techColor}20`,
-                                    color: techColor,
-                                  }}
-                                >
-                                  <TechIcon className="h-3.5 w-3.5" />
-                                </div>
-                                <span>{tech}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
+                      return (
+                        <button
+                          key={category}
+                          onClick={() => setActiveTechTab(category)}
+                          className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[10px] font-semibold capitalize transition-all duration-300 ${
+                            isActive
+                              ? "border-[#0076D1] bg-gradient-to-r from-[#004E8F]/20 to-[#0076D1]/20 text-white shadow-lg shadow-[#0076D1]/20"
+                              : "border-white/10 bg-white/5 text-white/60 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                          }`}
+                        >
+                          <CategoryIcon className="h-3 w-3" />
+                          <span>{categoryLabels[category]}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
 
-                    {/* Cloud */}
-                    {selectedService.techStack.cloud.length > 0 && (
-                      <div>
-                        <p className="mb-2.5 flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                          <Cloud className="h-3 w-3" />
-                          Cloud
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedService.techStack.cloud.map((tech, idx) => {
-                            const TechIcon = getTechIcon(tech);
-                            const techColor = getTechColor(tech);
-                            return (
-                              <div
-                                key={idx}
-                                className="group/tech inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/15"
-                                style={{
-                                  boxShadow: `0 2px 8px ${techColor}20`,
-                                }}
-                                onMouseEnter={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 4px 12px ${techColor}40`;
-                                  e.currentTarget.style.borderColor = `${techColor}60`;
-                                }}
-                                onMouseLeave={(e) => {
-                                  e.currentTarget.style.boxShadow = `0 2px 8px ${techColor}20`;
-                                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                                }}
-                              >
-                                <div
-                                  className="rounded p-1"
-                                  style={{
-                                    background: `${techColor}20`,
-                                    color: techColor,
-                                  }}
-                                >
-                                  <TechIcon className="h-3.5 w-3.5" />
-                                </div>
-                                <span>{tech}</span>
-                              </div>
-                            );
-                          })}
+                  {/* Active Category Technologies */}
+                  <div className="flex flex-wrap gap-2">
+                    {(selectedService.techStack[activeTechTab] || []).map((tech, idx) => {
+                      const TechIcon = getTechIcon(tech);
+                      const techColor = getTechColor(tech);
+                      return (
+                        <div
+                          key={idx}
+                          className="group/tech inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/15"
+                          style={{
+                            boxShadow: `0 2px 8px ${techColor}20`,
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.boxShadow = `0 4px 12px ${techColor}40`;
+                            e.currentTarget.style.borderColor = `${techColor}60`;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.boxShadow = `0 2px 8px ${techColor}20`;
+                            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+                          }}
+                        >
+                          <div
+                            className="rounded p-1"
+                            style={{
+                              background: `${techColor}20`,
+                              color: techColor,
+                            }}
+                          >
+                            <div style={{ color: techColor }}>
+                              <TechIcon className="h-3.5 w-3.5" />
+                            </div>
+                          </div>
+                          <span>{tech}</span>
                         </div>
-                      </div>
-                    )}
+                      );
+                    })}
                   </div>
                 </div>
               )}

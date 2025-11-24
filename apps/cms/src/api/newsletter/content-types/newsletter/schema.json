@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletters",
+  "info": {
+    "singularName": "newsletter",
+    "pluralName": "newsletters",
+    "displayName": "Newsletter",
+    "description": "Newsletter content for sending to subscribers"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subject": {
+      "type": "string",
+      "required": true
+    },
+    "previewText": {
+      "type": "text",
+      "required": false
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "scheduledDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["draft", "scheduled", "sent"],
+      "default": "draft",
+      "required": true
+    },
+    "sentAt": {
+      "type": "datetime",
+      "required": false
+    },
+    "recipientCount": {
+      "type": "integer",
+      "required": false
+    },
+    "metadata": {
+      "type": "json",
+      "required": false
+    }
+  }
+}
+

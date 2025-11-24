@@ -131,7 +131,7 @@ export function AboutStory() {
                         transitionDelay: `${index * 100}ms`,
                       }}
                     >
-                      <div className="font-poppins mb-3 text-4xl font-black text-white/10 md:text-5xl">
+                      <div className="font-poppins mb-3 text-3xl font-black text-white/10 md:text-4xl">
                         {milestone.year}
                       </div>
                       <h3 className="heading-3 mb-3 text-white">{milestone.title}</h3>
@@ -144,13 +144,13 @@ export function AboutStory() {
                   {/* Center Icon */}
                   <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:block">
                     <div
-                      className="relative flex h-16 w-16 items-center justify-center rounded-xl transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 md:h-20 md:w-20"
+                      className="relative flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 md:h-14 md:w-14"
                       style={{
                         background: "linear-gradient(135deg, #004E8F, #0076D1)",
                         boxShadow: "0 10px 40px rgba(0, 118, 209, 0.4)",
                       }}
                     >
-                      <milestone.icon className="h-8 w-8 text-white md:h-10 md:w-10" />
+                      <milestone.icon className="h-6 w-6 text-white md:h-7 md:w-7" />
 
                       {/* Pulse effect */}
                       <div
@@ -166,12 +166,12 @@ export function AboutStory() {
                   {/* Right Content (mobile icon) */}
                   <div className={`${isEven ? "md:order-2" : ""} md:hidden`}>
                     <div
-                      className="mb-3 flex h-14 w-14 items-center justify-center rounded-xl"
+                      className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl"
                       style={{
                         background: "linear-gradient(135deg, #004E8F, #0076D1)",
                       }}
                     >
-                      <milestone.icon className="h-7 w-7 text-white" />
+                      <milestone.icon className="h-6 w-6 text-white" />
                     </div>
                   </div>
                 </div>

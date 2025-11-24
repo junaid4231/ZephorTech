@@ -13,10 +13,10 @@ interface HeroVideoBackgroundProps {
  * 
  * Professional video background for hero sections with:
  * - Lazy loading for performance
- * - Mobile detection and fallback
+ * - Mobile support with optimized preload settings
  * - Reduced motion detection
  * - Error handling with gradient fallback
- * - Optimized video attributes
+ * - Optimized video attributes (playsInline for mobile)
  */
 export default function HeroVideoBackground({
   videoSrc = "/videos/hero-video.mp4",
@@ -57,7 +57,7 @@ export default function HeroVideoBackground({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !isMobile && !prefersReducedMotion) {
+          if (entry.isIntersecting && !prefersReducedMotion) {
             setShouldLoadVideo(true);
             observer.disconnect();
           }
@@ -85,9 +85,10 @@ export default function HeroVideoBackground({
     }
   };
 
-  // Don't show video on mobile, reduced motion, or if error occurred
+  // Don't show video on reduced motion or if error occurred
+  // Video now works on mobile devices with optimized settings
   const shouldShowVideo =
-    shouldLoadVideo && !isMobile && !prefersReducedMotion && !hasError;
+    shouldLoadVideo && !prefersReducedMotion && !hasError;
 
   return (
     <div
@@ -109,7 +110,7 @@ export default function HeroVideoBackground({
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={isMobile ? "none" : "metadata"}
           poster={posterSrc}
           onError={handleVideoError}
           style={{

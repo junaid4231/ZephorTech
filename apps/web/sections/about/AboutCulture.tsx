@@ -11,16 +11,6 @@ const perks = [
     description: "Work from anywhere in the world with flexible hours",
   },
   {
-    icon: GraduationCap,
-    title: "Learning Budget",
-    description: "$2000/year for courses, conferences, and certifications",
-  },
-  {
-    icon: Heart,
-    title: "Health & Wellness",
-    description: "Comprehensive health insurance and mental health support",
-  },
-  {
     icon: Coffee,
     title: "Unlimited PTO",
     description: "Take time off when you need it, no questions asked",

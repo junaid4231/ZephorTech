@@ -22,10 +22,9 @@ export function FeaturedBlogPosts({ posts }: FeaturedBlogPostsProps) {
   return (
     <section
       ref={ref}
-      className="relative py-24"
+      className="relative py-12 md:py-16"
       style={{
-        background:
-          "linear-gradient(180deg, rgba(5,7,11,0.95) 0%, rgba(7,13,23,0.9) 60%, rgba(5,7,11,0.95) 100%)",
+        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
       }}
     >
       <div className="container-standard max-w-6xl">

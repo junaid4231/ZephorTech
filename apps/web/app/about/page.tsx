@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Header, Footer } from "@/components";
+import { Header, Footer, PageHero } from "@/components";
 import {
-  AboutHero,
   AboutStory,
   AboutMission,
   AboutValues,
@@ -36,7 +35,20 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <AboutHero />
+      <PageHero
+        title="We Build the Future of Technology"
+        subtitle="Pioneering Digital Excellence Since 2010"
+        description="A team of world-class engineers, designers, and strategists united by one mission: to transform ambitious ideas into exceptional digital experiences."
+        stats={[
+          { value: 15, suffix: "+", label: "Years of Excellence" },
+          { value: 200, suffix: "+", label: "Happy Clients" },
+          { value: 500, suffix: "+", label: "Projects Delivered" },
+          { value: 50, suffix: "+", label: "Team Members" },
+        ]}
+        ctaText="Join Our Team"
+        ctaHref="/careers"
+        backgroundType="animation"
+      />
       <AboutStory />
       <AboutStats />
       <AboutMission />
@@ -48,4 +60,3 @@ export default function AboutPage() {
     </>
   );
 }
-

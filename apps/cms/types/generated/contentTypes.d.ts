@@ -545,6 +545,40 @@ export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNewsletterNewsletter extends Struct.CollectionTypeSchema {
+  collectionName: "newsletters";
+  info: {
+    description: "Newsletter content for sending to subscribers";
+    displayName: "Newsletter";
+    pluralName: "newsletters";
+    singularName: "newsletter";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<"oneToMany", "api::newsletter.newsletter"> &
+      Schema.Attribute.Private;
+    metadata: Schema.Attribute.JSON;
+    previewText: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    recipientCount: Schema.Attribute.Integer;
+    scheduledDate: Schema.Attribute.DateTime;
+    sentAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.Enumeration<["draft", "scheduled", "sent"]> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"draft">;
+    subject: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> & Schema.Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: "services";
   info: {
@@ -1090,6 +1124,7 @@ declare module "@strapi/strapi" {
       "api::author.author": ApiAuthorAuthor;
       "api::blog-post.blog-post": ApiBlogPostBlogPost;
       "api::case-study.case-study": ApiCaseStudyCaseStudy;
+      "api::newsletter.newsletter": ApiNewsletterNewsletter;
       "api::service.service": ApiServiceService;
       "api::testimonial.testimonial": ApiTestimonialTestimonial;
       "api::use-case.use-case": ApiUseCaseUseCase;

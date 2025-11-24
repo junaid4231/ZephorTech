@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Header, Footer, PageHero } from "@/components";
 import { InquirySection, FinalCTA } from "@/sections";
 import { BlogTagTicker, FeaturedBlogPosts, BlogPostGrid } from "@/sections/blog";
-import {
-  getAllBlogPostsCached,
-  getFeaturedBlogPostsCached,
-} from "@/lib/blog-cms";
+import { getAllBlogPostsCached, getFeaturedBlogPostsCached } from "@/lib/blog-cms";
 
 export const metadata: Metadata = {
   title: "ZephorTech Insights — AI, Platforms, Growth",
@@ -13,8 +10,7 @@ export const metadata: Metadata = {
     "Deep dives from ZephorTech architects covering AI platforms, commerce, SaaS, and growth systems. Actionable blueprints from real programs.",
   openGraph: {
     title: "ZephorTech Insights",
-    description:
-      "Playbooks for AI, product platforms, and growth operating systems.",
+    description: "Playbooks for AI, product platforms, and growth operating systems.",
     type: "website",
     url: "https://zephortech.com/blog",
   },
@@ -26,7 +22,9 @@ export default async function BlogPage() {
     getFeaturedBlogPostsCached(3),
   ]);
 
-  const featuredIds = new Set(featured.map((post) => post.id));
+  // Ensure only truly featured posts are shown (client-side filter as backup)
+  const trulyFeatured = featured.filter((post) => post.featured === true).slice(0, 3);
+  const featuredIds = new Set(trulyFeatured.map((post) => post.id));
   const remainingPosts = posts.filter((post) => !featuredIds.has(post.id));
   const tagSet = new Set<string>();
   posts.forEach((post) => post.tags?.forEach((tag) => tagSet.add(tag)));
@@ -51,13 +49,11 @@ export default async function BlogPage() {
       />
 
       <BlogTagTicker tags={tags} />
-      <FeaturedBlogPosts posts={featured.length > 0 ? featured : posts.slice(0, 3)} />
-      <BlogPostGrid posts={remainingPosts.length > 0 ? remainingPosts : posts} />
+      <FeaturedBlogPosts posts={trulyFeatured} />
+      <BlogPostGrid posts={remainingPosts.length > 0 ? remainingPosts : posts} tags={tags} />
       <InquirySection />
       <FinalCTA />
       <Footer />
     </>
   );
 }
-
-
