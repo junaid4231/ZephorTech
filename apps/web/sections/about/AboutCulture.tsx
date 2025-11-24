@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Coffee, Gamepad2, GraduationCap, Globe, Heart, Rocket } from "lucide-react";
+import { Coffee, Gamepad2, Globe, Rocket } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
 const perks = [

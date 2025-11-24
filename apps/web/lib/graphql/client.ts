@@ -18,45 +18,52 @@ export interface GraphQLResponse<T> {
   }>;
 }
 
-export async function fetchGraphQL<T = any>(
+export async function fetchGraphQL<
+  T = unknown,
+  TVariables extends Record<string, unknown> | undefined = Record<string, unknown> | undefined
+>(
   query: string,
-  variables?: Record<string, any>
+  variables?: TVariables
 ): Promise<GraphQLResponse<T>> {
   try {
-    const headers: HeadersInit = {
-      'Content-Type': 'application/json',
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
     };
 
     // Add API token if available for authenticated requests
     if (API_TOKEN) {
-      headers['Authorization'] = `Bearer ${API_TOKEN}`;
+      headers["Authorization"] = `Bearer ${API_TOKEN}`;
     }
 
     const response = await fetch(GRAPHQL_ENDPOINT, {
-      method: 'POST',
+      method: "POST",
       headers,
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
+      body: JSON.stringify(
+        variables
+          ? {
+              query,
+              variables,
+            }
+          : { query }
+      ),
       // Cache for 60 seconds in production, no cache in development
-      next: { revalidate: process.env.NODE_ENV === 'production' ? 60 : 0 },
+      next: { revalidate: process.env.NODE_ENV === "production" ? 60 : 0 },
     });
 
     if (!response.ok) {
       throw new Error(`GraphQL request failed: ${response.status} ${response.statusText}`);
     }
 
-    const result: GraphQLResponse<T> = await response.json();
+    const result = (await response.json()) as GraphQLResponse<T>;
 
     if (result.errors && result.errors.length > 0) {
-      console.error('GraphQL errors:', result.errors);
+      console.error("GraphQL errors:", result.errors);
       throw new Error(result.errors[0].message);
     }
 
     return result;
   } catch (error) {
-    console.error('GraphQL fetch error:', error);
+    console.error("GraphQL fetch error:", error);
     throw error;
   }
 }
