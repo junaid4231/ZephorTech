@@ -5,7 +5,7 @@
 
 export { default as Hero } from "./Hero";
 export { ServicesPreview } from "./ServicesPreview";
-export { FeaturedCaseStudy } from "./FeaturedCaseStudy";
+export { CaseStudyTeasers } from "./CaseStudyTeasers";
 export { ClientLogos } from "./ClientLogos";
 export { Testimonials } from "./Testimonials";
 export { WhyChooseUs } from "./WhyChooseUs";

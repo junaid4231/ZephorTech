@@ -2,15 +2,18 @@
 
 import React, { useEffect, useState } from "react";
 
+// TODO: Replace with CMS integration when client logos are available
+// This section displays trusted partners and clients
+// For production: Fetch from Strapi CMS or use actual client logo images
 const clients = [
-  { name: "TechCorp", logo: "TC" },
-  { name: "InnovateLab", logo: "IL" },
-  { name: "DigitalFlow", logo: "DF" },
-  { name: "CloudScale", logo: "CS" },
-  { name: "DataVault", logo: "DV" },
-  { name: "NextGen", logo: "NG" },
-  { name: "SmartSys", logo: "SS" },
-  { name: "FutureTech", logo: "FT" },
+  { name: "TechCorp", logo: "TC", industry: "Technology" },
+  { name: "InnovateLab", logo: "IL", industry: "Innovation" },
+  { name: "DigitalFlow", logo: "DF", industry: "Digital" },
+  { name: "CloudScale", logo: "CS", industry: "Cloud" },
+  { name: "DataVault", logo: "DV", industry: "Data" },
+  { name: "NextGen", logo: "NG", industry: "Next Gen" },
+  { name: "SmartSys", logo: "SS", industry: "Systems" },
+  { name: "FutureTech", logo: "FT", industry: "Future" },
 ];
 
 export function ClientLogos() {

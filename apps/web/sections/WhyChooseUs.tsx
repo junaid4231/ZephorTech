@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Shield, Users, Award, Clock, Headphones } from "lucide-react";
+import { Shield, Users, Award, Clock, Headphones, Zap, LifeBuoy } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
 interface Feature {
@@ -19,7 +19,7 @@ const features: Feature[] = [
     color: "#0076D1",
   },
   {
-    icon: Clock,
+    icon: Zap,
     title: "Lightning Fast Delivery",
     description: "Agile development process ensuring rapid time-to-market",
     color: "#0076D1",
@@ -37,7 +37,7 @@ const features: Feature[] = [
     color: "#0076D1",
   },
   {
-    icon: Clock,
+    icon: LifeBuoy,
     title: "24/7 Support",
     description: "Round-the-clock technical support and maintenance services",
     color: "#0076D1",

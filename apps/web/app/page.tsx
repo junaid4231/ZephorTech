@@ -4,7 +4,7 @@ import { StructuredData } from "@/components/StructuredData";
 import {
   Hero,
   ServicesPreview,
-  FeaturedCaseStudy,
+  CaseStudyTeasers,
   ClientLogos,
   Testimonials,
   WhyChooseUs,
@@ -55,7 +55,7 @@ export default async function Home() {
   ]);
 
   const featuredServices = services; // Show all services
-  const featuredCaseStudy = caseStudies[0];
+  const featuredCaseStudies = caseStudies.slice(0, 3);
 
   return (
     <>
@@ -63,7 +63,7 @@ export default async function Home() {
       <Header />
       <Hero />
       <ServicesPreview services={featuredServices} />
-      <FeaturedCaseStudy caseStudy={featuredCaseStudy} />
+      <CaseStudyTeasers caseStudies={featuredCaseStudies} />
       <ClientLogos />
       <Testimonials testimonials={testimonials} />
       <WhyChooseUs />

@@ -130,13 +130,6 @@ export function AboutStats() {
       color: "#00A8FF",
     },
     {
-      icon: Award,
-      value: "50+",
-      label: "Industry Awards",
-      description: "Recognition",
-      color: "#7DD3FC",
-    },
-    {
       icon: Globe,
       value: "25+",
       label: "Countries Served",

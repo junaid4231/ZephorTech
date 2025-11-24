@@ -6,7 +6,6 @@ import {
   AboutValues,
   AboutStats,
   AboutTeam,
-  AboutCulture,
   AboutCTA,
 } from "@/sections/about";
 
@@ -54,7 +53,6 @@ export default function AboutPage() {
       <AboutMission />
       <AboutValues />
       <AboutTeam />
-      <AboutCulture />
       <AboutCTA />
       <Footer />
     </>

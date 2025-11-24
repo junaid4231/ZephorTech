@@ -3,66 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { Rocket, ArrowRight } from "lucide-react";
-import { useAnimatedCounter } from "@/lib/useAnimatedCounter";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
-function AnimatedStatCard({
-  target,
-  suffix,
-  prefix = "",
-  label,
-  index,
-  isVisible,
-}: {
-  target: number;
-  suffix: string;
-  prefix?: string;
-  label: string;
-  index: number;
-  isVisible: boolean;
-}) {
-  const { formattedValue } = useAnimatedCounter(target, {
-    duration: 2000,
-    startDelay: index * 200,
-    suffix,
-    prefix,
-  });
-
-  const displayValue = isVisible ? formattedValue : prefix + "0" + suffix;
-
-  return (
-    <div
-      className="rounded-xl border p-4 transition-all duration-300 hover:scale-105 md:p-5"
-      style={{
-        background: "rgba(255, 255, 255, 0.03)",
-        backdropFilter: "blur(10px)",
-        borderColor: "rgba(255, 255, 255, 0.1)",
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transitionDelay: `${index * 100}ms`,
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(0, 118, 209, 0.25)";
-        e.currentTarget.style.boxShadow =
-          "0 8px 24px rgba(0, 118, 209, 0.12), 0 4px 12px rgba(0, 0, 0, 0.3)";
-        e.currentTarget.style.transform = "scale(1.03)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-        e.currentTarget.style.boxShadow = "none";
-        e.currentTarget.style.transform = "scale(1)";
-      }}
-    >
-      <div className="font-poppins mb-2 text-2xl font-black text-white md:text-3xl">
-        {displayValue}
-      </div>
-      <div className="text-xs text-gray-400 md:text-sm">{label}</div>
-    </div>
-  );
-}
-
 export function FinalCTA() {
-  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation({
+  const { ref: sectionRef } = useScrollAnimation({
     threshold: 0.2,
     rootMargin: "0px 0px -100px 0px",
   });
@@ -90,7 +34,6 @@ export function FinalCTA() {
 
       <div className="container-standard relative z-10">
         <div className="text-center">
-
           <h2 className="heading-2 mb-4 leading-tight md:mb-6">
             <span
               className="bg-clip-text text-transparent"
@@ -167,37 +110,6 @@ export function FinalCTA() {
               <span>View Our Work</span>
               <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6" />
             </Link>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
-            <AnimatedStatCard
-              target={500}
-              suffix="+"
-              label="Projects"
-              index={0}
-              isVisible={sectionVisible}
-            />
-            <AnimatedStatCard
-              target={200}
-              suffix="+"
-              label="Clients"
-              index={1}
-              isVisible={sectionVisible}
-            />
-            <AnimatedStatCard
-              target={15}
-              suffix=" Years"
-              label="Experience"
-              index={2}
-              isVisible={sectionVisible}
-            />
-            <AnimatedStatCard
-              target={98}
-              suffix="%"
-              label="Satisfaction"
-              index={3}
-              isVisible={sectionVisible}
-            />
           </div>
         </div>
       </div>

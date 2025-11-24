@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, Calendar, Clock, TrendingUp } from "lucide-react";
+import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import type { BlogListItem } from "@/lib/blog";
 
 interface BlogHighlightsProps {
@@ -43,6 +44,11 @@ const fallbackPosts = [
 ];
 
 export function BlogHighlights({ posts }: BlogHighlightsProps) {
+  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation({
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  });
+
   const mappedPosts =
     posts && posts.length > 0
       ? posts.slice(0, 3).map((post, index) => ({
@@ -58,6 +64,7 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
 
   return (
     <section
+      ref={sectionRef}
       className="relative overflow-hidden py-12 md:py-16"
       style={{
         background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
@@ -75,7 +82,13 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
       />
 
       <div className="container-standard relative z-10">
-        <div className="mb-6 text-center md:mb-8">
+        <div
+          className="mb-6 text-center transition-all duration-1000 ease-out md:mb-8"
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+          }}
+        >
           <div className="mb-3 inline-flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-[#0076D1] md:h-5 md:w-5" />
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
@@ -98,8 +111,19 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
         </div>
 
         <div className="mb-6 grid gap-4 md:grid-cols-3 md:gap-5">
-          {mappedPosts.map((post) => (
-            <Link key={post.id} href={`/blog/${post.slug}`} className="group relative block">
+          {mappedPosts.map((post, index) => (
+            <Link
+              key={post.id}
+              href={`/blog/${post.slug}`}
+              className="group relative block transition-all duration-700 ease-out"
+              style={{
+                opacity: sectionVisible ? 1 : 0,
+                transform: sectionVisible
+                  ? "translateY(0) scale(1)"
+                  : "translateY(30px) scale(0.95)",
+                transitionDelay: `${index * 100}ms`,
+              }}
+            >
               <div
                 className="relative h-full overflow-hidden rounded-xl border p-4 transition-all duration-500 group-hover:scale-[1.02] md:p-5"
                 style={{
@@ -166,7 +190,14 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
           ))}
         </div>
 
-        <div className="text-center">
+        <div
+          className="text-center transition-all duration-1000 ease-out"
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+            transitionDelay: "300ms",
+          }}
+        >
           <Link
             href="/blog"
             className="group inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
