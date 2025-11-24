@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Shield, Users, Award, Clock, Headphones, Zap, LifeBuoy } from "lucide-react";
+import { Shield, Users, Award, Headphones, Zap, LifeBuoy } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
 interface Feature {

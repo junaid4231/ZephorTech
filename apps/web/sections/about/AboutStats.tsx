@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { TrendingUp, Users, Award, Globe, Target } from "lucide-react";
+import { TrendingUp, Users, Globe, Target } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
 export function AboutStats() {
