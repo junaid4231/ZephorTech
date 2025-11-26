@@ -6,7 +6,7 @@ import { getAllCaseStudiesCached } from "@/lib/case-studies-cms";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://zephortech.com";
 
-  // Static pages
+  // Static pages (always included)
   const staticPages = [
     {
       url: baseUrl,
@@ -70,33 +70,53 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Dynamic service pages
-  const services = await getAllServicesCached();
-  const servicePages = services.map((service) => ({
-    url: `${baseUrl}/services/${service.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  // Dynamic pages with error handling (sitemap must always succeed)
+  let servicePages: MetadataRoute.Sitemap = [];
+  let blogPages: MetadataRoute.Sitemap = [];
+  let caseStudyPages: MetadataRoute.Sitemap = [];
 
-  // Dynamic blog pages
-  const blogPosts = await getAllBlogPostsCached();
-  const blogPages = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  try {
+    // Dynamic service pages
+    const services = await getAllServicesCached();
+    servicePages = services.map((service) => ({
+      url: `${baseUrl}/services/${service.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.error("Error fetching services for sitemap:", error);
+    // Continue without service pages if fetch fails
+  }
 
-  // Dynamic case study pages
-  const caseStudies = await getAllCaseStudiesCached();
-  const caseStudyPages = caseStudies.map((study) => ({
-    url: `${baseUrl}/case-studies/${study.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  try {
+    // Dynamic blog pages
+    const blogPosts = await getAllBlogPostsCached();
+    blogPages = blogPosts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.publishedAt ? new Date(post.publishedAt) : new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error("Error fetching blog posts for sitemap:", error);
+    // Continue without blog pages if fetch fails
+  }
 
+  try {
+    // Dynamic case study pages
+    const caseStudies = await getAllCaseStudiesCached();
+    caseStudyPages = caseStudies.map((study) => ({
+      url: `${baseUrl}/case-studies/${study.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error("Error fetching case studies for sitemap:", error);
+    // Continue without case study pages if fetch fails
+  }
+
+  // Always return at least static pages, even if dynamic data fails
   return [...staticPages, ...servicePages, ...blogPages, ...caseStudyPages];
 }
-
