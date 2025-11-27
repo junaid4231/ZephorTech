@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Header, Footer, PageHero } from "@/components";
+import { Header, Footer, PageHero, HashScrollHandler } from "@/components";
 import {
   AboutStory,
   AboutMission,
@@ -8,6 +8,7 @@ import {
   AboutTeam,
   AboutCTA,
 } from "@/sections/about";
+import { OurProcess } from "@/sections";
 
 export const metadata: Metadata = {
   title: "About ZephorTech - Innovation, Excellence, Impact",
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <HashScrollHandler />
       <Header />
       <PageHero
         title="We Build the Future of Technology"
@@ -52,6 +54,7 @@ export default function AboutPage() {
       <AboutStats />
       <AboutMission />
       <AboutValues />
+      <OurProcess />
       <AboutTeam />
       <AboutCTA />
       <Footer />

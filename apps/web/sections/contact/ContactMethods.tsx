@@ -3,33 +3,37 @@
 import React from "react";
 import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, MessageCircle } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
+import { siteConfig } from "@/config";
+
+const phoneHref = `tel:${siteConfig.phone.replace(/\s/g, "")}`;
+const addressHref = `https://maps.google.com/?q=${encodeURIComponent(siteConfig.address)}`;
 
 const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    primary: "hello@zephortech.com",
+    primary: siteConfig.email,
     secondary: "For general inquiries",
-    href: "mailto:hello@zephortech.com",
+    href: `mailto:${siteConfig.email}`,
   },
   {
     icon: Phone,
     label: "Phone",
-    primary: "+1 (555) 123-4567",
-    secondary: "Mon-Fri, 9AM-6PM EST",
-    href: "tel:+15551234567",
+    primary: siteConfig.phone,
+    secondary: "Mon-Fri, 9AM-6PM GST",
+    href: phoneHref,
   },
   {
     icon: MapPin,
     label: "Address",
-    primary: "123 Tech Street, Suite 400",
-    secondary: "Innovation City, IC 12345",
-    href: "https://maps.google.com",
+    primary: siteConfig.address,
+    secondary: "Global delivery hub",
+    href: addressHref,
   },
   {
     icon: Clock,
     label: "Business Hours",
-    primary: "Mon - Fri: 9AM - 6PM EST",
+    primary: "Mon - Fri: 9AM - 6PM GST",
     secondary: "Weekend: By appointment",
     href: null,
   },
@@ -133,13 +137,14 @@ export function ContactMethods() {
           {contactInfo.map((item, index) => {
             const Content = (
               <div
-                className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
+                className="group relative flex h-full flex-col rounded-xl border p-5 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-6"
                 style={{
                   background: "rgba(255, 255, 255, 0.03)",
                   backdropFilter: "blur(20px)",
                   borderColor: "rgba(255, 255, 255, 0.1)",
                   boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
                   transitionDelay: `${index * 100}ms`,
+                  minHeight: "100%",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "rgba(0, 118, 209, 0.3)";
@@ -148,29 +153,37 @@ export function ContactMethods() {
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.3)";
+                  e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 0, 0, 0.2)";
                 }}
               >
                 <div
-                  className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 md:h-12 md:w-12"
+                  className="mb-4 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110"
                   style={{
                     background: "linear-gradient(135deg, #004E8F, #0076D1)",
                   }}
                 >
-                  <item.icon className="h-5 w-5 text-white md:h-6 md:w-6" />
+                  <item.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="heading-3 mb-2 text-white">{item.label}</h3>
-                <p className="mb-1 text-sm font-medium text-white md:text-base">{item.primary}</p>
-                <p className="text-xs text-gray-400 md:text-sm">{item.secondary}</p>
+                <h3 className="mb-3 font-poppins text-lg font-bold text-white">{item.label}</h3>
+                <p className="mb-2 text-sm font-medium leading-relaxed text-white md:text-base">
+                  {item.primary}
+                </p>
+                <p className="mt-auto text-xs text-white/60 md:text-sm">{item.secondary}</p>
               </div>
             );
 
             return item.href ? (
-              <a key={index} href={item.href} target="_blank" rel="noopener noreferrer">
+              <a
+                key={index}
+                href={item.href}
+                target={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? undefined : "_blank"}
+                rel={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? undefined : "noopener noreferrer"}
+                className="block h-full"
+              >
                 {Content}
               </a>
             ) : (
-              <div key={index}>{Content}</div>
+              <div key={index} className="h-full">{Content}</div>
             );
           })}
         </div>

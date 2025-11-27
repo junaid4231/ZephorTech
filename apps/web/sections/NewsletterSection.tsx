@@ -1,54 +1,12 @@
 "use client";
-import {
-  Shield,
-  Bell,
-  BookOpen,
-  Mail,
-  Send,
-  TrendingUp,
-  CheckCircle2,
-  Users,
-  ArrowRight,
-} from "lucide-react";
+
+import { Mail, Zap, CheckCircle2, Shield } from "lucide-react";
 import { NewsletterForm } from "@/components";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
-const perks = [
-  {
-    icon: Bell,
-    title: "Product Announcements",
-    description: "Early access to our newest frameworks, launch kits, and public demos.",
-    color: "#00A8FF",
-  },
-  {
-    icon: BookOpen,
-    title: "Deep Dives & Playbooks",
-    description: "Engineering breakdowns, growth blueprints, and AI implementation guides.",
-    color: "#0076D1",
-  },
-  {
-    icon: Bell,
-    title: "Event Invites",
-    description: "Private briefings, live AMAs, and roadmap reveals with the ZephorTech team.",
-    color: "#A855F7",
-  },
-  {
-    icon: Shield,
-    title: "No Noise",
-    description: "One thoughtful email per month, zero spam, unsubscribe anytime.",
-    color: "#10B981",
-  },
-];
-
-const newsletterStats = [
-  { label: "Subscribers", value: "2.5K+", icon: Users },
-  { label: "Open Rate", value: "68%", icon: TrendingUp },
-  { label: "Monthly", value: "1 Email", icon: Mail },
-];
-
 export function NewsletterSection() {
   const { ref, isVisible } = useScrollAnimation({
-    threshold: 0.1,
+    threshold: 0.15,
     rootMargin: "0px 0px -80px 0px",
   });
 
@@ -57,231 +15,153 @@ export function NewsletterSection() {
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
       style={{
-        background: "linear-gradient(180deg, #050709 0%, #0F1419 60%, #050709 100%)",
+        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
       }}
     >
-      {/* Enhanced Background Effects */}
+      {/* Animated Background Grid */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `
-            linear-gradient(45deg, rgba(0,118,209,0.15) 1px, transparent 1px),
-            linear-gradient(-45deg, rgba(0,118,209,0.15) 1px, transparent 1px)
+            linear-gradient(to right, rgba(0,118,209,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,118,209,0.1) 1px, transparent 1px)
           `,
-          backgroundSize: "50px 50px",
+          backgroundSize: "40px 40px",
+          animation: "gridPulse 8s ease-in-out infinite",
         }}
       />
+
+      {/* Floating Gradient Orbs */}
       <div
-        className="absolute left-1/4 top-1/4 h-64 w-64 rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
-      />
-      <div
-        className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full opacity-20 blur-3xl"
+        className="absolute right-0 top-0 h-96 w-96 animate-float rounded-full opacity-10 blur-3xl"
         style={{ background: "radial-gradient(circle, #0076D1, transparent)" }}
       />
+      <div
+        className="absolute bottom-0 left-0 h-96 w-96 animate-float-reverse rounded-full opacity-10 blur-3xl"
+        style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
+      />
 
-      {/* Floating Mail Icons */}
-      <div className="absolute left-10 top-20 opacity-5">
-        <Mail className="h-16 w-16 animate-pulse" style={{ color: "#00A8FF" }} />
-      </div>
-      <div className="absolute right-20 top-32 opacity-5">
-        <Send
-          className="h-12 w-12 animate-pulse"
-          style={{ color: "#0076D1", animationDelay: "1s" }}
-        />
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Enhanced Header */}
+      {/* Floating Particles */}
+      {[...Array(8)].map((_, i) => (
         <div
-          className="mb-8 text-center transition-all duration-700 md:mb-10"
+          key={i}
+          className="absolute rounded-full opacity-20 blur-sm"
+          style={{
+            width: `${Math.random() * 3 + 2}px`,
+            height: `${Math.random() * 3 + 2}px`,
+            background: "#0076D1",
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `particleFloat ${15 + Math.random() * 10}s ease-in-out infinite`,
+            animationDelay: `${Math.random() * 5}s`,
+          }}
+        />
+      ))}
+
+      <div className="container-standard relative z-10">
+        <div
+          className="mx-auto max-w-3xl"
           style={{
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "none" : "translateY(20px)",
+            transform: isVisible ? "translateY(0)" : "translateY(30px)",
+            transition: "all 0.7s ease",
           }}
         >
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#00A8FF]/30 bg-[#00A8FF]/10 px-4 py-2">
-            <Mail className="h-4 w-4 animate-pulse text-[#00A8FF]" />
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00A8FF]">
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-[#00A8FF] backdrop-blur-sm">
+              <Zap className="h-3.5 w-3.5" />
               Newsletter
+            </div>
+            <h2 className="mb-3 font-poppins text-3xl font-bold text-white md:text-4xl">
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
+                Stay ahead with monthly insights
+              </span>
+            </h2>
+            <p className="mx-auto max-w-xl text-sm text-white/70 md:text-base">
+              One curated email per month with actionable frameworks, launch notes, and engineering insights.
             </p>
           </div>
-          <h2 className="heading-2 mb-4">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #00A8FF 0%, #0076D1 50%, #A855F7 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Build Smarter with ZephorTech Signals
-            </span>
-          </h2>
-          <p className="mx-auto max-w-3xl text-sm text-white/70 md:text-base">
-            Monthly insights from our CTO desk: frameworks, architecture notes, AI experiments, and
-            launch debriefs. No fluff — just the playbooks we use with flagship clients.
-          </p>
 
-          {/* Stats Bar */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-6 md:mt-8">
-            {newsletterStats.map((stat, index) => {
-              const StatIcon = stat.icon;
-              return (
-                <div
-                  key={stat.label}
-                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "translateY(0)" : "translateY(10px)",
-                    transition: `all 0.7s ease ${0.1 * index}s`,
-                  }}
-                >
-                  <StatIcon className="h-4 w-4 text-[#00A8FF]" />
-                  <div>
-                    <span className="text-sm font-bold text-white">{stat.value}</span>
-                    <span className="ml-2 text-xs text-white/60">{stat.label}</span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid items-start gap-6 lg:grid-cols-[1.1fr,0.9fr] lg:gap-8">
-          {/* Left Side - Form Card */}
+          {/* Main Card */}
           <div
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-[#00A8FF]/30 hover:shadow-[0_0_40px_rgba(0,168,255,0.2)] md:p-8"
+            className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-2xl backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:shadow-[0_20px_60px_rgba(0,118,209,0.15)] md:p-8"
             style={{
               opacity: isVisible ? 1 : 0,
-              transform: isVisible ? "none" : "translateY(20px)",
-              transition: "all 0.7s ease 0.1s",
+              transform: isVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "all 0.6s ease 0.2s",
             }}
           >
-            {/* Decorative Gradient */}
+            {/* Animated Gradient Border */}
             <div
-              className="absolute -right-20 -top-20 h-40 w-40 rounded-full opacity-20 blur-3xl transition-all duration-500 group-hover:opacity-30"
-              style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
+              className="absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              style={{
+                background: "linear-gradient(135deg, rgba(0,118,209,0.3), rgba(0,168,255,0.2), rgba(0,118,209,0.3))",
+                backgroundSize: "200% 200%",
+                animation: "gradientShift 3s ease infinite",
+                padding: "1px",
+                WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                WebkitMaskComposite: "xor",
+                maskComposite: "exclude",
+              } as React.CSSProperties}
             />
 
-            {/* Form Header */}
-            <div className="relative mb-6 flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#00A8FF] to-[#0076D1] shadow-lg shadow-[#00A8FF]/30">
-                <Send className="h-6 w-6 text-white" />
+            <div className="relative z-10">
+              {/* Form Section */}
+              <div className="mb-6">
+                <NewsletterForm />
               </div>
-              <div>
-                <h3 className="font-poppins text-xl font-bold text-white md:text-2xl">
-                  Join the Community
-                </h3>
-                <p className="text-xs text-white/60 md:text-sm">
-                  Get exclusive insights delivered monthly
-                </p>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap items-center justify-center gap-4 border-t border-white/10 pt-6 text-xs text-white/60">
+                <span className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-white">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981]" />
+                  No spam
+                </span>
+                <span className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-white">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-[#10B981]" />
+                  Unsubscribe anytime
+                </span>
+                <span className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-white">
+                  <Shield className="h-3.5 w-3.5 text-[#00A8FF]" />
+                  Privacy-first
+                </span>
+                <span className="inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-white">
+                  <Mail className="h-3.5 w-3.5 text-[#00A8FF]" />
+                  1 email/month
+                </span>
               </div>
             </div>
 
-            {/* Newsletter Form */}
-            <NewsletterForm />
-
-            {/* Trust Indicators */}
-            <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-white/10 pt-6">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-[#10B981]" />
-                <span className="text-xs text-white/70">No spam, ever</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-[#10B981]" />
-                <span className="text-xs text-white/70">Unsubscribe anytime</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-[#0076D1]" />
-                <span className="text-xs text-white/70">Privacy protected</span>
-              </div>
-            </div>
+            {/* Shimmer Effect */}
+            <div
+              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:translate-x-full group-hover:opacity-100"
+              style={{
+                animation: "shimmer 3s ease-in-out infinite",
+              }}
+            />
           </div>
 
-          {/* Right Side - Benefits Grid */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-            {perks.map((perk, index) => {
-              const Icon = perk.icon;
-              return (
-                <div
-                  key={perk.title}
-                  className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-5 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:border-[#00A8FF]/30 hover:bg-white/[0.08] hover:shadow-lg hover:shadow-[#00A8FF]/10"
-                  style={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? "none" : "translateY(20px)",
-                    transition: `all 0.7s ease ${0.15 * index}s`,
-                  }}
-                >
-                  {/* Icon with Gradient Background */}
-                  <div
-                    className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-300 group-hover:rotate-6 group-hover:scale-110"
-                    style={{
-                      background: `linear-gradient(135deg, ${perk.color}20, ${perk.color}10)`,
-                      border: `1px solid ${perk.color}30`,
-                    }}
-                  >
-                    <Icon className="h-6 w-6" style={{ color: perk.color }} />
-                  </div>
-
-                  <h3 className="mb-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-[#00A8FF]">
-                    {perk.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-white/70">{perk.description}</p>
-
-                  {/* Hover Gradient Effect */}
-                  <div
-                    className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-5"
-                    style={{
-                      background: `radial-gradient(circle at center, ${perk.color}, transparent)`,
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Preview Section */}
-        <div
-          className="mt-8 rounded-xl border border-white/10 bg-gradient-to-r from-[#00A8FF]/10 via-[#0076D1]/10 to-[#A855F7]/10 p-6 backdrop-blur-sm md:mt-10 md:p-8"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "none" : "translateY(20px)",
-            transition: "all 0.7s ease 0.4s",
-          }}
-        >
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <div className="mb-3 flex items-center gap-2">
-                <Bell className="h-5 w-5 text-[#00A8FF]" />
-                <h4 className="font-poppins text-lg font-bold text-white">What You'll Get</h4>
-              </div>
-              <p className="mb-4 text-sm text-white/80">
-                Each newsletter includes actionable insights, real-world case studies, and exclusive
-                access to our latest tools and frameworks.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Architecture Patterns",
-                  "AI Insights",
-                  "Growth Strategies",
-                  "Tech Deep Dives",
-                ].map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs text-white/80"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="hidden items-center gap-2 text-[#00A8FF] md:flex">
-              <ArrowRight className="h-5 w-5 animate-pulse" />
-            </div>
+          {/* Subtle CTA */}
+          <div
+            className="mt-6 text-center"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateY(0)" : "translateY(10px)",
+              transition: "all 0.5s ease 0.4s",
+            }}
+          >
+            <p className="text-xs text-white/50">
+              Join 2,500+ founders, CTOs, and product leads getting actionable insights
+            </p>
           </div>
         </div>
       </div>

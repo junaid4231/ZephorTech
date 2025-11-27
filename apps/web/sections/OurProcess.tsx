@@ -57,6 +57,7 @@ export function OurProcess() {
 
   return (
     <section
+      id="process"
       ref={sectionRef}
       className="relative overflow-hidden py-12 md:py-16"
       style={{

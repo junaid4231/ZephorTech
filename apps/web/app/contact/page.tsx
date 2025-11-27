@@ -8,8 +8,8 @@ import { ContactCTA } from "@/sections/contact/ContactCTA";
 
 export const metadata: Metadata = {
   title: "Contact Us - Let's Build Something Extraordinary | ZephorTech",
-  description:
-    "Get in touch with ZephorTech's team of experts. We respond within 24 hours. Book a strategy call, request a quote, or discuss your next digital transformation project.",
+    description:
+      "Get in touch with ZephorTech's team of experts. We respond within 24 hours. Request a quote or discuss your next digital transformation project.",
   keywords: [
     "contact ZephorTech",
     "IT consulting contact",

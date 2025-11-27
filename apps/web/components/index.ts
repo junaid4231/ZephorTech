@@ -17,3 +17,4 @@ export { ServiceCard } from "./ServiceCard";
 export { InquiryForm } from "./InquiryForm";
 export { Breadcrumbs } from "./Breadcrumbs";
 export { BackToTop } from "./BackToTop";
+export { HashScrollHandler } from "./HashScrollHandler";

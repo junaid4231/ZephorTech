@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Calendar, MessageSquare } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import dynamic from "next/dynamic";
 
@@ -116,7 +116,7 @@ export function ContactHero() {
 
         {/* Quick Action Cards */}
         <div
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto transition-all duration-1000"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto transition-all duration-1000"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(30px)",
@@ -124,12 +124,6 @@ export function ContactHero() {
           }}
         >
           {[
-            {
-              icon: Calendar,
-              title: "Book a Call",
-              description: "30-min strategy session",
-              action: "#book-call",
-            },
             {
               icon: MessageSquare,
               title: "Send a Message",

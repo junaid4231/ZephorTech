@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
+import { siteConfig } from "@/config";
 
 const faqs = [
   {
@@ -192,7 +193,7 @@ export function ContactFAQ() {
         >
           <p className="mb-3 text-sm text-gray-400 md:mb-4 md:text-base">Still have questions?</p>
           <a
-            href="mailto:hello@zephortech.com"
+            href={`mailto:${siteConfig.email}`}
             className="inline-flex items-center gap-2 font-semibold transition-all duration-300 hover:gap-3"
             style={{ color: "#0076D1" }}
           >

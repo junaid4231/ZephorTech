@@ -199,37 +199,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator */}
-      <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 transition-all duration-1000"
-        style={{
-          opacity: heroVisible ? 1 : 0,
-          transform: heroVisible ? "translateY(0)" : "translateY(20px)",
-          transitionDelay: "600ms",
-        }}
-      >
-        <div className="flex flex-col items-center gap-2.5">
-          <span className="font-inter text-xs font-medium tracking-wide text-white/70">
-            Scroll to explore
-          </span>
-          <div className="animate-bounce">
-            <svg
-              className="h-6 w-6 text-white/70"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
 
       <style jsx>{`
         .spinner-rotate {

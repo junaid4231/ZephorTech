@@ -105,28 +105,15 @@ export default function Footer() {
       </div>
 
       <div className="container-standard relative z-10 py-12 md:py-16 lg:py-20">
-        {/* Newsletter Section - Compact Height */}
+        {/* Newsletter Section - Compact */}
         <div
-          className="group relative mb-12 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-4 backdrop-blur-xl transition-all duration-700 sm:p-5 md:mb-16"
+          className="group relative mb-8 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-4 backdrop-blur-xl transition-all duration-700 md:mb-10"
           style={{
             opacity: footerVisible ? 1 : 0,
             transform: footerVisible ? "translateY(0)" : "translateY(20px)",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
           }}
         >
-          {/* Animated Gradient Border */}
-          <div
-            className="absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            style={{
-              background:
-                "linear-gradient(135deg, rgba(0,118,209,0.1) 0%, rgba(0,168,255,0.1) 100%)",
-              padding: "1px",
-              WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-              WebkitMaskComposite: "xor",
-              maskComposite: "exclude",
-            }}
-          />
-
           {/* Shimmer Effect */}
           <div
             className="absolute -inset-x-full top-0 h-full w-full bg-gradient-to-r from-transparent via-white/5 to-transparent"
@@ -135,23 +122,22 @@ export default function Footer() {
             }}
           />
 
-          <div className="relative grid grid-cols-1 gap-3 md:grid-cols-2 md:items-center md:gap-6">
+          <div className="relative grid grid-cols-1 gap-3 md:grid-cols-2 md:items-center md:gap-4">
             <div>
-              <div className="mb-1.5 inline-flex items-center gap-1.5 rounded-full border border-[#0076D1]/30 bg-[#0076D1]/10 px-2.5 py-1">
-                <Sparkles className="h-3 w-3 animate-pulse text-[#0076D1]" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0076D1] sm:text-xs">
+              <div className="mb-1.5 inline-flex items-center gap-1.5 rounded-full border border-[#0076D1]/30 bg-[#0076D1]/10 px-2 py-0.5">
+                <Sparkles className="h-2.5 w-2.5 animate-pulse text-[#0076D1]" />
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0076D1]">
                   Newsletter
                 </span>
               </div>
-              <h3 className="mb-1.5 text-base font-bold text-white sm:text-lg md:text-xl">
+              <h3 className="mb-1 text-sm font-bold text-white md:text-base">
                 Stay Ahead of the Curve
               </h3>
-              <p className="text-xs leading-relaxed text-gray-400 sm:text-sm">
-                Get monthly product drops, engineering playbooks, and exclusive insights. No spam,
-                unsubscribe anytime.
+              <p className="text-xs leading-relaxed text-white/60">
+                Monthly insights, playbooks, and exclusive updates. No spam.
               </p>
             </div>
-            <div className="md:pl-4">
+            <div className="md:pl-2">
               <NewsletterForm variant="compact" />
             </div>
           </div>

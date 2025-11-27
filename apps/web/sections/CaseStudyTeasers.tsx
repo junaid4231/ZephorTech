@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, TrendingUp, Target, Shield, Users } from "lucide-react";
+import { ArrowRight, Target } from "lucide-react";
 import type { CaseStudy } from "@/lib/case-studies";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
@@ -10,110 +10,135 @@ interface CaseStudyTeasersProps {
   caseStudies?: CaseStudy[];
 }
 
-const iconPalette = [TrendingUp, Target, Shield, Users];
-
 export function CaseStudyTeasers({ caseStudies }: CaseStudyTeasersProps) {
   const { ref, isVisible } = useScrollAnimation({
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px",
+    threshold: 0.15,
+    rootMargin: "0px 0px -80px 0px",
   });
 
   if (!caseStudies || caseStudies.length === 0) {
     return null;
   }
 
-  const teasers = caseStudies.slice(0, 3);
+  // Show only 2 case studies for a cleaner look
+  const teasers = caseStudies.slice(0, 2);
 
   return (
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
       style={{
-        background: "linear-gradient(180deg, #04070C 0%, #0A1018 55%, #04070C 100%)",
+        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
       }}
     >
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
+      {/* Subtle Background Grid */}
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,118,209,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,118,209,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
       <div className="container-standard relative z-10">
-        <div className="mb-8 text-center md:mb-10">
-          <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            Latest Wins
-          </p>
-          <h2 className="heading-2 mb-3 text-white">Proof Points from the Field</h2>
-          <p className="mx-auto max-w-2xl text-sm text-white/60 md:text-base">
-            Three quick snapshots of how we ship measurable outcomes across AI platforms, commerce,
-            and SaaS modernisation.
+        <div
+          className="mb-10 text-center transition-all duration-1000 ease-out md:mb-12"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+          }}
+        >
+          <div className="mb-3 inline-flex items-center gap-2">
+            <Target className="h-4 w-4 text-[#0076D1] md:h-5 md:w-5" />
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
+              Latest Wins
+            </p>
+          </div>
+          <h2 className="heading-2 mb-3">
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              Proof Points from the Field
+            </span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
+            Real results from real projects across AI platforms, commerce, and SaaS modernisation.
           </p>
         </div>
 
-        <div
-          className="grid gap-4 md:gap-5 lg:grid-cols-3"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.8s ease",
-          }}
-        >
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {teasers.map((study, index) => {
-            const Icon = iconPalette[index % iconPalette.length];
-            const accent = ["#0076D1", "#00A8FF", "#4F46E5"][index % 3];
             const metric = study.metrics[0];
 
             return (
               <article
                 key={study.slug}
-                className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/[0.05] md:p-6"
+                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] md:p-8"
                 style={{
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                  transition: `all 0.5s ease ${index * 100}ms`,
                 }}
               >
-                <div className="mb-4 flex items-center gap-3">
-                  <div
-                    className="flex h-10 w-10 items-center justify-center rounded-xl"
-                    style={{ background: `${accent}20` }}
-                  >
-                    <Icon className="h-5 w-5" style={{ color: accent }} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-white/60">
-                      {study.industry}
-                    </p>
-                    <p className="text-xs text-white/40">{study.headquarters}</p>
-                  </div>
-                </div>
+                {/* Left border accent */}
+                <div
+                  className="absolute left-0 top-0 h-full w-1"
+                  style={{
+                    background: "linear-gradient(180deg, #0076D1 0%, #00A8FF 100%)",
+                  }}
+                />
 
-                <h3 className="text-lg font-bold text-white md:text-xl">{study.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">{study.summary}</p>
+                <div className="pl-4">
+                  {/* Industry */}
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/50">
+                    {study.industry}
+                  </p>
 
-                {metric && (
-                  <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs uppercase tracking-widest text-white/50">Hero Metric</p>
-                    <p className="numeric-value text-2xl font-black text-white md:text-3xl">
-                      {metric.value}
-                    </p>
-                    <p className="text-xs text-white/60">{metric.label}</p>
-                  </div>
-                )}
+                  {/* Title */}
+                  <h3 className="mb-3 font-poppins text-xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#00A8FF] md:text-2xl">
+                    {study.title}
+                  </h3>
 
-                <div className="mt-auto flex items-center justify-between pt-6 text-sm font-semibold text-primary">
+                  {/* Summary */}
+                  <p className="mb-6 text-sm leading-relaxed text-white/70 md:text-base">
+                    {study.summary}
+                  </p>
+
+                  {/* Metric */}
+                  {metric && (
+                    <div className="mb-6 flex items-baseline gap-3 border-t border-white/10 pt-6">
+                      <p
+                        className="font-poppins text-3xl font-bold md:text-4xl"
+                        style={{
+                          background: "linear-gradient(135deg, #0076D1, #00A8FF)",
+                          WebkitBackgroundClip: "text",
+                          backgroundClip: "text",
+                          color: "transparent",
+                        }}
+                      >
+                        {metric.value}
+                      </p>
+                      <p className="text-sm text-white/60 md:text-base">{metric.label}</p>
+                    </div>
+                  )}
+
+                  {/* CTA */}
                   <Link
                     href={`/case-studies/${study.slug}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-primary/30 px-4 py-2 text-white transition hover:border-primary hover:text-white"
+                    className="group/link inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 hover:gap-3"
+                    style={{ color: "#0076D1" }}
                   >
-                    View case study
-                    <ArrowRight className="h-4 w-4" />
+                    <span>Read case study</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </article>
@@ -121,13 +146,30 @@ export function CaseStudyTeasers({ caseStudies }: CaseStudyTeasersProps) {
           })}
         </div>
 
-        <div className="mt-10 text-center">
+        <div
+          className="mt-10 text-center transition-all duration-1000 ease-out md:mt-12"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+            transitionDelay: "300ms",
+          }}
+        >
           <Link
             href="/case-studies"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white/70 transition hover:text-white"
+            className="group inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
+            style={{
+              background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
+              boxShadow: "0 4px 16px rgba(0, 118, 209, 0.4)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 118, 209, 0.6)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 118, 209, 0.4)";
+            }}
           >
-            Browse all success stories
-            <ArrowRight className="h-4 w-4" />
+            <span>Browse all success stories</span>
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

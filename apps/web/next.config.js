@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.supabase.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+      },
     ],
   },
   transpilePackages: ['@zephortech/ui', '@zephortech/types'],

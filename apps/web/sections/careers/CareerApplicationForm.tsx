@@ -301,7 +301,7 @@ export function CareerApplicationForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+971521257034"
                 />
               </div>
               <div>

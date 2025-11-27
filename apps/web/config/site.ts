@@ -8,8 +8,8 @@ export const siteConfig = {
     "Cutting-edge IT services including web & mobile development, AI agents, SaaS solutions, e-commerce, and digital transformation.",
   url: "https://zephortech.com",
   email: "info@zephortech.com",
-  phone: "+1 (555) 123-4567",
-  address: "123 Tech Street, Innovation City, IC 12345",
+  phone: "+971521257034",
+  address: "Dubai, United Arab Emirates",
   social: {
     twitter: "https://twitter.com/zephortech",
     linkedin: "https://linkedin.com/company/zephortech",

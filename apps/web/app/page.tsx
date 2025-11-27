@@ -7,14 +7,12 @@ import {
   CaseStudyTeasers,
   ClientLogos,
   Testimonials,
-  WhyChooseUs,
-  OurProcess,
   Technologies,
-  ProjectPlanner,
   BlogHighlights,
   NewsletterSection,
   InquirySection,
   FinalCTA,
+  ProcessLink,
 } from "@/sections";
 import { getAllTestimonialsCached } from "@/lib/testimonials-cms";
 import { getAllServicesCached } from "@/lib/services-cms";
@@ -66,12 +64,10 @@ export default async function Home() {
       <CaseStudyTeasers caseStudies={featuredCaseStudies} />
       <ClientLogos />
       <Testimonials testimonials={testimonials} />
-      <WhyChooseUs />
-      <OurProcess />
       <Technologies />
-      <ProjectPlanner />
       <BlogHighlights posts={featuredBlogPosts} />
       <NewsletterSection />
+      <ProcessLink />
       <InquirySection />
       <FinalCTA />
       <Footer />

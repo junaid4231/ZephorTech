@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import { trackEvent } from "@/lib/analytics";
+import { siteConfig } from "@/config";
 
 type InquiryPayload = {
   firstName: string;
@@ -144,50 +145,48 @@ export function InquiryForm() {
               <MessageCircle className="h-4 w-4" />
               Start a conversation
             </p>
-            <h3 className="font-poppins mb-4 font-bold leading-tight text-[var(--scale-h2)] text-white">
+            <h3 className="font-poppins mb-4 text-2xl font-bold leading-tight text-white md:text-3xl">
               Tell us what you're building. We'll design the roadmap.
             </h3>
-            <p className="leading-relaxed text-[var(--scale-body)] text-white/80">
+            <p className="text-base leading-relaxed text-white/70 md:text-lg">
               ZephorTech partners with modern teams to architect, build, and scale premium digital
               products. Share the essentials and we'll craft a tailored engagement within 24 hours.
             </p>
           </div>
 
-          <div className="grid gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all hover:border-white/20">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#0076D1]/20">
+          <div className="space-y-3">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm transition-all hover:border-white/20">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#0076D1]/20">
                   <Mail className="h-5 w-5 text-[#0076D1]" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm font-medium text-white/70">E-mail</p>
-                  <p className="text-base font-medium text-white">hello@zephortech.com</p>
+                  <p className="text-xs font-medium text-white/60">Email</p>
+                  <p className="text-sm font-medium text-white">{siteConfig.email}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all hover:border-white/20">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#0076D1]/20">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm transition-all hover:border-white/20">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#0076D1]/20">
                   <Phone className="h-5 w-5 text-[#0076D1]" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm font-medium text-white/70">Phone</p>
-                  <p className="text-base font-medium text-white">+1 (555) 123-4567</p>
+                  <p className="text-xs font-medium text-white/60">Phone</p>
+                  <p className="text-sm font-medium text-white">{siteConfig.phone}</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm transition-all hover:border-white/20">
-              <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-[#0076D1]/20">
+            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm transition-all hover:border-white/20">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-[#0076D1]/20">
                   <MapPin className="h-5 w-5 text-[#0076D1]" />
                 </div>
                 <div>
-                  <p className="mb-1 text-sm font-medium text-white/70">Headquarters</p>
-                  <p className="text-base font-medium text-white">
-                    123 Tech Street, Innovation City, IC 12345
-                  </p>
+                  <p className="text-xs font-medium text-white/60">Location</p>
+                  <p className="text-sm font-medium text-white">{siteConfig.address}</p>
                 </div>
               </div>
             </div>
@@ -195,203 +194,207 @@ export function InquiryForm() {
         </div>
 
         {/* Right Column - Form */}
-        <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-black/80 to-black/60 p-6 backdrop-blur-xl md:p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Name Fields */}
-            <div className="grid gap-5 sm:grid-cols-2">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-xl md:p-8">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Personal Information Section */}
+            <div className="space-y-4 rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-white/70">
+                Personal Information
+              </h4>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="firstName" className="mb-1.5 block text-xs font-medium text-white/80">
+                    First name <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="firstName"
+                    type="text"
+                    name="firstName"
+                    value={payload.firstName}
+                    onChange={handleChange("firstName")}
+                    className="h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
+                    placeholder="John"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="mb-1.5 block text-xs font-medium text-white/80">
+                    Last name <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="lastName"
+                    type="text"
+                    name="lastName"
+                    value={payload.lastName}
+                    onChange={handleChange("lastName")}
+                    className="h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
+                    placeholder="Doe"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block text-xs font-medium text-white/80">
+                    Email <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={payload.email}
+                    onChange={handleChange("email")}
+                    className="h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
+                    placeholder="john@example.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="phone" className="mb-1.5 block text-xs font-medium text-white/80">
+                    Phone
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    value={payload.phone}
+                    onChange={handleChange("phone")}
+                    className="h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
+                    placeholder={siteConfig.phone}
+                  />
+                </div>
+              </div>
               <div>
-                <label htmlFor="firstName" className="mb-2 block text-sm font-semibold text-white">
-                  First name <span className="text-red-400">*</span>
+                <label htmlFor="company" className="mb-1.5 block text-xs font-medium text-white/80">
+                  Company / Organization
                 </label>
                 <input
-                  id="firstName"
+                  id="company"
                   type="text"
-                  name="firstName"
-                  value={payload.firstName}
-                  onChange={handleChange("firstName")}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
-                  placeholder="John"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="lastName" className="mb-2 block text-sm font-semibold text-white">
-                  Surname <span className="text-red-400">*</span>
-                </label>
-                <input
-                  id="lastName"
-                  type="text"
-                  name="lastName"
-                  value={payload.lastName}
-                  onChange={handleChange("lastName")}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
-                  placeholder="Doe"
-                  required
+                  name="company"
+                  value={payload.company}
+                  onChange={handleChange("company")}
+                  className="h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
+                  placeholder="Acme Corporation"
                 />
               </div>
             </div>
 
-            {/* Contact Fields */}
-            <div className="grid gap-5 sm:grid-cols-2">
+            {/* Project Details Section */}
+            <div className="space-y-4 rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-white/70">
+                Project Details
+              </h4>
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm font-semibold text-white">
-                  E-mail <span className="text-red-400">*</span>
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  value={payload.email}
-                  onChange={handleChange("email")}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
-                  placeholder="john@example.com"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-white">
-                  Mobile number
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  value={payload.phone}
-                  onChange={handleChange("phone")}
-                  className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
-                  placeholder="+1 (555) 123-4567"
-                />
-              </div>
-            </div>
-
-            {/* Company */}
-            <div>
-              <label htmlFor="company" className="mb-2 block text-sm font-semibold text-white">
-                Company / Organization
-              </label>
-              <input
-                id="company"
-                type="text"
-                name="company"
-                value={payload.company}
-                onChange={handleChange("company")}
-                className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
-                placeholder="Acme Corporation"
-              />
-            </div>
-
-            {/* Service */}
-            <div>
-              <label htmlFor="service" className="mb-2 block text-sm font-semibold text-white">
-                I would like <span className="text-red-400">*</span>
-              </label>
-              <div className="relative">
-                <select
-                  id="service"
-                  name="service"
-                  value={payload.service}
-                  onChange={handleChange("service")}
-                  className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-white/5 px-4 pr-10 font-medium text-[var(--scale-body)] text-white transition-all duration-200 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30 [&>option]:bg-gray-900 [&>option]:text-white"
-                  required
-                >
-                  <option value="" className="text-white/40">
-                    Select a service
-                  </option>
-                  {serviceOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white/50" />
-              </div>
-            </div>
-
-            {/* Budget & Timeline */}
-            <div className="grid gap-5 sm:grid-cols-2">
-              <div>
-                <label htmlFor="budget" className="mb-2 block text-sm font-semibold text-white">
-                  Budget range <span className="text-red-400">*</span>
+                <label htmlFor="service" className="mb-1.5 block text-xs font-medium text-white/80">
+                  Service needed <span className="text-red-400">*</span>
                 </label>
                 <div className="relative">
                   <select
-                    id="budget"
-                    name="budget"
-                    value={payload.budget}
-                    onChange={handleChange("budget")}
-                    className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-white/5 px-4 pr-10 font-medium text-[var(--scale-body)] text-white transition-all duration-200 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30 [&>option]:bg-gray-900 [&>option]:text-white"
+                    id="service"
+                    name="service"
+                    value={payload.service}
+                    onChange={handleChange("service")}
+                    className="h-11 w-full appearance-none rounded-lg border border-white/10 bg-white/5 px-4 pr-10 text-sm text-white transition-all duration-200 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50 [&>option]:bg-gray-900 [&>option]:text-white"
                     required
                   >
                     <option value="" className="text-white/40">
-                      Select budget
+                      Select a service
                     </option>
-                    {budgetOptions.map((option) => (
+                    {serviceOptions.map((option) => (
                       <option key={option} value={option}>
                         {option}
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white/50" />
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
                 </div>
-                {payload.budget === "Custom / We'll discuss" && (
-                  <div className="mt-4">
-                    <label
-                      htmlFor="customBudget"
-                      className="mb-2 block text-sm font-semibold text-white"
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="budget" className="mb-1.5 block text-xs font-medium text-white/80">
+                    Budget range <span className="text-red-400">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="budget"
+                      name="budget"
+                      value={payload.budget}
+                      onChange={handleChange("budget")}
+                      className="h-11 w-full appearance-none rounded-lg border border-white/10 bg-white/5 px-4 pr-10 text-sm text-white transition-all duration-200 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50 [&>option]:bg-gray-900 [&>option]:text-white"
+                      required
                     >
-                      Preferred investment expectation
-                    </label>
-                    <input
-                      id="customBudget"
-                      type="text"
-                      name="customBudget"
-                      value={payload.customBudget}
-                      onChange={handleChange("customBudget")}
-                      className="h-12 w-full rounded-xl border border-white/15 bg-white/5 px-4 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
-                      placeholder="Share a range or context"
-                    />
-                  </div>
-                )}
-              </div>
-              <div>
-                <label htmlFor="timeline" className="mb-2 block text-sm font-semibold text-white">
-                  Timeline <span className="text-red-400">*</span>
-                </label>
-                <div className="relative">
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    value={payload.timeline}
-                    onChange={handleChange("timeline")}
-                    className="h-12 w-full appearance-none rounded-xl border border-white/15 bg-white/5 px-4 pr-10 font-medium text-[var(--scale-body)] text-white transition-all duration-200 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30 [&>option]:bg-gray-900 [&>option]:text-white"
-                    required
-                  >
-                    <option value="" className="text-white/40">
-                      Select timeline
-                    </option>
-                    {timelineOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
+                      <option value="" className="text-white/40">
+                        Select budget
                       </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white/50" />
+                      {budgetOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+                  </div>
+                  {payload.budget === "Custom / We'll discuss" && (
+                    <div className="mt-3">
+                      <label
+                        htmlFor="customBudget"
+                        className="mb-1.5 block text-xs font-medium text-white/80"
+                      >
+                        Additional details
+                      </label>
+                      <input
+                        id="customBudget"
+                        type="text"
+                        name="customBudget"
+                        value={payload.customBudget}
+                        onChange={handleChange("customBudget")}
+                        className="h-11 w-full rounded-lg border border-white/10 bg-white/5 px-4 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
+                        placeholder="Share your budget range or context"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <label htmlFor="timeline" className="mb-1.5 block text-xs font-medium text-white/80">
+                    Timeline <span className="text-red-400">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      value={payload.timeline}
+                      onChange={handleChange("timeline")}
+                      className="h-11 w-full appearance-none rounded-lg border border-white/10 bg-white/5 px-4 pr-10 text-sm text-white transition-all duration-200 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50 [&>option]:bg-gray-900 [&>option]:text-white"
+                      required
+                    >
+                      <option value="" className="text-white/40">
+                        Select timeline
+                      </option>
+                      {timelineOptions.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Message */}
-            <div>
-              <label htmlFor="message" className="mb-2 block text-sm font-semibold text-white">
-                Your message
+            {/* Message Section */}
+            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <label htmlFor="message" className="mb-1.5 block text-xs font-medium text-white/80">
+                Project message
               </label>
               <textarea
                 id="message"
                 name="message"
                 value={payload.message}
                 onChange={handleChange("message")}
-                rows={5}
-                className="w-full resize-none rounded-xl border border-white/15 bg-white/5 px-4 py-3 font-medium text-[var(--scale-body)] text-white transition-all duration-200 placeholder:text-white/60 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-[#0076D1]/30"
+                rows={4}
+                className="w-full resize-none rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition-all duration-200 placeholder:text-white/40 focus:border-[#0076D1] focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-[#0076D1]/50"
                 placeholder="Tell us about your project, goals, and any specific requirements..."
               />
             </div>
@@ -400,40 +403,40 @@ export function InquiryForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#5B4FE9] via-[#3B82F6] to-[#0EA5E9] px-6 py-3.5 font-semibold text-[var(--scale-body)] text-white shadow-lg shadow-[#0076D1]/20 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#0076D1]/30 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+              className="group relative w-full overflow-hidden rounded-lg bg-gradient-to-r from-[#004E8F] via-[#0076D1] to-[#00A8FF] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#0076D1]/30 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#0076D1]/40 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="h-5 w-5 animate-spin" />
+                    <Loader2 className="h-4 w-4 animate-spin" />
                     Sending...
                   </>
                 ) : (
                   <>
                     Submit inquiry
-                    <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </>
                 )}
               </span>
             </button>
 
             {/* Status Messages */}
-            <div role="status" aria-live="polite" className="min-h-[3.5rem]">
+            <div role="status" aria-live="polite" className="min-h-[3rem]">
               {status === "success" && (
-                <div className="flex items-start gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3.5 backdrop-blur-sm">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" />
+                <div className="flex items-start gap-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 backdrop-blur-sm">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
                   <div>
                     <p className="text-sm font-semibold text-emerald-200">
                       Thank you for your inquiry!
                     </p>
-                    <p className="mt-1 text-sm text-emerald-300/80">
+                    <p className="mt-1 text-xs text-emerald-300/80">
                       We'll get back to you within 24 hours.
                     </p>
                   </div>
                 </div>
               )}
               {status === "error" && (
-                <div className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3.5 backdrop-blur-sm">
+                <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 backdrop-blur-sm">
                   <p className="text-sm font-semibold text-red-200">
                     {errorMessage || "Something went wrong. Please try again."}
                   </p>

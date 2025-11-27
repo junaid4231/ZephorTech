@@ -250,7 +250,7 @@ export default function TermsPage() {
                   </a>
                 </p>
                 <p>
-                  <strong className="text-white">Address:</strong> 123 Tech Street, Innovation City, IC 12345
+                  <strong className="text-white">Address:</strong> Dubai, United Arab Emirates
                 </p>
               </div>
             </div>

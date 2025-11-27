@@ -51,7 +51,7 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
 
   const mappedPosts =
     posts && posts.length > 0
-      ? posts.slice(0, 3).map((post, index) => ({
+      ? posts.slice(0, 2).map((post, index) => ({
           id: post.id,
           title: post.title,
           excerpt: post.excerpt,
@@ -60,7 +60,7 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
           readTime: post.readingTime ? `${post.readingTime} min` : "5 min",
           slug: post.slug,
         }))
-      : fallbackPosts;
+      : fallbackPosts.slice(0, 2);
 
   return (
     <section
@@ -70,12 +70,13 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
         background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
       }}
     >
+      {/* Subtle Background Grid */}
       <div
         className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `
-            linear-gradient(45deg, #0076D1 1px, transparent 1px),
-            linear-gradient(-45deg, #0076D1 1px, transparent 1px)
+            linear-gradient(to right, rgba(0,118,209,0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,118,209,0.1) 1px, transparent 1px)
           `,
           backgroundSize: "40px 40px",
         }}
@@ -83,7 +84,7 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
 
       <div className="container-standard relative z-10">
         <div
-          className="mb-6 text-center transition-all duration-1000 ease-out md:mb-8"
+          className="mb-10 text-center transition-all duration-1000 ease-out md:mb-12"
           style={{
             opacity: sectionVisible ? 1 : 0,
             transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
@@ -95,7 +96,7 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
               Latest Insights
             </p>
           </div>
-          <h2 className="heading-2 mb-2">
+          <h2 className="heading-2 mb-3">
             <span
               className="bg-clip-text text-transparent"
               style={{
@@ -108,54 +109,44 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
               From Our Blog
             </span>
           </h2>
+          <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
+            Insights, strategies, and technical deep-dives from our engineering and product teams.
+          </p>
         </div>
 
-        <div className="mb-6 grid gap-4 md:grid-cols-3 md:gap-5">
+        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
           {mappedPosts.map((post, index) => (
-            <Link
+            <article
               key={post.id}
-              href={`/blog/${post.slug}`}
-              className="group relative block transition-all duration-700 ease-out"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] md:p-8"
               style={{
                 opacity: sectionVisible ? 1 : 0,
-                transform: sectionVisible
-                  ? "translateY(0) scale(1)"
-                  : "translateY(30px) scale(0.95)",
-                transitionDelay: `${index * 100}ms`,
+                transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+                transition: `all 0.5s ease ${index * 100}ms`,
               }}
             >
+              {/* Left border accent */}
               <div
-                className="relative h-full overflow-hidden rounded-xl border p-4 transition-all duration-500 group-hover:scale-[1.02] md:p-5"
+                className="absolute left-0 top-0 h-full w-1"
                 style={{
-                  background: "rgba(255, 255, 255, 0.03)",
-                  backdropFilter: "blur(20px)",
-                  borderColor: "rgba(255, 255, 255, 0.1)",
-                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
+                  background: "linear-gradient(180deg, #0076D1 0%, #00A8FF 100%)",
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 32px rgba(0, 118, 209, 0.12), 0 4px 16px rgba(0, 0, 0, 0.4)";
-                  e.currentTarget.style.borderColor = "rgba(0, 118, 209, 0.2)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 0, 0, 0.3)";
-                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                <div className="mb-3 flex flex-wrap items-center gap-3 text-xs text-gray-400 md:text-sm">
+              />
+
+              <div className="pl-4">
+                {/* Category and Date */}
+                <div className="mb-3 flex flex-wrap items-center gap-3">
                   <span
                     className="rounded-full px-2.5 py-1 text-xs font-semibold"
                     style={{
-                      background: "rgba(0, 118, 209, 0.2)",
+                      background: "rgba(0, 118, 209, 0.15)",
                       color: "#0076D1",
                     }}
                   >
                     {post.category}
                   </span>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-3.5 w-3.5" />
+                  <div className="flex items-center gap-1.5 text-xs text-white/50">
+                    <Calendar className="h-3 w-3" />
                     <span>
                       {new Date(post.date).toLocaleDateString("en-US", {
                         month: "short",
@@ -164,34 +155,38 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
                       })}
                     </span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-3.5 w-3.5" />
+                  <div className="flex items-center gap-1.5 text-xs text-white/50">
+                    <Clock className="h-3 w-3" />
                     <span>{post.readTime}</span>
                   </div>
                 </div>
 
-                <h3 className="font-poppins mb-2 text-lg font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#00A8FF] md:text-xl">
+                {/* Title */}
+                <h3 className="mb-3 font-poppins text-xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#00A8FF] md:text-2xl">
                   {post.title}
                 </h3>
 
-                <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-400">
+                {/* Excerpt */}
+                <p className="mb-6 text-sm leading-relaxed text-white/70 md:text-base">
                   {post.excerpt}
                 </p>
 
-                <div
-                  className="flex items-center gap-2 text-xs font-semibold transition-all duration-300 group-hover:gap-3 md:text-sm"
+                {/* CTA */}
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group/link inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 hover:gap-3"
                   style={{ color: "#0076D1" }}
                 >
-                  <span>Read Article</span>
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1 md:h-4 md:w-4" />
-                </div>
+                  <span>Read article</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
+                </Link>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
 
         <div
-          className="text-center transition-all duration-1000 ease-out"
+          className="mt-10 text-center transition-all duration-1000 ease-out md:mt-12"
           style={{
             opacity: sectionVisible ? 1 : 0,
             transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
@@ -212,7 +207,7 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
               e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 118, 209, 0.4)";
             }}
           >
-            <span>View All Articles</span>
+            <span>View all articles</span>
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>

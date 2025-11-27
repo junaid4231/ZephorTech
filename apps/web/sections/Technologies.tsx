@@ -1,335 +1,371 @@
 "use client";
 
-import React from "react";
-import {
-  Code,
-  Database,
-  Cloud,
-  Smartphone,
-  Brain,
-  Server,
-  GitBranch,
-  Layers,
-  Shield,
-} from "lucide-react";
+import React, { useState } from "react";
+import Image from "next/image";
+import { Cpu, Workflow } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
-interface Technology {
-  id: string;
+type TechLogo = {
   name: string;
-  category: string;
-  icon: React.ComponentType<{ className?: string }>;
-  color: string;
-}
-
-const technologies: Technology[] = [
-  // Frontend
-  { id: "1", name: "React", category: "Frontend", icon: Code, color: "#61DAFB" },
-  { id: "2", name: "Next.js", category: "Frontend", icon: Code, color: "#000000" },
-  { id: "3", name: "TypeScript", category: "Frontend", icon: Code, color: "#3178C6" },
-  { id: "4", name: "Vue.js", category: "Frontend", icon: Code, color: "#4FC08D" },
-  { id: "5", name: "Angular", category: "Frontend", icon: Code, color: "#DD0031" },
-  { id: "6", name: "Tailwind CSS", category: "Frontend", icon: Layers, color: "#06B6D4" },
-
-  // Backend
-  { id: "7", name: "Node.js", category: "Backend", icon: Server, color: "#339933" },
-  { id: "8", name: "Python", category: "Backend", icon: Server, color: "#3776AB" },
-  { id: "9", name: "Java", category: "Backend", icon: Server, color: "#ED8B00" },
-  { id: "10", name: "PHP", category: "Backend", icon: Server, color: "#777BB4" },
-  { id: "11", name: "Ruby", category: "Backend", icon: Server, color: "#CC342D" },
-  { id: "12", name: "Go", category: "Backend", icon: Server, color: "#00ADD8" },
-
-  // Mobile
-  { id: "13", name: "React Native", category: "Mobile", icon: Smartphone, color: "#61DAFB" },
-  { id: "14", name: "Flutter", category: "Mobile", icon: Smartphone, color: "#02569B" },
-  { id: "15", name: "Swift", category: "Mobile", icon: Smartphone, color: "#FA7343" },
-  { id: "16", name: "Kotlin", category: "Mobile", icon: Smartphone, color: "#7F52FF" },
-  { id: "17", name: "Ionic", category: "Mobile", icon: Smartphone, color: "#3880FF" },
-
-  // Cloud & DevOps
-  { id: "18", name: "AWS", category: "Cloud", icon: Cloud, color: "#FF9900" },
-  { id: "19", name: "Azure", category: "Cloud", icon: Cloud, color: "#0078D4" },
-  { id: "20", name: "Docker", category: "DevOps", icon: GitBranch, color: "#2496ED" },
-  { id: "21", name: "Kubernetes", category: "DevOps", icon: GitBranch, color: "#326CE5" },
-  { id: "22", name: "GitHub Actions", category: "DevOps", icon: GitBranch, color: "#2088FF" },
-  { id: "23", name: "Terraform", category: "DevOps", icon: GitBranch, color: "#7B42BC" },
-
-  // Databases
-  { id: "24", name: "PostgreSQL", category: "Database", icon: Database, color: "#336791" },
-  { id: "25", name: "MongoDB", category: "Database", icon: Database, color: "#47A248" },
-  { id: "26", name: "MySQL", category: "Database", icon: Database, color: "#4479A1" },
-  { id: "27", name: "Redis", category: "Database", icon: Database, color: "#DC382D" },
-  { id: "28", name: "Elasticsearch", category: "Database", icon: Database, color: "#005571" },
-
-  // AI/ML
-  { id: "29", name: "TensorFlow", category: "AI/ML", icon: Brain, color: "#FF6F00" },
-  { id: "30", name: "PyTorch", category: "AI/ML", icon: Brain, color: "#EE4C2C" },
-  { id: "31", name: "OpenAI", category: "AI/ML", icon: Brain, color: "#412991" },
-  { id: "32", name: "LangChain", category: "AI/ML", icon: Brain, color: "#1C3C3C" },
-];
-
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  Frontend: Code,
-  Backend: Server,
-  Mobile: Smartphone,
-  Cloud: Cloud,
-  DevOps: GitBranch,
-  Database: Database,
-  "AI/ML": Brain,
+  logo: string;
+  background: string;
+  fallback?: string;
 };
 
-function TechCard({
-  tech,
-  IconComponent,
-  index,
-  categoryVisible,
-}: {
-  tech: Technology;
-  IconComponent: React.ComponentType<{ className?: string }>;
-  index: number;
-  categoryVisible: boolean;
-}) {
-  const cardDelay = index * 30;
+const marqueeLogos: TechLogo[] = [
+  {
+    name: "Next.js",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nextdotjs.svg",
+    background: "#0A0A0A",
+  },
+  {
+    name: "React",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg",
+    background: "#0B1520",
+  },
+  {
+    name: "TypeScript",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/typescript.svg",
+    background: "#041833",
+  },
+  {
+    name: "React Native",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/react.svg",
+    background: "#0B1520",
+  },
+  {
+    name: "Vue",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vuedotjs.svg",
+    background: "#08170F",
+  },
+  {
+    name: "Svelte",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/svelte.svg",
+    background: "#2C0F05",
+  },
+  {
+    name: "Angular",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/angular.svg",
+    background: "#2A0B0D",
+  },
+  {
+    name: "Node.js",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/nodedotjs.svg",
+    background: "#0C1F0C",
+  },
+  {
+    name: "Express",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/express.svg",
+    background: "#1A1A1A",
+  },
+  {
+    name: "FastAPI",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/fastapi.svg",
+    background: "#03201C",
+  },
+  {
+    name: "Django",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/django.svg",
+    background: "#02140F",
+  },
+  {
+    name: "Laravel",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/laravel.svg",
+    background: "#2A0502",
+  },
+  {
+    name: "PHP",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/php.svg",
+    background: "#1E1A2B",
+  },
+  {
+    name: "Ruby",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ruby.svg",
+    background: "#2B0409",
+  },
+  {
+    name: "Go",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/go.svg",
+    background: "#022026",
+  },
+  {
+    name: "PostgreSQL",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/postgresql.svg",
+    background: "#041222",
+  },
+  {
+    name: "MongoDB",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mongodb.svg",
+    background: "#04150C",
+  },
+  {
+    name: "MySQL",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/mysql.svg",
+    background: "#04121F",
+  },
+  {
+    name: "Redis",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/redis.svg",
+    background: "#300303",
+  },
+  {
+    name: "Kafka",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/apachekafka.svg",
+    background: "#111111",
+  },
+  {
+    name: "AWS",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/amazonaws.svg",
+    background: "#211104",
+  },
+  {
+    name: "Azure",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/microsoftazure.svg",
+    background: "#04162C",
+  },
+  {
+    name: "GCP",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlecloud.svg",
+    background: "#03163A",
+  },
+  {
+    name: "Kubernetes",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kubernetes.svg",
+    background: "#061231",
+  },
+  {
+    name: "Docker",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg",
+    background: "#031B30",
+  },
+  {
+    name: "Terraform",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/terraform.svg",
+    background: "#12052D",
+  },
+  {
+    name: "GitHub Actions",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/githubactions.svg",
+    background: "#0B1D35",
+  },
+  {
+    name: "Supabase",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/supabase.svg",
+    background: "#032017",
+  },
+  {
+    name: "GitHub",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg",
+    background: "#0E1117",
+  },
+  {
+    name: "Flutter",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/flutter.svg",
+    background: "#04162C",
+  },
+  {
+    name: "Swift",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/swift.svg",
+    background: "#2E0F00",
+  },
+  {
+    name: "Kotlin",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kotlin.svg",
+    background: "#200427",
+  },
+  {
+    name: "Ionic",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/ionic.svg",
+    background: "#020C26",
+  },
+  {
+    name: "OpenAI",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    background: "#021D17",
+  },
+  {
+    name: "LangChain",
+    logo: "https://cdn.simpleicons.org/langchain/00A8FF",
+    background: "#031812",
+    fallback: "LC",
+  },
+  {
+    name: "Python",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/python.svg",
+    background: "#04162A",
+  },
+  {
+    name: "Pinecone",
+    logo: "https://cdn.simpleicons.org/pinecone/430098",
+    background: "#03251C",
+    fallback: "PC",
+  },
+  {
+    name: "Elasticsearch",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/elasticsearch.svg",
+    background: "#041E2C",
+  },
+  {
+    name: "Whisper",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg",
+    background: "#141414",
+  },
+  {
+    name: "TensorFlow",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tensorflow.svg",
+    background: "#2B1200",
+  },
+  {
+    name: "PyTorch",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/pytorch.svg",
+    background: "#2A0B03",
+  },
+  {
+    name: "Stable Diffusion",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/stablediffusion.svg",
+    background: "#2B0C00",
+  },
+  {
+    name: "Vertex AI",
+    logo: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlecloud.svg",
+    background: "#021431",
+  },
+];
+
+function TechLogoItem({ logo }: { logo: TechLogo }) {
+  const [imageError, setImageError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(logo.logo);
+  const initials =
+    logo.fallback ||
+    logo.name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+
+  // Try alternative sources if the primary fails
+  const handleImageError = () => {
+    if (currentSrc === logo.logo) {
+      // Try v12 if we were using v11
+      const altSrc = logo.logo.replace("@v11", "@v12").replace("@v12", "@v12");
+      if (altSrc !== logo.logo) {
+        setCurrentSrc(altSrc);
+        return;
+      }
+    }
+    setImageError(true);
+  };
 
   return (
-    <div
-      className="group relative transition-all duration-700 ease-out"
-      style={{
-        opacity: categoryVisible ? 1 : 0,
-        transform: categoryVisible ? "translateY(0) scale(1)" : "translateY(20px) scale(0.95)",
-        transitionDelay: `${cardDelay}ms`,
-      }}
-    >
-      <div
-        className="relative rounded-xl border p-3 transition-all duration-300 md:p-4"
+    <span className="tech-marquee__item">
+      <span
+        className="tech-marquee__icon"
         style={{
-          background: "rgba(255, 255, 255, 0.03)",
-          backdropFilter: "blur(20px)",
-          borderColor: "rgba(255, 255, 255, 0.1)",
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.boxShadow = `0 6px 20px ${tech.color}40`;
-          e.currentTarget.style.borderColor = `${tech.color}60`;
-          e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
-          e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.15)";
-          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-          e.currentTarget.style.transform = "translateY(0) scale(1)";
-          e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+          background: logo.background,
         }}
       >
-        {/* Icon */}
-        <div className="mb-3 flex items-center justify-center">
-          <div
-            className="rounded-lg p-2 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 md:p-2.5"
-            style={{
-              background: `${tech.color}15`,
-              border: `1px solid ${tech.color}30`,
-            }}
-          >
-            <div style={{ color: tech.color }}>
-              <IconComponent className="h-5 w-5 md:h-6 md:w-6" />
-            </div>
-          </div>
-        </div>
-
-        {/* Name */}
-        <h4 className="font-poppins text-center text-xs font-semibold text-white transition-colors duration-300 group-hover:text-[#00A8FF] md:text-sm">
-          {tech.name}
-        </h4>
-      </div>
-    </div>
-  );
-}
-
-function CategorySection({
-  category,
-  categoryTechs,
-  CategoryIcon,
-  index,
-  sectionVisible,
-}: {
-  category: string;
-  categoryTechs: Technology[];
-  CategoryIcon: React.ComponentType<{ className?: string }>;
-  index: number;
-  sectionVisible: boolean;
-}) {
-  const { ref: categoryRef, isVisible: categoryVisible } = useScrollAnimation({
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-  });
-
-  const delay = index * 150;
-  const isVisible = sectionVisible && categoryVisible;
-
-  return (
-    <div
-      ref={categoryRef}
-      className="space-y-4 transition-all duration-1000 ease-out md:space-y-5"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(30px)",
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      {/* Category Header */}
-      <div className="flex items-center gap-3">
-        <div
-          className="rounded-lg p-2 md:p-2.5"
-          style={{
-            background: "rgba(0, 118, 209, 0.1)",
-            border: "1px solid rgba(0, 118, 209, 0.2)",
-          }}
-        >
-          <div style={{ color: "#0076D1" }}>
-            <CategoryIcon className="h-4 w-4 md:h-5 md:w-5" />
-          </div>
-        </div>
-        <h3 className="heading-3 text-white">{category}</h3>
-        <div className="h-px flex-1" style={{ background: "rgba(255, 255, 255, 0.1)" }} />
-        <span className="text-xs font-semibold text-gray-400 md:text-sm">
-          {categoryTechs.length} Technologies
-        </span>
-      </div>
-
-      {/* Technologies Grid */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 md:gap-4 lg:grid-cols-6">
-        {categoryTechs.map((tech, techIndex) => {
-          const IconComponent = tech.icon;
-          return (
-            <TechCard
-              key={tech.id}
-              tech={tech}
-              IconComponent={IconComponent}
-              index={techIndex}
-              categoryVisible={isVisible}
-            />
-          );
-        })}
-      </div>
-    </div>
+        {!imageError ? (
+          <Image
+            src={currentSrc}
+            alt={logo.name}
+            width={16}
+            height={16}
+            className="tech-marquee__icon-img"
+            onError={handleImageError}
+            unoptimized
+          />
+        ) : (
+          <span className="tech-marquee__fallback">{initials}</span>
+        )}
+      </span>
+      <span className="tech-marquee__text">{logo.name}</span>
+    </span>
   );
 }
 
 export function Technologies() {
-  const categories = Array.from(new Set(technologies.map((tech) => tech.category)));
-  const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation({
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
+  const { ref, isVisible } = useScrollAnimation({
+    threshold: 0.15,
+    rootMargin: "0px 0px -80px 0px",
   });
 
   return (
     <section
+      ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
-      aria-labelledby="technologies-heading"
+      style={{ background: "linear-gradient(180deg, #050709 0%, #0F1419 100%)" }}
     >
-      {/* Background effects */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, #0076D1 1px, transparent 1px),
-            linear-gradient(-45deg, #0076D1 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div
-        className="absolute right-0 top-0 h-64 w-64 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #0076D1, transparent)" }}
-      />
-      <div
-        className="absolute bottom-0 left-0 h-64 w-64 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
-      />
-
-      <div className="container-standard relative z-10" ref={sectionRef}>
-        {/* Section Header */}
+      <div className="absolute inset-0 opacity-20">
         <div
-          className="mb-6 text-center transition-all duration-1000 ease-out md:mb-8"
+          className="absolute inset-0"
           style={{
-            opacity: sectionVisible ? 1 : 0,
-            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+            backgroundImage: `
+              radial-gradient(circle at 20% 20%, rgba(0,168,255,0.15), transparent 40%),
+              radial-gradient(circle at 80% 0%, rgba(0,118,209,0.12), transparent 45%),
+              radial-gradient(circle at 50% 80%, rgba(168,85,247,0.12), transparent 40%)
+            `,
+          }}
+        />
+      </div>
+
+      <div className="container-standard relative z-10">
+        <div
+          className="text-center"
+          style={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "all 0.6s ease",
           }}
         >
-          <div className="mb-3 inline-flex items-center gap-2">
-            <Code className="h-4 w-4 text-[#0076D1] md:h-5 md:w-5" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
-              Technologies
-            </p>
-          </div>
-          <h2 id="technologies-heading" className="heading-2 mb-3">
+          <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-[#00A8FF]">
+            <Cpu className="h-4 w-4" />
+            Tech Stack
+          </p>
+          <h2 className="heading-2 mb-3 text-white">
             <span
               className="bg-clip-text text-transparent"
               style={{
                 backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
               }}
             >
-              Technologies We Work With
+              Precision stacks for modern product companies
             </span>
           </h2>
-          <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">
-            Cutting-edge tools and frameworks powering modern digital solutions
+          <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
+            We pair proven frameworks with emerging tech to deliver projects that are maintainable,
+            measurable, and ready for scale.
           </p>
         </div>
 
-        {/* Technologies Grid by Category */}
-        <div className="space-y-8 md:space-y-10">
-          {categories.map((category) => {
-            const categoryTechs = technologies.filter((tech) => tech.category === category);
-            const CategoryIcon = categoryIcons[category] || Code;
-
-            return (
-              <CategorySection
-                key={category}
-                category={category}
-                categoryTechs={categoryTechs}
-                CategoryIcon={CategoryIcon}
-                index={categories.indexOf(category)}
-                sectionVisible={sectionVisible}
-              />
-            );
-          })}
+        <div className="mt-8 overflow-hidden rounded-3xl border border-white/15 bg-black/40 p-3 shadow-2xl md:p-5">
+          <div className="tech-marquee-wrapper">
+            <div className="tech-marquee">
+              {/* Duplicate array 2 times for seamless infinite loop - shows all techs before looping */}
+              {[...marqueeLogos, ...marqueeLogos].map((logo, index) => (
+                <TechLogoItem key={`${logo.name}-${index}`} logo={logo} />
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* CTA */}
         <div
-          className="mt-8 text-center transition-all duration-1000 ease-out md:mt-10"
+          className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-white/10 bg-gradient-to-r from-[#00A8FF]/10 to-[#0076D1]/10 px-6 py-5 text-sm text-white/80"
           style={{
-            opacity: sectionVisible ? 1 : 0,
-            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
-            transitionDelay: "400ms",
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "all 0.6s ease 0.2s",
           }}
         >
-          <p className="mb-4 text-sm text-gray-400 md:text-base">
-            Need expertise in a specific technology? Let's discuss your project.
+          <p className="text-white/80">
+            Want the full breakdown by capability? Explore our service catalogue.
           </p>
           <a
-            href="/contact#quote"
-            className="group inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
-              boxShadow: "0 4px 16px rgba(0, 118, 209, 0.4)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 118, 209, 0.6)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 118, 209, 0.4)";
-            }}
+            href="/services"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white transition-all duration-300 hover:border-white"
           >
-            <Shield className="h-4 w-4" />
-            <span>Get Expert Consultation</span>
+            View full stack
+            <Workflow className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </a>
         </div>
       </div>
