@@ -22,7 +22,7 @@ export function ClientLogos() {
 
   useEffect(() => {
     const updateDuration = () => {
-      setAnimationDuration(window.innerWidth < 768 ? 42 : 28);
+      setAnimationDuration(window.innerWidth < 768 ? 20 : 25);
     };
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");

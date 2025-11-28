@@ -46,8 +46,9 @@ export default function AboutPage() {
           { value: 500, suffix: "+", label: "Projects Delivered" },
           { value: 50, suffix: "+", label: "Team Members" },
         ]}
-        ctaText="Join Our Team"
-        ctaHref="/careers"
+        // Direct prospects to contact page for project inquiries
+        ctaText="Start Your Project"
+        ctaHref="/contact"
         backgroundType="animation"
       />
       <AboutStory />
