@@ -138,13 +138,13 @@ export default function Hero() {
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
           </Link>
           <Link
-            href="/portfolio"
+            href="/case-studies"
             className="btn-secondary focus:ring-offset-primary-700 group w-full border-2 border-white/60 bg-white/5 text-white backdrop-blur-md hover:scale-105 hover:border-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 sm:w-auto"
             style={{
               boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
             }}
           >
-            <span>Our Work</span>
+            <span>See Our Work</span>
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>

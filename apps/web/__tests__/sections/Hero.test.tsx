@@ -27,9 +27,9 @@ describe("Hero Section", () => {
     expect(hireUsButton).toBeInTheDocument();
     expect(hireUsButton).toHaveAttribute("href", "/contact#quote");
 
-    const ourWorkButton = screen.getByText(/Our Work/i).closest("a");
+    const ourWorkButton = screen.getByText(/See Our Work/i).closest("a");
     expect(ourWorkButton).toBeInTheDocument();
-    expect(ourWorkButton).toHaveAttribute("href", "/portfolio");
+    expect(ourWorkButton).toHaveAttribute("href", "/case-studies");
   });
 
   it("renders trust indicators / stats", () => {
