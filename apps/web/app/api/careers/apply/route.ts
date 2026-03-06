@@ -37,10 +37,7 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!fullName || !email || !experienceLevel || !resumeFile) {
-      return NextResponse.json(
-        { message: "Missing required fields" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
 
     // Upload resume to Supabase Storage
@@ -57,18 +54,14 @@ export async function POST(request: NextRequest) {
 
     if (uploadError) {
       console.error("Upload error:", uploadError);
-      return NextResponse.json(
-        { message: "Failed to upload resume" },
-        { status: 500 }
-      );
+      return NextResponse.json({ message: "Failed to upload resume" }, { status: 500 });
     }
 
     // Get public URL for the uploaded file
-    const { data: urlData } = supabase.storage
-      .from("applications")
-      .getPublicUrl(filePath);
+    const { data: urlData } = supabase.storage.from("applications").getPublicUrl(filePath);
 
-    const resumeUrl = urlData?.publicURL ?? null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const resumeUrl = (urlData as any)?.publicUrl ?? (urlData as any)?.publicURL ?? null;
 
     // Save application to database
     const { data: dbData, error: dbError } = await supabase
@@ -92,10 +85,7 @@ export async function POST(request: NextRequest) {
 
     if (dbError) {
       console.error("Database error:", dbError);
-      return NextResponse.json(
-        { message: "Failed to save application" },
-        { status: 500 }
-      );
+      return NextResponse.json({ message: "Failed to save application" }, { status: 500 });
     }
 
     // Send email notification (using Resend if configured)
@@ -124,32 +114,34 @@ export async function POST(request: NextRequest) {
     );
   } catch (error: unknown) {
     console.error("Application submission error:", error);
-    
+
     // Provide helpful error messages for missing env vars
     if (error instanceof Error && error.message.includes("NEXT_PUBLIC_SUPABASE_URL")) {
       return NextResponse.json(
-        { 
-          message: "Server configuration error: NEXT_PUBLIC_SUPABASE_URL is not set. Please check your .env.local file.",
-          error: "Missing environment variable"
+        {
+          message:
+            "Server configuration error: NEXT_PUBLIC_SUPABASE_URL is not set. Please check your .env.local file.",
+          error: "Missing environment variable",
         },
         { status: 500 }
       );
     }
-    
+
     if (error instanceof Error && error.message.includes("SUPABASE_SERVICE_ROLE_KEY")) {
       return NextResponse.json(
-        { 
-          message: "Server configuration error: SUPABASE_SERVICE_ROLE_KEY is not set. Please check your .env.local file.",
-          error: "Missing environment variable"
+        {
+          message:
+            "Server configuration error: SUPABASE_SERVICE_ROLE_KEY is not set. Please check your .env.local file.",
+          error: "Missing environment variable",
         },
         { status: 500 }
       );
     }
-    
+
     return NextResponse.json(
-      { 
+      {
         message: error instanceof Error ? error.message : "Internal server error",
-        error: "Application submission failed"
+        error: "Application submission failed",
       },
       { status: 500 }
     );
@@ -168,7 +160,7 @@ async function sendEmailNotification(data: {
 }) {
   // Check if Resend API key is configured
   const resendApiKey = process.env.RESEND_API_KEY;
-  
+
   if (!resendApiKey) {
     console.log("Resend API key not configured, skipping email notification");
     return;
@@ -208,4 +200,3 @@ async function sendEmailNotification(data: {
 
   return response.json();
 }
-
