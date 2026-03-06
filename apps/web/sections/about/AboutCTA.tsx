@@ -15,16 +15,8 @@ export function AboutCTA() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(135deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
-      {/* Background effects */}
-      <div
-        className="absolute left-1/2 top-1/2 h-[1000px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-
       <div className="container-standard relative z-10 max-w-6xl">
         <div
           className="grid gap-4 md:gap-5 lg:grid-cols-2"
@@ -36,7 +28,7 @@ export function AboutCTA() {
         >
           {/* Start a Project CTA */}
           <Link
-            href="/careers"
+            href="/contact"
             className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
             style={{
               background: "rgba(255, 255, 255, 0.03)",
@@ -87,7 +79,7 @@ export function AboutCTA() {
 
           {/* Join Team CTA */}
           <Link
-            href="/contact"
+            href="/careers"
             className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
             style={{
               background: "rgba(255, 255, 255, 0.03)",

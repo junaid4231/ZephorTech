@@ -262,7 +262,7 @@ function TechLogoItem({ logo }: { logo: TechLogo }) {
       <span
         className="tech-marquee__icon"
         style={{
-          background: logo.background,
+          background: "rgba(255, 255, 255, 0.05)",
         }}
       >
         {!imageError ? (
@@ -294,7 +294,7 @@ export function Technologies() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{ background: "linear-gradient(180deg, #050709 0%, #0F1419 100%)" }}
+      style={{ background: "#0A0A0A" }}
     >
       <div className="absolute inset-0 opacity-20">
         <div
@@ -323,14 +323,7 @@ export function Technologies() {
             Tech Stack
           </p>
           <h2 className="heading-2 mb-3 text-white">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-              }}
-            >
-              Precision stacks for modern product companies
-            </span>
+            Precision stacks for modern product companies
           </h2>
           <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
             We pair proven frameworks with emerging tech to deliver projects that are maintainable,

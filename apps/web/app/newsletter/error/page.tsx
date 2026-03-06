@@ -22,35 +22,14 @@ interface PageProps {
 
 export default async function NewsletterErrorPage({ searchParams }: PageProps) {
   const { reason } = await searchParams;
-  const message = reason ? errorMessages[reason] ?? errorMessages["invalid-token"] : errorMessages["invalid-token"];
+  const message = reason
+    ? (errorMessages[reason] ?? errorMessages["invalid-token"])
+    : errorMessages["invalid-token"];
 
   return (
     <>
       <Header />
-      <main
-        className="relative min-h-screen py-12 md:py-16"
-        style={{
-          background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-        }}
-      >
-        {/* Background effects */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `
-                linear-gradient(to right, #0076D1 1px, transparent 1px),
-                linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-              `,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
-        <div
-          className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-3xl"
-          style={{ background: "radial-gradient(circle, #DC2626 0%, transparent 70%)" }}
-        />
-
+      <main className="relative min-h-screen py-12 md:py-16" style={{ background: "#0A0A0A" }}>
         <div className="container-standard relative z-10">
           <div className="mx-auto max-w-3xl text-center">
             {/* Error Icon */}
@@ -69,16 +48,14 @@ export default async function NewsletterErrorPage({ searchParams }: PageProps) {
                   stroke="currentColor"
                   strokeWidth={2}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
             </div>
 
-            <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-rose-400">Newsletter</p>
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.3em] text-rose-400">
+              Newsletter
+            </p>
             <h1 className="heading-2 mb-4 text-white">Confirmation Error</h1>
             <p className="mb-8 text-lg text-white/70">{message}</p>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
@@ -106,4 +83,3 @@ export default async function NewsletterErrorPage({ searchParams }: PageProps) {
     </>
   );
 }
-

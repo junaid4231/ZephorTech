@@ -14,24 +14,24 @@ export default function SplashScreen() {
   useEffect(() => {
     // Check if user has seen splash before
     const hasSeenSplash = localStorage.getItem(SPLASH_STORAGE_KEY);
-    
+
     if (!hasSeenSplash) {
       setShouldShow(true);
       setIsVisible(true);
-      
+
       // Mark as seen immediately to prevent showing again
       localStorage.setItem(SPLASH_STORAGE_KEY, "true");
-      
+
       // Auto-dismiss after minimum display time
       const timer = setTimeout(() => {
         setIsExiting(true);
-        
+
         // Remove from DOM after fade-out animation
         setTimeout(() => {
           setIsVisible(false);
         }, 500); // Match fade-out duration
       }, MIN_DISPLAY_TIME);
-      
+
       return () => clearTimeout(timer);
     } else {
       setShouldShow(false);
@@ -45,25 +45,20 @@ export default function SplashScreen() {
 
   // Check for reduced motion preference
   const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <div
       className={`fixed inset-0 z-[9999] flex items-center justify-center ${
         isExiting ? "splash-fade-out" : "splash-fade-in"
       }`}
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
       aria-hidden="true"
       role="presentation"
     >
       {/* Animated Background Grid */}
       <div
-        className={`absolute inset-0 opacity-10 ${
-          prefersReducedMotion ? "" : "splash-grid-pulse"
-        }`}
+        className={`absolute inset-0 opacity-10 ${prefersReducedMotion ? "" : "splash-grid-pulse"}`}
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(0, 118, 209, 0.3) 1px, transparent 1px),
@@ -77,13 +72,13 @@ export default function SplashScreen() {
       {!prefersReducedMotion && (
         <>
           <div
-            className="absolute -left-40 -top-40 h-96 w-96 rounded-full opacity-20 blur-3xl splash-float"
+            className="splash-float absolute -left-40 -top-40 h-96 w-96 rounded-full opacity-20 blur-3xl"
             style={{
               background: "radial-gradient(circle, rgba(0, 118, 209, 0.4), transparent)",
             }}
           />
           <div
-            className="absolute -right-40 -bottom-40 h-96 w-96 rounded-full opacity-20 blur-3xl splash-float-reverse"
+            className="splash-float-reverse absolute -bottom-40 -right-40 h-96 w-96 rounded-full opacity-20 blur-3xl"
             style={{
               background: "radial-gradient(circle, rgba(0, 78, 143, 0.4), transparent)",
             }}
@@ -99,11 +94,11 @@ export default function SplashScreen() {
             const duration = 3 + Math.random() * 4;
             const left = Math.random() * 100;
             const top = Math.random() * 100;
-            
+
             return (
               <div
                 key={i}
-                className="absolute h-1 w-1 rounded-full splash-particle-float"
+                className="splash-particle-float absolute h-1 w-1 rounded-full"
                 style={{
                   background: "rgba(0, 118, 209, 0.6)",
                   left: `${left}%`,
@@ -129,7 +124,7 @@ export default function SplashScreen() {
           {/* Logo Glow Effect */}
           {!prefersReducedMotion && (
             <div
-              className="absolute rounded-full opacity-50 blur-3xl splash-pulse"
+              className="splash-pulse absolute rounded-full opacity-50 blur-3xl"
               style={{
                 background: "radial-gradient(circle, rgba(0, 118, 209, 0.6), transparent)",
                 width: "300px",
@@ -163,7 +158,7 @@ export default function SplashScreen() {
         {!prefersReducedMotion && (
           <div className="relative h-1 w-48 overflow-hidden rounded-full bg-white/10">
             <div
-              className="h-full rounded-full splash-loading-bar"
+              className="splash-loading-bar h-full rounded-full"
               style={{
                 background: "linear-gradient(90deg, #004E8F, #0076D1, #00A8FF)",
               }}
@@ -186,4 +181,3 @@ export default function SplashScreen() {
     </div>
   );
 }
-

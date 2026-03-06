@@ -2,14 +2,41 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Menu, X, Search, Command } from "lucide-react";
+import {
+  Menu,
+  X,
+  Search,
+  Command,
+  ChevronDown,
+  Globe,
+  Smartphone,
+  Bot,
+  BarChart3,
+  ShoppingCart,
+  Cloud,
+  Megaphone,
+  LineChart,
+} from "lucide-react";
 import { mainNavigation, CTAButton } from "@/config";
+
+const serviceItems = [
+  { label: "Web Development", slug: "web-development", icon: Globe, color: "#0076D1" },
+  { label: "Mobile Development", slug: "mobile-apps", icon: Smartphone, color: "#8B5CF6" },
+  { label: "AI & Automation", slug: "ai-agents", icon: Bot, color: "#10B981" },
+  { label: "SaaS Development", slug: "saas", icon: BarChart3, color: "#F59E0B" },
+  { label: "E-Commerce", slug: "ecommerce", icon: ShoppingCart, color: "#EF4444" },
+  { label: "Cloud & DevOps", slug: "cloud-devops", icon: Cloud, color: "#06B6D4" },
+  { label: "Digital Marketing", slug: "digital-marketing", icon: Megaphone, color: "#EC4899" },
+  { label: "SEO Services", slug: "seo-performance", icon: LineChart, color: "#F97316" },
+];
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -107,6 +134,102 @@ export default function Header() {
             {mainNavigation.map((link, index) => {
               const isActive =
                 pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+
+              if (link.href === "/services") {
+                return (
+                  <div
+                    key={link.href}
+                    ref={servicesRef}
+                    className="relative"
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    {/* Services trigger */}
+                    <button
+                      type="button"
+                      className={`font-inter group relative inline-flex items-center gap-1 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-300 hover:text-white focus:text-white focus:outline-none ${
+                        isActive ? "text-white" : "text-gray-300"
+                      }`}
+                    >
+                      <span className="relative z-10">Services</span>
+                      <ChevronDown
+                        className={`h-3.5 w-3.5 transition-transform duration-300 ${isServicesOpen ? "rotate-180" : ""}`}
+                      />
+                      <span
+                        className={`absolute inset-0 rounded-lg transition-opacity duration-300 ${
+                          isActive || isServicesOpen
+                            ? "opacity-100"
+                            : "opacity-0 group-hover:opacity-100"
+                        }`}
+                        style={{
+                          background: "rgba(0, 118, 209, 0.1)",
+                          border: "1px solid rgba(0, 118, 209, 0.2)",
+                        }}
+                      />
+                    </button>
+
+                    {/* Dropdown panel */}
+                    <div
+                      className="absolute left-1/2 top-full z-50 mt-2 w-80 -translate-x-1/2 overflow-hidden rounded-2xl border border-white/10 shadow-2xl transition-all duration-200"
+                      style={{
+                        background: "rgba(8, 13, 20, 0.97)",
+                        backdropFilter: "blur(24px)",
+                        opacity: isServicesOpen ? 1 : 0,
+                        pointerEvents: isServicesOpen ? "auto" : "none",
+                        transform: isServicesOpen
+                          ? "translateX(-50%) translateY(0)"
+                          : "translateX(-50%) translateY(-8px)",
+                        boxShadow: "0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      {/* Dropdown header */}
+                      <div className="border-b border-white/[0.06] px-4 py-3">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+                          Our Services
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-px bg-white/[0.04] p-1">
+                        {serviceItems.map((service) => {
+                          const Icon = service.icon;
+                          return (
+                            <Link
+                              key={service.slug}
+                              href={`/services/${service.slug}`}
+                              onClick={() => setIsServicesOpen(false)}
+                              className="group flex items-center gap-2.5 rounded-xl bg-[#080D14] p-3 transition-all duration-200 hover:bg-white/[0.04]"
+                            >
+                              <div
+                                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-110"
+                                style={{
+                                  background: `${service.color}18`,
+                                  border: `1px solid ${service.color}30`,
+                                }}
+                              >
+                                <Icon className="h-3.5 w-3.5" style={{ color: service.color }} />
+                              </div>
+                              <span className="text-xs font-medium text-white/70 group-hover:text-white">
+                                {service.label}
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                      {/* View all services */}
+                      <div className="border-t border-white/[0.06] p-2">
+                        <Link
+                          href="/services"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex w-full items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-semibold transition-all duration-200 hover:bg-white/[0.04]"
+                          style={{ color: "#0076D1" }}
+                        >
+                          View all services
+                          <ChevronDown className="h-3 w-3 -rotate-90" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
 
               return (
                 <Link

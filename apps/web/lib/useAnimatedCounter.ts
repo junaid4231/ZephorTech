@@ -8,30 +8,35 @@ interface UseAnimatedCounterOptions {
   decimals?: number;
   suffix?: string;
   prefix?: string;
+  /** When false, animation does not start. Set to true when element is visible. Defaults to true. */
+  enabled?: boolean;
 }
 
 /**
  * Hook for animating numbers from 0 to target value
  * Returns the current animated value
  */
-export function useAnimatedCounter(
-  target: number,
-  options: UseAnimatedCounterOptions = {}
-) {
+export function useAnimatedCounter(target: number, options: UseAnimatedCounterOptions = {}) {
   const {
     duration = 2000,
     startDelay = 0,
     decimals = 0,
     suffix = "",
     prefix = "",
+    enabled = true,
   } = options;
 
   const [count, setCount] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const hasAnimated = useRef(false);
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
+    // Only animate once, and only when enabled (i.e. element is visible)
+    if (!enabled || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     // Delay start if specified
     const delayTimeout = setTimeout(() => {
       setIsAnimating(true);
@@ -66,7 +71,7 @@ export function useAnimatedCounter(
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [target, duration, startDelay]);
+  }, [enabled, target, duration, startDelay]);
 
   // Format the number with decimals, prefix, and suffix
   const formattedValue = (() => {
@@ -76,4 +81,3 @@ export function useAnimatedCounter(
 
   return { count, formattedValue, isAnimating };
 }
-

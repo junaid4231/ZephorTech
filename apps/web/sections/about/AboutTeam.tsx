@@ -4,46 +4,26 @@ import React from "react";
 import { Linkedin, Github, Twitter } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
-// Static team data - can be replaced with CMS later
+// Core founding team — update social links with real profiles
 const team = [
   {
-    name: "Sarah Chen",
-    role: "Chief Executive Officer",
-    bio: "15+ years leading digital transformation initiatives for Fortune 500 companies",
-    image: "SC",
+    name: "Ahmad Habib",
+    role: "Co-Founder & CEO",
+    bio: "Entrepreneur with a background in building and scaling B2B software products across the MENA region. Leads client strategy, partnerships, and commercial direction at ZephorTech.",
+    image: "AH",
     social: {
-      linkedin: "#",
-      twitter: "#",
+      linkedin: "https://linkedin.com/company/zephortech",
+      twitter: "https://twitter.com/zephortech",
     },
   },
   {
-    name: "Michael Rodriguez",
-    role: "Chief Technology Officer",
-    bio: "Former Principal Engineer at leading tech giants, AI/ML expert",
-    image: "MR",
+    name: "Muhammad Junaid",
+    role: "Co-Founder & CTO",
+    bio: "Full-stack architect with deep experience in cloud-native systems, AI integration, and production engineering. Oversees technical delivery and platform architecture across all ZephorTech engagements.",
+    image: "MJ",
     social: {
-      linkedin: "#",
-      github: "#",
-    },
-  },
-  {
-    name: "Emily Watson",
-    role: "VP of Engineering",
-    bio: "Built and scaled engineering teams from 5 to 100+ members",
-    image: "EW",
-    social: {
-      linkedin: "#",
-      github: "#",
-    },
-  },
-  {
-    name: "David Kim",
-    role: "Head of Design",
-    bio: "Award-winning designer with a passion for creating delightful user experiences",
-    image: "DK",
-    social: {
-      linkedin: "#",
-      twitter: "#",
+      linkedin: "https://linkedin.com/company/zephortech",
+      github: "https://github.com/zephortech",
     },
   },
 ];
@@ -58,24 +38,8 @@ export function AboutTeam() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
       <div className="container-standard relative z-10">
         {/* Header */}
         <div
@@ -86,29 +50,18 @@ export function AboutTeam() {
           }}
         >
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
-            Leadership Team
+            Founding Team
           </p>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Meet the Visionaries
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">The People Behind the Work</h2>
           <p className="mx-auto max-w-3xl text-sm text-gray-400 md:text-base">
-            The talented individuals driving innovation and excellence at ZephorTech
+            A small, senior team of engineers, designers, and strategists. We keep the team tight so
+            every client gets our best.
           </p>
         </div>
 
         {/* Team Grid */}
         <div
-          className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-4"
+          className="mx-auto grid max-w-2xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(30px)",
@@ -246,13 +199,13 @@ export function AboutTeam() {
             transitionDelay: "600ms",
           }}
         >
-          <p className="mb-4 text-gray-400">Want to join our talented team?</p>
+          <p className="mb-4 text-gray-400">Want to work with us?</p>
           <a
-            href="/contact"
+            href="/careers"
             className="inline-flex items-center gap-2 font-semibold transition-all duration-300 hover:gap-3"
             style={{ color: "#0076D1" }}
           >
-            <span>View Open Positions</span>
+            <span>See Open Positions</span>
             <span>→</span>
           </a>
         </div>

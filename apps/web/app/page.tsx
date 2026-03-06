@@ -22,7 +22,7 @@ import { getFeaturedBlogPostsCached } from "@/lib/blog-cms";
 export const metadata: Metadata = {
   title: "ZephorTech - Cutting-Edge IT Solutions & Digital Transformation",
   description:
-    "Transform your business with ZephorTech's expert IT services. Web & mobile development, AI agents, SaaS solutions, e-commerce, and cloud services. 500+ projects delivered, 200+ happy clients.",
+    "Transform your business with ZephorTech's expert IT services. Web & mobile development, AI agents, SaaS solutions, e-commerce, and cloud services. 70+ projects delivered, 40+ happy clients.",
   keywords: [
     "IT services",
     "web development",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ZephorTech - Cutting-Edge IT Solutions & Digital Transformation",
     description:
-      "Transform your business with expert IT services. 500+ projects delivered, 200+ happy clients, 15+ years of experience.",
+      "Transform your business with expert IT services. 70+ projects delivered, 40+ happy clients, 5+ years of focused expertise.",
     type: "website",
     url: "https://zephortech.com",
   },
@@ -49,11 +49,11 @@ export default async function Home() {
     getAllServicesCached(),
     getAllTestimonialsCached(),
     getAllCaseStudiesCached(),
-    getFeaturedBlogPostsCached(3),
+    getFeaturedBlogPostsCached(2),
   ]);
 
   const featuredServices = services; // Show all services
-  const featuredCaseStudies = caseStudies.slice(0, 3);
+  const featuredCaseStudies = caseStudies.slice(0, 2);
 
   return (
     <>
@@ -74,4 +74,3 @@ export default async function Home() {
     </>
   );
 }
-

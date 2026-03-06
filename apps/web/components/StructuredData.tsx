@@ -1,5 +1,3 @@
-"use client";
-
 import { siteConfig } from "@/config";
 
 export function StructuredData() {
@@ -27,7 +25,8 @@ export function StructuredData() {
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address,
-      addressCountry: "PK",
+      addressLocality: "Dubai",
+      addressCountry: "AE",
     },
   };
 
@@ -87,7 +86,8 @@ export function StructuredData() {
       {
         "@type": "Service",
         name: "E-commerce Solutions",
-        description: "Complete e-commerce platforms with Shopify, WooCommerce, and custom solutions",
+        description:
+          "Complete e-commerce platforms with Shopify, WooCommerce, and custom solutions",
         provider: {
           "@type": "Organization",
           name: siteConfig.name,
@@ -122,4 +122,3 @@ export function StructuredData() {
     </>
   );
 }
-

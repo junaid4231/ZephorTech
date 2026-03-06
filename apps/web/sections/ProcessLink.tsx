@@ -13,7 +13,7 @@ export function ProcessLink() {
 
   const handleProcessClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    
+
     // Check if we're already on the about page
     if (window.location.pathname === "/about") {
       // If already on about page, just scroll
@@ -37,32 +37,8 @@ export function ProcessLink() {
     <section
       ref={ref}
       className="relative overflow-hidden py-8 md:py-10"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Subtle Background Grid */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,118,209,0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,118,209,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
-      {/* Floating Gradient Orbs */}
-      <div
-        className="absolute right-0 top-0 h-64 w-64 animate-float rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #0076D1, transparent)" }}
-      />
-      <div
-        className="absolute bottom-0 left-0 h-64 w-64 animate-float-reverse rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
-      />
-
       <div className="container-standard relative z-10">
         <div
           className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-white/[0.02] p-6 shadow-xl backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:shadow-[0_20px_60px_rgba(0,118,209,0.1)] md:p-8"
@@ -86,21 +62,12 @@ export function ProcessLink() {
                 <Workflow className="h-3.5 w-3.5" />
                 How We Work
               </div>
-              <h3 className="mb-2 font-poppins text-2xl font-bold text-white md:text-3xl">
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  A proven methodology for success
-                </span>
+              <h3 className="font-poppins mb-2 text-2xl font-bold text-white md:text-3xl">
+                A proven methodology for success
               </h3>
               <p className="text-sm text-white/70 md:text-base">
-                From discovery to launch, we follow a structured process that ensures clarity, quality, and timely delivery.
+                From discovery to launch, we follow a structured process that ensures clarity,
+                quality, and timely delivery.
               </p>
             </div>
 
@@ -122,4 +89,3 @@ export function ProcessLink() {
     </section>
   );
 }
-

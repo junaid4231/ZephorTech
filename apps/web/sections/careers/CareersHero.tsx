@@ -10,36 +10,20 @@ export function CareersHero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-[75vh] flex items-center justify-center overflow-hidden pt-20"
-      style={{
-        background: "linear-gradient(180deg, #05070B 0%, #0A111C 50%, #05070B 100%)",
-      }}
+      className="relative flex min-h-[75vh] items-center justify-center overflow-hidden pt-20"
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Background Effects */}
+      {/* Subtle top accent glow — kept for hero context */}
       <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, #0076D1 1px, transparent 1px),
-            linear-gradient(-45deg, #0076D1 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div
-        className="absolute top-20 right-0 w-[600px] h-[600px] rounded-full blur-3xl opacity-20"
+        className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full opacity-[0.07] blur-3xl"
         style={{ background: "radial-gradient(circle, #0076D1, transparent)" }}
-      />
-      <div
-        className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-3xl opacity-15"
-        style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
       />
 
       <div className="container-standard relative z-10">
-        <div className="text-center max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
           <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-sm"
+            className="mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 backdrop-blur-sm"
             style={{
               background: "rgba(0, 118, 209, 0.1)",
               border: "1px solid rgba(0, 118, 209, 0.3)",
@@ -53,7 +37,7 @@ export function CareersHero() {
 
           {/* Main Heading */}
           <h1
-            className="heading-2 font-bold mb-6"
+            className="heading-2 mb-6 font-bold"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(30px)",
@@ -83,8 +67,8 @@ export function CareersHero() {
               transition: "all 0.8s ease 0.2s",
             }}
           >
-            We're a team of innovators, creators, and problem-solvers building transformative digital experiences. 
-            Join us in shaping the future of technology.
+            We're a team of innovators, creators, and problem-solvers building transformative
+            digital experiences. Join us in shaping the future of technology.
           </p>
 
           {/* Talent Network Notice */}
@@ -99,13 +83,14 @@ export function CareersHero() {
             }}
           >
             <span className="text-center text-xs text-white/80 md:text-sm">
-              While we don't have open positions right now, we're always interested in connecting with talented professionals.
+              While we don't have open positions right now, we're always interested in connecting
+              with talented professionals.
             </span>
           </div>
 
           {/* Stats */}
           <div
-            className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 md:mb-10"
+            className="mb-8 grid grid-cols-2 gap-4 md:mb-10 md:grid-cols-3 md:gap-5"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(20px)",
@@ -113,8 +98,8 @@ export function CareersHero() {
             }}
           >
             {[
-              { icon: Users, value: "50+", label: "Team Members" },
-              { icon: Rocket, value: "15+", label: "Countries" },
+              { icon: Users, value: "8+", label: "Disciplines Covered" },
+              { icon: Rocket, value: "12+", label: "Countries Served" },
               { icon: Heart, value: "100%", label: "Remote-Friendly" },
             ].map((stat, index) => {
               const Icon = stat.icon;
@@ -127,7 +112,7 @@ export function CareersHero() {
                     borderColor: "rgba(255, 255, 255, 0.1)",
                   }}
                 >
-                  <Icon className="mx-auto mb-3 h-7 w-7 text-primary md:h-8 md:w-8" />
+                  <Icon className="text-primary mx-auto mb-3 h-7 w-7 md:h-8 md:w-8" />
                   <div className="font-poppins mb-1 text-3xl font-bold text-white md:text-4xl">
                     {stat.value}
                   </div>
@@ -172,4 +157,3 @@ export function CareersHero() {
     </section>
   );
 }
-

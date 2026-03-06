@@ -12,31 +12,31 @@ export function AboutStory() {
 
   const milestones = [
     {
-      year: "2010",
+      year: "2020",
       title: "The Beginning",
       description:
-        "Founded with a vision to bridge the gap between ambitious ideas and exceptional execution.",
+        "Founded in Dubai with a remote engineering hub in Lahore, built around one idea: deliver enterprise-grade software with agency speed.",
       icon: Rocket,
     },
     {
-      year: "2015",
-      title: "Global Expansion",
+      year: "2021",
+      title: "First Enterprise Clients",
       description:
-        "Expanded to serve clients across 25+ countries, building a diverse portfolio of transformative projects.",
+        "Delivered our first SaaS platform and secured long-term partnerships with clients across the UAE and Saudi Arabia.",
       icon: Globe,
     },
     {
-      year: "2020",
-      title: "AI Innovation",
+      year: "2023",
+      title: "AI & Automation Expansion",
       description:
-        "Pioneered AI-driven solutions, helping clients leverage cutting-edge technology for competitive advantage.",
+        "Launched our AI agent and process automation practice, helping clients automate workflows and unlock new revenue streams.",
       icon: Lightbulb,
     },
     {
       year: "2025",
-      title: "Industry Leadership",
+      title: "Growing Across the Region",
       description:
-        "Recognized as a leading force in digital transformation, with 500+ successful projects and counting.",
+        "Expanded our team to 20+ specialists and deepened partnerships across fintech, e-commerce, healthcare, and logistics verticals.",
       icon: Target,
     },
   ];
@@ -45,24 +45,8 @@ export function AboutStory() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
-      {/* Background grid */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
       <div className="container-standard relative z-10">
         {/* Header */}
         <div
@@ -78,23 +62,10 @@ export function AboutStory() {
           >
             Our Journey
           </p>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Building Excellence, Together
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">How We Got Here</h2>
           <p className="mx-auto max-w-3xl text-sm text-gray-400 md:text-base">
-            From a small team with big dreams to an industry leader trusted by global enterprises.
-            Our story is one of continuous innovation, unwavering commitment, and extraordinary
-            results.
+            From a two-person founding team to a growing studio trusted by businesses across the
+            MENA region — here's the story so far.
           </p>
         </div>
 

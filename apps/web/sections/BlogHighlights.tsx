@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import Link from "next/link";
@@ -10,12 +10,22 @@ interface BlogHighlightsProps {
   posts?: BlogListItem[];
 }
 
+const categoryColors: Record<string, string> = {
+  "AI & Machine Learning": "#8B5CF6",
+  "SaaS Development": "#10B981",
+  "Web Development": "#0076D1",
+  "Mobile Development": "#F59E0B",
+  "Cloud Infrastructure": "#06B6D4",
+  "E-Commerce": "#EF4444",
+  default: "#0076D1",
+};
+
 const fallbackPosts = [
   {
     id: "fallback-1",
     title: "The Future of AI in Business Automation",
     excerpt:
-      "Discover how AI agents are revolutionizing business processes and creating unprecedented efficiency gains.",
+      "Discover how AI agents are revolutionizing business processes and creating unprecedented efficiency gains for modern companies.",
     category: "AI & Machine Learning",
     date: "2024-01-15",
     readTime: "5 min",
@@ -30,16 +40,6 @@ const fallbackPosts = [
     date: "2024-01-10",
     readTime: "8 min",
     slug: "scalable-saas-platforms-best-practices",
-  },
-  {
-    id: "fallback-3",
-    title: "Next.js 15: What's New and Why It Matters",
-    excerpt:
-      "Exploring the latest features in Next.js 15 and how they can improve your web development workflow.",
-    category: "Web Development",
-    date: "2024-01-05",
-    readTime: "6 min",
-    slug: "nextjs-15-whats-new",
   },
 ];
 
@@ -60,155 +60,129 @@ export function BlogHighlights({ posts }: BlogHighlightsProps) {
           readTime: post.readingTime ? `${post.readingTime} min` : "5 min",
           slug: post.slug,
         }))
-      : fallbackPosts.slice(0, 2);
+      : fallbackPosts;
 
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden py-12 md:py-16"
+      className="relative overflow-hidden py-16 md:py-20"
       style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
+        background: "#080D14",
       }}
     >
-      {/* Subtle Background Grid */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(0,118,209,0.1) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(0,118,209,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
       <div className="container-standard relative z-10">
+        {/* Section Header */}
         <div
-          className="mb-10 text-center transition-all duration-1000 ease-out md:mb-12"
+          className="mb-10 flex flex-col items-start justify-between gap-4 md:mb-12 md:flex-row md:items-end"
           style={{
             opacity: sectionVisible ? 1 : 0,
             transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "all 0.7s ease",
           }}
         >
-          <div className="mb-3 inline-flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-[#0076D1] md:h-5 md:w-5" />
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
-              Latest Insights
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-[#0076D1]" />
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1]">
+                Latest Insights
+              </p>
+            </div>
+            <h2 className="heading-2 mb-2 text-white">From Our Blog</h2>
+            <p className="max-w-xl text-sm text-white/60 md:text-base">
+              Insights, strategies, and technical deep-dives from our engineering team.
             </p>
           </div>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              From Our Blog
-            </span>
-          </h2>
-          <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
-            Insights, strategies, and technical deep-dives from our engineering and product teams.
-          </p>
+          <Link
+            href="/blog"
+            className="group hidden shrink-0 items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 transition-all duration-300 hover:border-white/20 hover:text-white md:inline-flex"
+          >
+            View all articles
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-          {mappedPosts.map((post, index) => (
-            <article
-              key={post.id}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] md:p-8"
-              style={{
-                opacity: sectionVisible ? 1 : 0,
-                transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
-                transition: `all 0.5s ease ${index * 100}ms`,
-              }}
-            >
-              {/* Left border accent */}
-              <div
-                className="absolute left-0 top-0 h-full w-1"
+        {/* Posts Grid */}
+        <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+          {mappedPosts.map((post, index) => {
+            const accentColor = categoryColors[post.category] ?? categoryColors.default;
+            return (
+              <article
+                key={post.id}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-all duration-300 hover:border-white/15 hover:bg-white/[0.04]"
                 style={{
-                  background: "linear-gradient(180deg, #0076D1 0%, #00A8FF 100%)",
+                  opacity: sectionVisible ? 1 : 0,
+                  transform: sectionVisible ? "translateY(0)" : "translateY(24px)",
+                  transition: `all 0.5s ease ${index * 100}ms`,
                 }}
-              />
+              >
+                {/* Category color bar */}
+                <div className="h-1 w-full shrink-0" style={{ background: accentColor }} />
 
-              <div className="pl-4">
-                {/* Category and Date */}
-                <div className="mb-3 flex flex-wrap items-center gap-3">
-                  <span
-                    className="rounded-full px-2.5 py-1 text-xs font-semibold"
-                    style={{
-                      background: "rgba(0, 118, 209, 0.15)",
-                      color: "#0076D1",
-                    }}
-                  >
-                    {post.category}
-                  </span>
-                  <div className="flex items-center gap-1.5 text-xs text-white/50">
-                    <Calendar className="h-3 w-3" />
-                    <span>
+                <div className="flex flex-1 flex-col p-5 md:p-6">
+                  {/* Category badge + meta */}
+                  <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <span
+                      className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                      style={{
+                        background: `${accentColor}18`,
+                        color: accentColor,
+                      }}
+                    >
+                      {post.category}
+                    </span>
+                    <span className="flex items-center gap-1 text-xs text-white/40">
+                      <Calendar className="h-3 w-3" />
                       {new Date(post.date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                         year: "numeric",
                       })}
                     </span>
+                    <span className="flex items-center gap-1 text-xs text-white/40">
+                      <Clock className="h-3 w-3" />
+                      {post.readTime}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-white/50">
-                    <Clock className="h-3 w-3" />
-                    <span>{post.readTime}</span>
-                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-poppins mb-3 text-base font-bold leading-snug text-white transition-colors duration-300 group-hover:text-white/90 md:text-lg">
+                    {post.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="mb-5 flex-1 text-sm leading-relaxed text-white/50">
+                    {post.excerpt}
+                  </p>
+
+                  {/* Read link */}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-300 hover:gap-2.5"
+                    style={{ color: accentColor }}
+                  >
+                    Read article
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
-
-                {/* Title */}
-                <h3 className="mb-3 font-poppins text-xl font-bold leading-tight text-white transition-colors duration-300 group-hover:text-[#00A8FF] md:text-2xl">
-                  {post.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="mb-6 text-sm leading-relaxed text-white/70 md:text-base">
-                  {post.excerpt}
-                </p>
-
-                {/* CTA */}
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group/link inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 hover:gap-3"
-                  style={{ color: "#0076D1" }}
-                >
-                  <span>Read article</span>
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
-                </Link>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
+        {/* Mobile "View all" button */}
         <div
-          className="mt-10 text-center transition-all duration-1000 ease-out md:mt-12"
+          className="mt-8 text-center md:hidden"
           style={{
             opacity: sectionVisible ? 1 : 0,
-            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
-            transitionDelay: "300ms",
+            transition: "all 0.5s ease 300ms",
           }}
         >
           <Link
             href="/blog"
-            className="group inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
-              boxShadow: "0 4px 16px rgba(0, 118, 209, 0.4)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 118, 209, 0.6)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 118, 209, 0.4)";
-            }}
+            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:border-white/20"
           >
-            <span>View all articles</span>
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            View all articles
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>

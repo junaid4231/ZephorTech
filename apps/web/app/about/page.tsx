@@ -11,9 +11,9 @@ import {
 import { OurProcess } from "@/sections";
 
 export const metadata: Metadata = {
-  title: "About ZephorTech - Innovation, Excellence, Impact",
+  title: "About ZephorTech - Our Story, Mission & Team",
   description:
-    "We're a team of world-class engineers, designers, and strategists building the future of digital experiences. 200+ clients, 15+ years of expertise, and a relentless drive for excellence.",
+    "We're a lean, expert team of engineers, designers, and strategists passionate about digital excellence. 70+ projects delivered across the MENA region and beyond.",
   keywords: [
     "about ZephorTech",
     "software development team",
@@ -23,11 +23,19 @@ export const metadata: Metadata = {
     "engineering culture",
   ],
   openGraph: {
-    title: "About ZephorTech - Innovation, Excellence, Impact",
+    title: "About ZephorTech - Our Story, Mission & Team",
     description:
-      "Meet the team building the future of digital experiences. 200+ clients trust us with their most ambitious projects.",
+      "Meet the team building exceptional digital products. 70+ projects delivered across fintech, e-commerce, healthcare, and more.",
     type: "website",
     url: "https://zephortech.com/about",
+    images: [
+      {
+        url: "https://zephortech.com/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "About ZephorTech",
+      },
+    ],
   },
 };
 
@@ -37,14 +45,14 @@ export default function AboutPage() {
       <HashScrollHandler />
       <Header />
       <PageHero
-        title="We Build the Future of Technology"
-        subtitle="Pioneering Digital Excellence Since 2010"
-        description="A team of world-class engineers, designers, and strategists united by one mission: to transform ambitious ideas into exceptional digital experiences."
+        title="We Build the Software That Moves Business"
+        subtitle="Building with Purpose Since 2020"
+        description="A focused team of engineers, designers, and strategists united by one goal — to turn ambitious ideas into exceptional digital products."
         stats={[
-          { value: 15, suffix: "+", label: "Years of Excellence" },
-          { value: 200, suffix: "+", label: "Happy Clients" },
-          { value: 500, suffix: "+", label: "Projects Delivered" },
-          { value: 50, suffix: "+", label: "Team Members" },
+          { value: 5, suffix: "+", label: "Years of Excellence" },
+          { value: 40, suffix: "+", label: "Happy Clients" },
+          { value: 70, suffix: "+", label: "Projects Delivered" },
+          { value: 15, suffix: "+", label: "Years Combined Expertise" },
         ]}
         // Direct prospects to contact page for project inquiries
         ctaText="Start Your Project"

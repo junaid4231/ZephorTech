@@ -23,8 +23,9 @@ export const ROUTES = {
   home: "/",
   about: "/about",
   services: "/services",
-  portfolio: "/portfolio",
+  caseStudies: "/case-studies",
   blog: "/blog",
   contact: "/contact",
+  careers: "/careers",
+  faq: "/faq",
 } as const;
-

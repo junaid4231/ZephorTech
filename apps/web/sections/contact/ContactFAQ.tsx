@@ -60,30 +60,8 @@ export function ContactFAQ() {
       id="faq"
       ref={ref}
       className="relative py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
-      {/* Floating gradient orbs */}
-      <div
-        className="absolute left-1/4 top-0 h-[500px] w-[500px] animate-pulse rounded-full opacity-20 blur-[120px]"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-
       <div className="container-standard relative z-10 max-w-4xl">
         {/* Header */}
         <div
@@ -99,19 +77,7 @@ export function ContactFAQ() {
               Frequently Asked Questions
             </p>
           </div>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Got Questions? We've Got Answers
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">Got Questions? We've Got Answers</h2>
           <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">
             Everything you need to know about working with ZephorTech
           </p>

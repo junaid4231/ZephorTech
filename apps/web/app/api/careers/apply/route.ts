@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       .from("applications")
       .getPublicUrl(filePath);
 
-    const resumeUrl = urlData.publicUrl;
+    const resumeUrl = urlData?.publicURL ?? null;
 
     // Save application to database
     const { data: dbData, error: dbError } = await supabase
@@ -164,7 +164,7 @@ async function sendEmailNotification(data: {
   portfolioUrl: string;
   skills: string[];
   experienceLevel: string;
-  resumeUrl: string;
+  resumeUrl: string | null;
 }) {
   // Check if Resend API key is configured
   const resendApiKey = process.env.RESEND_API_KEY;
@@ -183,7 +183,7 @@ async function sendEmailNotification(data: {
     <p><strong>Skills:</strong> ${data.skills.join(", ")}</p>
     ${data.linkedinUrl ? `<p><strong>LinkedIn:</strong> <a href="${data.linkedinUrl}">${data.linkedinUrl}</a></p>` : ""}
     ${data.portfolioUrl ? `<p><strong>Portfolio:</strong> <a href="${data.portfolioUrl}">${data.portfolioUrl}</a></p>` : ""}
-    <p><strong>Resume:</strong> <a href="${data.resumeUrl}">Download Resume</a></p>
+    ${data.resumeUrl ? `<p><strong>Resume:</strong> <a href="${data.resumeUrl}">Download Resume</a></p>` : ""}
     <hr />
     <p style="color: #666; font-size: 12px;">View all applications in your Supabase dashboard</p>
   `;

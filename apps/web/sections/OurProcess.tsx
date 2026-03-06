@@ -61,25 +61,10 @@ export function OurProcess() {
       ref={sectionRef}
       className="relative overflow-hidden py-12 md:py-16"
       style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
+        background: "#0A0A0A",
       }}
       aria-labelledby="our-process-heading"
     >
-      {/* Background Effects */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            radial-gradient(circle at 50% 50%, #0076D1 2px, transparent 2px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-      <div
-        className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-
       <div className="container-standard relative z-10">
         {/* Section Header */}
         <div
@@ -95,18 +80,8 @@ export function OurProcess() {
               Our Process
             </p>
           </div>
-          <h2 id="our-process-heading" className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              How We Work
-            </span>
+          <h2 id="our-process-heading" className="heading-2 mb-3 text-white">
+            How We Work
           </h2>
           <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">
             A proven methodology that ensures your project's success from concept to launch

@@ -108,13 +108,7 @@ export function BlogPostGrid({
   });
 
   return (
-    <section
-      ref={ref}
-      className="relative py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
-    >
+    <section ref={ref} className="relative py-12 md:py-16" style={{ background: "#080D14" }}>
       <div className="container-standard max-w-6xl">
         {/* Header Section */}
         <div
@@ -183,7 +177,7 @@ export function BlogPostGrid({
                     onClick={() => setShowSortMenu(false)}
                     aria-hidden="true"
                   />
-                  <div className="absolute right-0 top-full z-20 mt-2 min-w-[180px] rounded-xl border border-white/10 bg-[#0F1419] shadow-xl backdrop-blur-xl">
+                  <div className="absolute right-0 top-full z-20 mt-2 min-w-[180px] rounded-xl border border-white/10 bg-[#0A0A0A] shadow-xl backdrop-blur-xl">
                     {(["newest", "oldest", "alphabetical"] as SortOption[]).map((option) => (
                       <button
                         key={option}

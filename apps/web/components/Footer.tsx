@@ -12,9 +12,7 @@ import {
   Facebook,
   ArrowRight,
   ArrowUp,
-  Sparkles,
 } from "lucide-react";
-import { NewsletterForm } from "./NewsletterForm";
 import { siteConfig } from "@/config";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import { getAllServices } from "@/lib/services";
@@ -45,105 +43,10 @@ export default function Footer() {
     <footer
       ref={footerRef}
       className="relative overflow-hidden border-t border-white/10"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Enhanced Background Effects with Animations */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, #0076D1 1px, transparent 1px),
-            linear-gradient(-45deg, #0076D1 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-          animation: "gridMove 20s linear infinite",
-        }}
-      />
-
-      {/* Animated Gradient Orbs */}
-      <div
-        className="absolute right-0 top-0 h-96 w-96 rounded-full opacity-10 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, #0076D1, transparent)",
-          animation: "float 8s ease-in-out infinite",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 h-96 w-96 rounded-full opacity-10 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, #00A8FF, transparent)",
-          animation: "float 10s ease-in-out infinite reverse",
-        }}
-      />
-
-      {/* Floating Particles - Fixed positions to avoid hydration issues */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[
-          { size: 3, left: "10%", top: "20%", delay: 0, duration: 15 },
-          { size: 2, left: "80%", top: "30%", delay: 2, duration: 18 },
-          { size: 4, left: "30%", top: "60%", delay: 1, duration: 20 },
-          { size: 2.5, left: "70%", top: "70%", delay: 3, duration: 16 },
-          { size: 3.5, left: "50%", top: "40%", delay: 1.5, duration: 22 },
-          { size: 2, left: "20%", top: "80%", delay: 2.5, duration: 17 },
-        ].map((particle, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full opacity-20 blur-sm"
-            style={{
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              background: "#0076D1",
-              left: particle.left,
-              top: particle.top,
-              animation: `particleFloat ${particle.duration}s ease-in-out infinite`,
-              animationDelay: `${particle.delay}s`,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="container-standard relative z-10 py-12 md:py-16 lg:py-20">
-        {/* Newsletter Section - Compact */}
-        <div
-          className="group relative mb-8 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-4 backdrop-blur-xl transition-all duration-700 md:mb-10"
-          style={{
-            opacity: footerVisible ? 1 : 0,
-            transform: footerVisible ? "translateY(0)" : "translateY(20px)",
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
-          }}
-        >
-          {/* Shimmer Effect */}
-          <div
-            className="absolute -inset-x-full top-0 h-full w-full bg-gradient-to-r from-transparent via-white/5 to-transparent"
-            style={{
-              animation: "shimmer 3s infinite",
-            }}
-          />
-
-          <div className="relative grid grid-cols-1 gap-3 md:grid-cols-2 md:items-center md:gap-4">
-            <div>
-              <div className="mb-1.5 inline-flex items-center gap-1.5 rounded-full border border-[#0076D1]/30 bg-[#0076D1]/10 px-2 py-0.5">
-                <Sparkles className="h-2.5 w-2.5 animate-pulse text-[#0076D1]" />
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0076D1]">
-                  Newsletter
-                </span>
-              </div>
-              <h3 className="mb-1 text-sm font-bold text-white md:text-base">
-                Stay Ahead of the Curve
-              </h3>
-              <p className="text-xs leading-relaxed text-white/60">
-                Monthly insights, playbooks, and exclusive updates. No spam.
-              </p>
-            </div>
-            <div className="md:pl-2">
-              <NewsletterForm variant="compact" />
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer Links - Enhanced Grid with Staggered Animation */}
+        {/* Main Footer Links */}
         <div
           className="grid grid-cols-1 gap-8 transition-all duration-1000 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6"
           style={{
@@ -382,46 +285,6 @@ export default function Footer() {
 
       {/* Custom Animations */}
       <style jsx>{`
-        @keyframes gridMove {
-          0% {
-            transform: translate(0, 0);
-          }
-          100% {
-            transform: translate(40px, 40px);
-          }
-        }
-
-        @keyframes float {
-          0%,
-          100% {
-            transform: translate(0, 0) scale(1);
-          }
-          50% {
-            transform: translate(20px, -20px) scale(1.1);
-          }
-        }
-
-        @keyframes particleFloat {
-          0%,
-          100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.2;
-          }
-          50% {
-            transform: translate(30px, -30px) scale(1.5);
-            opacity: 0.4;
-          }
-        }
-
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(200%);
-          }
-        }
-
         @keyframes gradientShift {
           0%,
           100% {

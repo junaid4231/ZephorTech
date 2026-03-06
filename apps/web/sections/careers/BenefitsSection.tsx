@@ -45,9 +45,7 @@ export function BenefitsSection() {
       id="benefits"
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A111C 0%, #05070B 50%, #0A111C 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
       <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}

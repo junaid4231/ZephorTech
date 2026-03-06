@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { Code, Heart, Lightbulb, Target } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
@@ -10,101 +10,12 @@ export function AboutMission() {
     rootMargin: "0px 0px -100px 0px",
   });
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // Flowing data particles animation
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    const particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-      opacity: number;
-    }> = [];
-
-    // Create flowing particles
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: Math.random() * 0.5 + 0.3,
-        size: Math.random() * 3 + 1,
-        opacity: Math.random() * 0.5 + 0.3,
-      });
-    }
-
-    let animationFrame: number;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((particle) => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Wrap around
-        if (particle.y > canvas.height) particle.y = 0;
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-
-        // Draw particle
-        ctx.fillStyle = `rgba(0, 168, 255, ${particle.opacity})`;
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      animationFrame = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(135deg, #001529 0%, #002B4D 50%, #004E8F 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Animated particles background */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 opacity-40"
-        style={{ pointerEvents: "none" }}
-      />
-
-      {/* Gradient orbs */}
-      <div
-        className="absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full opacity-30 blur-[150px]"
-        style={{
-          background: "radial-gradient(circle, #0076D1 0%, transparent 70%)",
-        }}
-      />
-
       <div className="container-standard relative z-10">
         <div className="grid items-center gap-6 md:gap-8 lg:grid-cols-2">
           {/* Left Content */}
@@ -120,45 +31,36 @@ export function AboutMission() {
             </p>
 
             <h2 className="heading-2 mb-4 text-white md:mb-6">
-              Empowering Businesses Through
-              <span
-                className="mt-2 block bg-clip-text text-transparent"
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #00A8FF 0%, #7DD3FC 100%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  filter: "drop-shadow(0 2px 12px rgba(0, 168, 255, 0.4))",
-                }}
-              >
-                Exceptional Technology
-              </span>
+              Built Around Delivery,
+              <span className="mt-2 block text-[#00A8FF]">Not Presentations</span>
             </h2>
 
-            <p className="mb-5 text-sm text-blue-50/90 md:mb-6 md:text-base">
-              We believe that technology is not just a tool—it's a catalyst for transformation. Our
-              mission is to empower businesses to achieve their boldest ambitions through innovative
-              solutions, strategic thinking, and unwavering dedication to excellence.
+            <p className="mb-5 text-sm text-white/70 md:mb-6 md:text-base">
+              Most agencies sell a process and hand off a codebase. We work directly with founders
+              and engineering leads, stay accountable to agreed metrics, and don't consider an
+              engagement closed until the team running it is genuinely confident owning what we
+              built.
             </p>
 
             <div className="space-y-4 md:space-y-5">
               {[
                 {
                   icon: Code,
-                  title: "Innovation First",
+                  title: "Senior engineers on every project",
                   description:
-                    "We push boundaries and embrace cutting-edge technologies to deliver solutions that set new standards.",
+                    "Every engagement is run by engineers who have shipped production systems at scale. You work directly with the people building your product — not a project manager relaying messages.",
                 },
                 {
                   icon: Heart,
-                  title: "Client Success",
+                  title: "Honest scope, real timelines",
                   description:
-                    "Your success is our success. We're invested in your growth and committed to exceeding expectations.",
+                    "We tell clients when something won't work before we build it. Delivery metrics and acceptance criteria are agreed in writing before the first sprint starts.",
                 },
                 {
                   icon: Target,
-                  title: "Excellence Always",
+                  title: "Handoffs that don't create dependencies",
                   description:
-                    "We never compromise on quality. Every line of code, every design choice reflects our pursuit of perfection.",
+                    "At the end of every engagement we hand over documentation, runbooks, and architecture decisions alongside the code. Your internal team should be able to own and extend everything we build.",
                 },
               ].map((item, index) => (
                 <div
@@ -179,7 +81,7 @@ export function AboutMission() {
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-bold text-white md:text-xl">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-blue-50/80 md:text-base">
+                    <p className="text-sm leading-relaxed text-white/60 md:text-base">
                       {item.description}
                     </p>
                   </div>
@@ -362,35 +264,12 @@ export function AboutMission() {
               />
             </div>
 
-            {/* Floating accent elements */}
-            <div
-              className="absolute -right-6 -top-6 h-24 w-24 animate-pulse rounded-2xl opacity-50 blur-2xl"
-              style={{
-                background: "radial-gradient(circle, #0076D1, transparent)",
-              }}
-            />
-            <div
-              className="absolute -bottom-6 -left-6 h-32 w-32 animate-pulse rounded-2xl opacity-50 blur-2xl"
-              style={{
-                background: "radial-gradient(circle, #00A8FF, transparent)",
-                animationDelay: "1s",
-              }}
-            />
+            {/* Floating accent elements removed */}
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translate(0, 0) scale(1);
-          }
-          50% {
-            transform: translate(20px, -20px) scale(1.1);
-          }
-        }
-
         @keyframes orbit {
           0% {
             transform: rotate(0deg) translateX(100px) rotate(0deg);

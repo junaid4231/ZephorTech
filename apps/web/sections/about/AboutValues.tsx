@@ -10,42 +10,42 @@ const values = [
     title: "Integrity",
     description:
       "We build trust through transparency, honesty, and ethical practices in every interaction.",
-    color: "#0076D1",
+    color: "#F59E0B",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
     description:
       "We constantly explore new technologies and methodologies to deliver cutting-edge solutions.",
-    color: "#00A8FF",
+    color: "#10B981",
   },
   {
     icon: Target,
     title: "Excellence",
     description:
       "We set high standards and never settle for less than exceptional quality in our work.",
-    color: "#7DD3FC",
+    color: "#8B5CF6",
   },
   {
     icon: Users,
     title: "Collaboration",
     description:
       "We believe the best results come from diverse perspectives working together harmoniously.",
-    color: "#0EA5E9",
+    color: "#0076D1",
   },
   {
     icon: Rocket,
     title: "Agility",
     description:
       "We adapt quickly to change, embracing new challenges as opportunities for growth.",
-    color: "#38BDF8",
+    color: "#EF4444",
   },
   {
     icon: Heart,
     title: "Passion",
     description:
       "We love what we do, and that passion drives us to go above and beyond for our clients.",
-    color: "#0284C7",
+    color: "#EC4899",
   },
 ];
 
@@ -59,27 +59,8 @@ export function AboutValues() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Background grid */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(circle at 50% 50%, #0076D1 2px, transparent 2px)",
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
-
-      {/* Floating gradient orbs */}
-      <div
-        className="absolute right-1/4 top-0 h-[600px] w-[600px] animate-pulse rounded-full opacity-20 blur-[150px]"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-
       <div className="container-standard relative z-10">
         {/* Header */}
         <div
@@ -92,19 +73,7 @@ export function AboutValues() {
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
             Our Core Values
           </p>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              What Drives Us Forward
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">What Drives Us Forward</h2>
           <p className="mx-auto max-w-3xl text-sm text-gray-400 md:text-base">
             The principles that guide our decisions, shape our culture, and define who we are as a
             team

@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header, Footer, PageHero } from "@/components";
 import { CaseStudyDetailContent } from "@/sections/case-studies/CaseStudyDetailContent";
-import {
-  getAllCaseStudiesCached,
-  getCaseStudyBySlugCached,
-} from "@/lib/case-studies-cms";
+import { getAllCaseStudiesCached, getCaseStudyBySlugCached } from "@/lib/case-studies-cms";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -56,16 +53,10 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         ctaHref="/contact#quote"
         backgroundType="animation"
       />
-      <section
-        className="relative py-24"
-        style={{
-          background: "linear-gradient(180deg, #05070B 0%, #0A111C 50%, #05070B 100%)",
-        }}
-      >
+      <section className="relative py-24" style={{ background: "#080D14" }}>
         <CaseStudyDetailContent study={study} />
       </section>
       <Footer />
     </>
   );
 }
-

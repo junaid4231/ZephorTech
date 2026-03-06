@@ -15,16 +15,8 @@ export function ContactCTA() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
-      {/* Background effects */}
-      <div
-        className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-
       <div className="container-standard relative z-10 max-w-5xl">
         <div
           className="group relative rounded-2xl border p-6 transition-all duration-500 md:p-8"
@@ -58,22 +50,12 @@ export function ContactCTA() {
             {/* Left Content */}
             <div>
               <h2 className="heading-2 mb-4 text-white md:mb-5">
-                <span
-                  className="bg-clip-text text-transparent"
-                  style={{
-                    backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  Ready to Transform Your Business?
-                </span>
+                Ready to Transform Your Business?
               </h2>
 
               <p className="mb-6 text-sm text-white/70 md:mb-8 md:text-base">
-                Let's discuss your project goals and create a tailored solution that drives real results.
-                We respond within 24 hours.
+                Let's discuss your project goals and create a tailored solution that drives real
+                results. We respond within 24 hours.
               </p>
 
               {/* Benefits */}
@@ -132,8 +114,8 @@ export function ContactCTA() {
             <div className="space-y-4">
               {[
                 { value: "24hrs", label: "Average Response Time" },
-                { value: "98%", label: "Client Satisfaction" },
-                { value: "500+", label: "Projects Delivered" },
+                { value: "97%", label: "Client Satisfaction" },
+                { value: "70+", label: "Projects Delivered" },
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -143,7 +125,7 @@ export function ContactCTA() {
                   }}
                 >
                   <div
-                    className="mb-2 font-poppins text-3xl font-bold md:text-4xl"
+                    className="font-poppins mb-2 text-3xl font-bold md:text-4xl"
                     style={{
                       background: "linear-gradient(135deg, #0076D1, #00A8FF)",
                       WebkitBackgroundClip: "text",

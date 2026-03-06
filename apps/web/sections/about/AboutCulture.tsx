@@ -23,7 +23,7 @@ const perks = [
   {
     icon: Globe,
     title: "Global Team",
-    description: "Work with talented people from 25+ countries",
+    description: "Work with talented people from across the globe",
   },
 ];
 

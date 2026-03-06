@@ -117,37 +117,37 @@ export function AboutStats() {
   const stats = [
     {
       icon: TrendingUp,
-      value: "340%",
-      label: "Average ROI",
-      description: "For our clients",
+      value: "3x",
+      label: "Average Client ROI",
+      description: "Across delivered projects",
       color: "#0076D1",
     },
     {
       icon: Users,
-      value: "98%",
+      value: "92%",
       label: "Client Retention",
       description: "Year over year",
       color: "#00A8FF",
     },
     {
       icon: Globe,
-      value: "25+",
+      value: "12+",
       label: "Countries Served",
-      description: "Global reach",
+      description: "MENA region & beyond",
       color: "#0EA5E9",
     },
     {
       icon: Target,
       value: "99.9%",
       label: "Uptime SLA",
-      description: "Guaranteed",
+      description: "Across managed systems",
       color: "#38BDF8",
     },
     {
       icon: Target,
-      value: "100%",
+      value: "94%",
       label: "On-Time Delivery",
-      description: "Last 24 months",
+      description: "Projects shipped on schedule",
       color: "#0284C7",
     },
   ];
@@ -156,9 +156,7 @@ export function AboutStats() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
     >
@@ -168,17 +166,6 @@ export function AboutStats() {
           ref={canvasRef}
           className="h-full w-full"
           style={{ maxWidth: "800px", maxHeight: "800px" }}
-        />
-      </div>
-
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(circle at 50% 50%, #0076D1 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
         />
       </div>
 
@@ -194,19 +181,7 @@ export function AboutStats() {
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
             By the Numbers
           </p>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Performance That Speaks
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">Performance That Speaks</h2>
           <p className="mx-auto max-w-3xl text-sm text-gray-400 md:text-base">
             Our track record of delivering exceptional results for clients across industries
           </p>

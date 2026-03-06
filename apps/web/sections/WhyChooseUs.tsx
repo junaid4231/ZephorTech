@@ -9,44 +9,66 @@ interface Feature {
   title: string;
   description: string;
   color: string;
+  bgColor: string;
+  borderColor: string;
+  glowColor: string;
 }
 
 const features: Feature[] = [
   {
     icon: Award,
-    title: "Award-Winning Quality",
-    description: "Recognized for excellence in IT solutions and innovation",
-    color: "#0076D1",
+    title: "Senior-Led Execution",
+    description:
+      "Every project is led by senior engineers — no offshore juniors managing your product",
+    color: "#F59E0B",
+    bgColor: "rgba(245, 158, 11, 0.08)",
+    borderColor: "rgba(245, 158, 11, 0.2)",
+    glowColor: "rgba(245, 158, 11, 0.12)",
   },
   {
     icon: Zap,
-    title: "Lightning Fast Delivery",
-    description: "Agile development process ensuring rapid time-to-market",
-    color: "#0076D1",
+    title: "Fast, Iterative Delivery",
+    description: "Agile sprints with weekly demos so you always see real progress",
+    color: "#10B981",
+    bgColor: "rgba(16, 185, 129, 0.08)",
+    borderColor: "rgba(16, 185, 129, 0.2)",
+    glowColor: "rgba(16, 185, 129, 0.12)",
   },
   {
     icon: Shield,
-    title: "Enterprise-Grade Security",
-    description: "Bank-level security protocols protecting your data and applications",
-    color: "#0076D1",
+    title: "Production-First Security",
+    description: "Security best practices baked in from day one — not bolted on at the end",
+    color: "#EF4444",
+    bgColor: "rgba(239, 68, 68, 0.08)",
+    borderColor: "rgba(239, 68, 68, 0.2)",
+    glowColor: "rgba(239, 68, 68, 0.12)",
   },
   {
     icon: Users,
-    title: "Expert Team",
-    description: "15+ years of combined experience across cutting-edge technologies",
-    color: "#0076D1",
+    title: "Specialised Team",
+    description: "Deep expertise in web, mobile, AI agents, and cloud infrastructure",
+    color: "#8B5CF6",
+    bgColor: "rgba(139, 92, 246, 0.08)",
+    borderColor: "rgba(139, 92, 246, 0.2)",
+    glowColor: "rgba(139, 92, 246, 0.12)",
   },
   {
     icon: LifeBuoy,
-    title: "24/7 Support",
-    description: "Round-the-clock technical support and maintenance services",
-    color: "#0076D1",
+    title: "Post-Launch Support",
+    description: "We stay engaged after launch with SLA-backed maintenance and monitoring",
+    color: "#06B6D4",
+    bgColor: "rgba(6, 182, 212, 0.08)",
+    borderColor: "rgba(6, 182, 212, 0.2)",
+    glowColor: "rgba(6, 182, 212, 0.12)",
   },
   {
     icon: Headphones,
-    title: "Dedicated Success Manager",
-    description: "Personal point of contact ensuring your project's success",
+    title: "Dedicated Project Lead",
+    description: "One accountable point of contact throughout your entire engagement",
     color: "#0076D1",
+    bgColor: "rgba(0, 118, 209, 0.08)",
+    borderColor: "rgba(0, 118, 209, 0.2)",
+    glowColor: "rgba(0, 118, 209, 0.12)",
   },
 ];
 
@@ -59,30 +81,19 @@ export function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden py-12 md:py-16"
+      className="relative overflow-hidden py-16 md:py-20"
       style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
+        background: "#080D14",
       }}
       aria-labelledby="why-choose-us-heading"
     >
-      {/* Background Effects */}
+      {/* Subtle radial background */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute inset-0 opacity-30"
         style={{
-          backgroundImage: `
-            linear-gradient(45deg, #0076D1 1px, transparent 1px),
-            linear-gradient(-45deg, #0076D1 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
+          backgroundImage:
+            "radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,118,209,0.12), transparent)",
         }}
-      />
-      <div
-        className="absolute left-0 top-0 h-64 w-64 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #0076D1, transparent)" }}
-      />
-      <div
-        className="absolute bottom-0 right-0 h-64 w-64 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #00A8FF, transparent)" }}
       />
 
       <div className="container-standard relative z-10">
@@ -100,18 +111,8 @@ export function WhyChooseUs() {
               Why Choose Us
             </p>
           </div>
-          <h2 id="why-choose-us-heading" className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Your Trusted Technology Partner
-            </span>
+          <h2 id="why-choose-us-heading" className="heading-2 mb-3 text-white">
+            Your Trusted Technology Partner
           </h2>
           <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">
             We combine technical expertise with business acumen to deliver solutions that drive real
@@ -137,49 +138,50 @@ export function WhyChooseUs() {
                 }}
               >
                 <div
-                  className="relative h-full rounded-xl border p-4 transition-all duration-500 group-hover:-translate-y-1 group-hover:scale-[1.02] md:p-5"
+                  className="relative h-full overflow-hidden rounded-xl border p-5 transition-all duration-300 md:p-6"
                   style={{
-                    background: "rgba(255, 255, 255, 0.03)",
+                    background: "rgba(255, 255, 255, 0.02)",
                     backdropFilter: "blur(20px)",
-                    borderColor: "rgba(255, 255, 255, 0.1)",
+                    borderColor: "rgba(255, 255, 255, 0.07)",
                     boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.boxShadow =
-                      "0 8px 32px rgba(0, 118, 209, 0.12), 0 4px 16px rgba(0, 0, 0, 0.4)";
-                    e.currentTarget.style.borderColor = "rgba(0, 118, 209, 0.2)";
-                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = `0 8px 32px ${feature.glowColor}, 0 4px 16px rgba(0,0,0,0.4)`;
+                    e.currentTarget.style.borderColor = feature.borderColor;
+                    e.currentTarget.style.transform = "translateY(-4px)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 0, 0, 0.2)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.07)";
                     e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
+                  {/* Colored top accent bar */}
+                  <div
+                    className="absolute left-0 right-0 top-0 h-0.5 rounded-t-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{ background: feature.color }}
+                  />
+
                   {/* Icon */}
-                  <div className="relative mb-3">
+                  <div className="relative mb-4">
                     <div
-                      className="absolute inset-0 rounded-lg opacity-10 blur-xl transition-opacity duration-500 group-hover:opacity-15"
+                      className="relative inline-flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 md:h-12 md:w-12"
                       style={{
-                        background: "#0076D1",
-                      }}
-                    />
-                    <div
-                      className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-500 group-hover:rotate-6 group-hover:scale-110 md:h-12 md:w-12"
-                      style={{
-                        background: "rgba(0, 118, 209, 0.1)",
-                        border: "1px solid rgba(0, 118, 209, 0.2)",
-                        boxShadow: "0 4px 12px rgba(0, 118, 209, 0.1)",
+                        background: feature.bgColor,
+                        border: `1px solid ${feature.borderColor}`,
                       }}
                     >
-                      <div style={{ color: "#0076D1" }}>
+                      <div style={{ color: feature.color }}>
                         <IconComponent className="h-5 w-5 md:h-6 md:w-6" />
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <h3 className="heading-3 mb-2 text-white transition-colors duration-300 group-hover:text-[#0076D1]">
+                  <h3
+                    className="heading-3 mb-2 text-white transition-colors duration-300"
+                    style={{ color: undefined }}
+                  >
                     {feature.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-gray-400">{feature.description}</p>

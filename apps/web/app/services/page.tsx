@@ -40,10 +40,10 @@ export default async function ServicesPage() {
         subtitle="Comprehensive IT Solutions"
         description="Transform your business with our cutting-edge technology services. From web development to AI solutions, we deliver excellence in every project."
         stats={[
-          { value: services.length, suffix: " Services", label: "Available" },
-          { value: 500, suffix: "+", label: "Projects Delivered" },
-          { value: 98, suffix: "%", label: "Success Rate" },
-          { value: 200, suffix: "+", label: "Happy Clients" },
+          { value: services.length, suffix: "", label: "Core Services" },
+          { value: 70, suffix: "+", label: "Projects Delivered" },
+          { value: 94, suffix: "%", label: "Client Satisfaction" },
+          { value: 40, suffix: "+", label: "Happy Clients" },
         ]}
         ctaText="Get Started"
         ctaHref="/contact#quote"
@@ -53,7 +53,7 @@ export default async function ServicesPage() {
       <InteractiveServices
         services={services}
         title="Explore Our Services"
-        subtitle="Click on any service to learn more about our comprehensive solutions"
+        subtitle="Select a service to explore capabilities, technology stack, and delivery timelines"
       />
 
       <WhyChooseSection />

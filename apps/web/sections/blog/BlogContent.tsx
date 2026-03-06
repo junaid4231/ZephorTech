@@ -41,10 +41,8 @@ export function BlogContent({ post }: BlogContentProps) {
   return (
     <article
       ref={ref}
-      className="relative pt-10 pb-16 md:pt-12 md:pb-20"
-      style={{
-        background: "linear-gradient(180deg, #05070B 0%, #0A111C 50%, #05070B 100%)",
-      }}
+      className="relative pb-16 pt-10 md:pb-20 md:pt-12"
+      style={{ background: "#0A0A0A" }}
     >
       <div className="pointer-events-none fixed left-0 right-0 top-20 z-40 hidden h-1 bg-white/5 backdrop-blur lg:block">
         <div
@@ -79,14 +77,14 @@ export function BlogContent({ post }: BlogContentProps) {
         {/* Pull Quote */}
         {post.pullQuote && (
           <div
-            className="my-12 rounded-xl border border-primary/30 bg-gradient-to-br from-primary/10 to-primary/5 p-5 backdrop-blur-xl md:my-16 md:p-6"
+            className="border-primary/30 from-primary/10 to-primary/5 my-12 rounded-xl border bg-gradient-to-br p-5 backdrop-blur-xl md:my-16 md:p-6"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "translateY(0)" : "translateY(30px)",
               transition: "all 0.8s ease 0.2s",
             }}
           >
-            <Quote className="mb-3 h-6 w-6 text-primary md:mb-4 md:h-8 md:w-8" />
+            <Quote className="text-primary mb-3 h-6 w-6 md:mb-4 md:h-8 md:w-8" />
             <blockquote className="mb-3 text-xl font-semibold text-white md:mb-4 md:text-2xl">
               {post.pullQuote.quote}
             </blockquote>
@@ -114,9 +112,11 @@ export function BlogContent({ post }: BlogContentProps) {
                 key={index}
                 className="rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl md:p-6"
               >
-                <TrendingUp className="mb-3 h-5 w-5 text-primary md:h-6 md:w-6" />
+                <TrendingUp className="text-primary mb-3 h-5 w-5 md:h-6 md:w-6" />
                 <div className="mb-2 text-xl font-bold text-white md:text-2xl">{stat.value}</div>
-                <div className="mb-1 text-xs font-semibold text-primary/90 md:text-sm">{stat.label}</div>
+                <div className="text-primary/90 mb-1 text-xs font-semibold md:text-sm">
+                  {stat.label}
+                </div>
                 {stat.description && (
                   <div className="text-xs text-white/60">{stat.description}</div>
                 )}
@@ -135,12 +135,16 @@ export function BlogContent({ post }: BlogContentProps) {
               transition: "all 0.8s ease 0.4s",
             }}
           >
-            <h3 className="font-poppins mb-5 text-xl font-bold text-white md:mb-6 md:text-2xl">Key Takeaways</h3>
+            <h3 className="font-poppins mb-5 text-xl font-bold text-white md:mb-6 md:text-2xl">
+              Key Takeaways
+            </h3>
             <ul className="space-y-3 md:space-y-4">
               {post.keyTakeaways.map((takeaway, index) => (
                 <li key={index} className="flex items-start gap-2.5 md:gap-3">
                   <CheckCircle2 className="text-primary mt-0.5 h-4 w-4 shrink-0 md:h-5 md:w-5" />
-                  <span className="text-sm leading-relaxed text-white/80 md:text-base">{takeaway}</span>
+                  <span className="text-sm leading-relaxed text-white/80 md:text-base">
+                    {takeaway}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -236,14 +240,16 @@ function ContentSection({
                 />
               </div>
               {section.mediaCaption && (
-                <p className="mt-2 text-center text-xs text-white/60 md:text-sm">{section.mediaCaption}</p>
+                <p className="mt-2 text-center text-xs text-white/60 md:text-sm">
+                  {section.mediaCaption}
+                </p>
               )}
             </div>
           )}
 
           {section.highlight && (
             <div className="border-primary/30 bg-primary/10 mt-5 rounded-xl border p-3 md:mt-6 md:p-4">
-              <p className="text-sm font-semibold text-primary md:text-base">{section.highlight}</p>
+              <p className="text-primary text-sm font-semibold md:text-base">{section.highlight}</p>
             </div>
           )}
         </div>
@@ -251,10 +257,10 @@ function ContentSection({
 
       {layout !== "full" && (
         <>
-            <div className={layout === "text-left" ? "order-1" : "order-2"}>
+          <div className={layout === "text-left" ? "order-1" : "order-2"}>
             {section.description && (
               <div
-                  className="prose-zt mb-4 max-w-none"
+                className="prose-zt mb-4 max-w-none"
                 dangerouslySetInnerHTML={{ __html: section.description }}
               />
             )}
@@ -272,7 +278,9 @@ function ContentSection({
 
             {section.highlight && (
               <div className="border-primary/30 bg-primary/10 mt-5 rounded-xl border p-3 md:mt-6 md:p-4">
-                <p className="text-sm font-semibold text-primary md:text-base">{section.highlight}</p>
+                <p className="text-primary text-sm font-semibold md:text-base">
+                  {section.highlight}
+                </p>
               </div>
             )}
           </div>

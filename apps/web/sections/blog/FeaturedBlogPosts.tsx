@@ -20,13 +20,7 @@ export function FeaturedBlogPosts({ posts }: FeaturedBlogPostsProps) {
   if (limitedPosts.length === 0) return null;
 
   return (
-    <section
-      ref={ref}
-      className="relative py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
-    >
+    <section ref={ref} className="relative py-12 md:py-16" style={{ background: "#0A0A0A" }}>
       <div className="container-standard max-w-6xl">
         <div
           className="mb-6 flex flex-col gap-4 md:mb-8 md:flex-row md:items-end md:justify-between"

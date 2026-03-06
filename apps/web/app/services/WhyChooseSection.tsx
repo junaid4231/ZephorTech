@@ -14,12 +14,12 @@ export function WhyChooseSection() {
     {
       icon: CheckCircle2,
       title: "Expert Team",
-      description: "15+ years of combined experience in cutting-edge technologies",
+      description: "Deep technical expertise across web, mobile, AI, and cloud engineering",
     },
     {
       icon: CheckCircle2,
       title: "Proven Track Record",
-      description: "500+ successful projects delivered across various industries",
+      description: "70+ successful projects delivered across web, mobile, AI, and cloud",
     },
     {
       icon: ArrowRight,
@@ -37,24 +37,12 @@ export function WhyChooseSection() {
     <section
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-6 text-center md:mb-8">
-          <h2 className="heading-2 mb-3 font-poppins font-black">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Why Choose Our Services
-            </span>
+          <h2 className="heading-2 font-poppins mb-3 font-black text-white">
+            Why Choose Our Services
           </h2>
         </div>
 
@@ -80,7 +68,9 @@ export function WhyChooseSection() {
                 }}
               >
                 <Icon className="mb-3 h-7 w-7 md:mb-4 md:h-8 md:w-8" style={{ color: "#0076D1" }} />
-                <h3 className="font-poppins mb-2 text-lg font-bold text-white md:text-xl">{benefit.title}</h3>
+                <h3 className="font-poppins mb-2 text-lg font-bold text-white md:text-xl">
+                  {benefit.title}
+                </h3>
                 <p className="text-sm text-gray-400 md:text-base">{benefit.description}</p>
               </div>
             );
@@ -90,4 +80,3 @@ export function WhyChooseSection() {
     </section>
   );
 }
-

@@ -15,21 +15,8 @@ export function ContactForm() {
       id="quote"
       ref={ref}
       className="relative py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#0A0A0A" }}
     >
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: "radial-gradient(circle at 50% 50%, #0076D1 2px, transparent 2px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
       <div className="container-standard relative z-10">
         {/* Header */}
         <div
@@ -44,19 +31,7 @@ export function ContactForm() {
               Send Us a Message
             </p>
           </div>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Start Your Project Today
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">Start Your Project Today</h2>
           <p className="mx-auto max-w-3xl text-sm text-gray-400 md:text-base">
             Fill out the form below and we'll get back to you within 24 hours with a detailed
             proposal tailored to your needs.

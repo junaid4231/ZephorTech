@@ -27,6 +27,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Build output logs
+build_log.txt
+build_out.txt
+*.log
+
 # Local env files
 .env
 .env*.local

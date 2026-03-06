@@ -62,11 +62,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
   const duplicatedTestimonials = useMemo(() => {
     if (testimonials.length === 0) return [];
     // Add last slide at beginning and first slide at end for seamless loop
-    return [
-      testimonials[testimonials.length - 1],
-      ...testimonials,
-      testimonials[0],
-    ];
+    return [testimonials[testimonials.length - 1], ...testimonials, testimonials[0]];
   }, [testimonials]);
 
   const totalSlides = duplicatedTestimonials.length;
@@ -124,7 +120,6 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
     return () => clearInterval(interval);
   }, [handleNext, isPlaying, itemsPerView, realTotalSlides]);
 
-
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
@@ -144,7 +139,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
   // Calculate dots based on real testimonials (not duplicated)
   const dotsCount = Math.max(realTotalSlides - itemsPerView + 1, 1);
   const shouldShowControls = realTotalSlides > itemsPerView;
-  
+
   // Calculate display index for dots (map from duplicated index to real index)
   const displayIndex = useMemo(() => {
     if (currentIndex === 0) return dotsCount - 1;
@@ -155,20 +150,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
   const sliderTransform = `translateX(-${(currentIndex * 100) / itemsPerView}%)`;
 
   return (
-    <section
-      className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
-    >
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: "radial-gradient(circle at 50% 50%, #0076D1 2px, transparent 2px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
+    <section className="relative overflow-hidden py-12 md:py-16" style={{ background: "#080D14" }}>
       <div className="container-standard relative z-10">
         <div className="mb-6 text-center md:mb-8">
           <div className="mb-3 inline-flex items-center gap-2">
@@ -177,19 +159,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
               Client Testimonials
             </p>
           </div>
-          <h2 className="heading-2 mb-2">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              What Clients Say
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-2 text-white">What Clients Say</h2>
         </div>
 
         <div
@@ -204,7 +174,9 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
               style={{
                 gap: itemsPerView === 1 ? "0" : itemsPerView === 2 ? "1rem" : "1.25rem",
                 transform: sliderTransform,
-                transition: isTransitioning ? "transform 700ms cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+                transition: isTransitioning
+                  ? "transform 700ms cubic-bezier(0.4, 0, 0.2, 1)"
+                  : "none",
                 willChange: "transform",
                 width: "100%",
               }}
@@ -214,9 +186,10 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
                   key={`${testimonial.id}-${index}`}
                   className="flex-shrink-0"
                   style={{
-                    width: itemsPerView === 1 
-                      ? "100%" 
-                      : `calc(${100 / itemsPerView}% - ${itemsPerView === 2 ? '0.5rem' : '0.625rem'})`,
+                    width:
+                      itemsPerView === 1
+                        ? "100%"
+                        : `calc(${100 / itemsPerView}% - ${itemsPerView === 2 ? "0.5rem" : "0.625rem"})`,
                     minWidth: 0,
                     maxWidth: itemsPerView === 1 ? "100%" : "none",
                     boxSizing: "border-box",
@@ -244,7 +217,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
                         <Star
                           key={`${testimonial.id}-star-${i}`}
                           className="h-3.5 w-3.5"
-                          style={{ fill: "#0076D1", color: "#0076D1" }}
+                          style={{ fill: "#F59E0B", color: "#F59E0B" }}
                         />
                       ))}
                     </div>

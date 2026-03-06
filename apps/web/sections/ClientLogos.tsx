@@ -1,19 +1,74 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import {
+  CreditCard,
+  ShoppingBag,
+  Activity,
+  Truck,
+  Building2,
+  Cloud,
+  GraduationCap,
+  Utensils,
+} from "lucide-react";
 
-// TODO: Replace with CMS integration when client logos are available
-// This section displays trusted partners and clients
-// For production: Fetch from Strapi CMS or use actual client logo images
 const clients = [
-  { name: "TechCorp", logo: "TC", industry: "Technology" },
-  { name: "InnovateLab", logo: "IL", industry: "Innovation" },
-  { name: "DigitalFlow", logo: "DF", industry: "Digital" },
-  { name: "CloudScale", logo: "CS", industry: "Cloud" },
-  { name: "DataVault", logo: "DV", industry: "Data" },
-  { name: "NextGen", logo: "NG", industry: "Next Gen" },
-  { name: "SmartSys", logo: "SS", industry: "Systems" },
-  { name: "FutureTech", logo: "FT", industry: "Future" },
+  {
+    name: "Fintech",
+    industry: "Finance & Payments",
+    icon: CreditCard,
+    color: "#10B981",
+    glow: "rgba(16,185,129,0.18)",
+  },
+  {
+    name: "E-Commerce",
+    industry: "Retail & Commerce",
+    icon: ShoppingBag,
+    color: "#F59E0B",
+    glow: "rgba(245,158,11,0.18)",
+  },
+  {
+    name: "Healthcare",
+    industry: "Health Tech",
+    icon: Activity,
+    color: "#EF4444",
+    glow: "rgba(239,68,68,0.18)",
+  },
+  {
+    name: "Logistics",
+    industry: "Supply Chain",
+    icon: Truck,
+    color: "#06B6D4",
+    glow: "rgba(6,182,212,0.18)",
+  },
+  {
+    name: "Real Estate",
+    industry: "PropTech",
+    icon: Building2,
+    color: "#8B5CF6",
+    glow: "rgba(139,92,246,0.18)",
+  },
+  {
+    name: "SaaS",
+    industry: "Cloud Software",
+    icon: Cloud,
+    color: "#3B82F6",
+    glow: "rgba(59,130,246,0.18)",
+  },
+  {
+    name: "Education",
+    industry: "EdTech",
+    icon: GraduationCap,
+    color: "#EC4899",
+    glow: "rgba(236,72,153,0.18)",
+  },
+  {
+    name: "Hospitality",
+    industry: "Travel & Hotels",
+    icon: Utensils,
+    color: "#F97316",
+    glow: "rgba(249,115,22,0.18)",
+  },
 ];
 
 export function ClientLogos() {
@@ -43,33 +98,16 @@ export function ClientLogos() {
   }, []);
 
   return (
-    <section
-      className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
-    >
+    <section className="relative overflow-hidden py-12 md:py-16" style={{ background: "#080D14" }}>
       <div className="container-standard relative z-10">
         <div className="mb-6 text-center md:mb-8">
           <p
             className="mb-3 text-xs font-bold uppercase tracking-[0.2em] md:text-sm"
             style={{ color: "#0076D1" }}
           >
-            Trusted By
+            Sectors We Serve
           </p>
-          <h2 className="heading-2 mb-2">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Industry Leaders
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-2 text-white">Built for Every Industry</h2>
         </div>
 
         <div className="group relative overflow-hidden" aria-live="polite">
@@ -93,30 +131,53 @@ export function ClientLogos() {
               animationPlayState: shouldAnimate ? "running" : "paused",
             }}
           >
-            {[...clients, ...clients].map((client, index) => (
-              <div
-                key={`${client.name}-${index}`}
-                className="hover:border-primary/30 flex-shrink-0 rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-xl transition-all duration-300 hover:bg-white/[0.07] md:p-5"
-                style={{
-                  minWidth: "160px",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                <div className="flex h-12 flex-col items-center justify-center gap-1.5 md:h-14">
-                  <span className="font-poppins text-xl font-bold tracking-wide text-white md:text-2xl">
-                    {client.logo}
-                  </span>
-                  <span className="text-center text-xs uppercase tracking-[0.2em] text-white/60">
-                    {client.name}
-                  </span>
+            {[...clients, ...clients].map((client, index) => {
+              const Icon = client.icon;
+              return (
+                <div
+                  key={`${client.name}-${index}`}
+                  className="flex-shrink-0 rounded-xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] md:p-5"
+                  style={{ minWidth: "170px" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                    (e.currentTarget.querySelector(".sector-icon-wrap") as HTMLElement | null)
+                      ?.style &&
+                      ((
+                        e.currentTarget.querySelector(".sector-icon-wrap") as HTMLElement
+                      ).style.boxShadow = `0 0 20px ${client.glow}`);
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    (e.currentTarget.querySelector(".sector-icon-wrap") as HTMLElement | null)
+                      ?.style &&
+                      ((
+                        e.currentTarget.querySelector(".sector-icon-wrap") as HTMLElement
+                      ).style.boxShadow = "none");
+                  }}
+                >
+                  <div className="flex flex-col items-center gap-3">
+                    {/* Icon container */}
+                    <div
+                      className="sector-icon-wrap flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-300"
+                      style={{
+                        background: `${client.color}18`,
+                        border: `1px solid ${client.color}35`,
+                      }}
+                    >
+                      <Icon
+                        className="h-5 w-5"
+                        style={{ color: client.color }}
+                        strokeWidth={1.75}
+                      />
+                    </div>
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-white/90">{client.name}</p>
+                      <p className="mt-0.5 text-[11px] text-white/40">{client.industry}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

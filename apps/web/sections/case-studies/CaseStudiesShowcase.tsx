@@ -28,40 +28,7 @@ export function CaseStudiesShowcase({ studies }: CaseStudiesShowcaseProps) {
   });
 
   return (
-    <section
-      ref={ref}
-      className="relative py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
-    >
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
-      {/* Floating gradient orbs */}
-      <div
-        className="absolute right-0 top-0 h-[600px] w-[600px] animate-pulse rounded-full opacity-20 blur-[120px]"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-      <div
-        className="absolute bottom-0 left-0 h-[600px] w-[600px] animate-pulse rounded-full opacity-15 blur-[120px]"
-        style={{
-          background: "radial-gradient(circle, #00A8FF 0%, transparent 70%)",
-          animationDelay: "1s",
-        }}
-      />
-
+    <section ref={ref} className="relative py-12 md:py-16" style={{ background: "#0A0A0A" }}>
       <div className="container-standard relative z-10">
         {/* Header with filter chips */}
         <div
@@ -77,19 +44,7 @@ export function CaseStudiesShowcase({ studies }: CaseStudiesShowcaseProps) {
             </p>
           </div>
 
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Explore Our Work
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">Explore Our Work</h2>
 
           <p className="mx-auto max-w-3xl text-sm text-gray-400 md:mb-6 md:text-base">
             Filter by capability to see relevant transformations. Each case study showcases

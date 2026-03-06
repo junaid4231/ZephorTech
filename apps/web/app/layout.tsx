@@ -70,12 +70,21 @@ export const metadata: Metadata = {
     description:
       "ZephorTech offers cutting-edge IT services including web & mobile development, AI agents, SaaS solutions, e-commerce, and digital transformation.",
     siteName: "ZephorTech",
+    images: [
+      {
+        url: "https://zephortech.com/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "ZephorTech - IT Solutions & Digital Transformation",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "ZephorTech - IT Solutions & Digital Transformation",
     description:
       "ZephorTech offers cutting-edge IT services including web & mobile development, AI agents, SaaS solutions, e-commerce, and digital transformation.",
+    images: ["https://zephortech.com/opengraph-image"],
   },
   robots: {
     index: true,
@@ -102,7 +111,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body
-        className="font-inter bg-background text-text-dark flex min-h-screen flex-col antialiased"
+        className="font-inter bg-dark flex min-h-screen flex-col text-white antialiased"
         style={{
           WebkitFontSmoothing: "antialiased",
           MozOsxFontSmoothing: "grayscale",

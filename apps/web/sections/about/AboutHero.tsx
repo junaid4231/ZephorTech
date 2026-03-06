@@ -148,7 +148,7 @@ export function AboutHero() {
           }}
         >
           <span className="font-inter text-sm font-semibold tracking-wide text-white">
-            Pioneering Digital Excellence Since 2010
+            Engineering Excellence, Delivered
           </span>
         </div>
 
@@ -206,10 +206,10 @@ export function AboutHero() {
           }}
         >
           {[
-            { value: "15+", label: "Years of Excellence" },
-            { value: "200+", label: "Happy Clients" },
-            { value: "500+", label: "Projects Delivered" },
-            { value: "50+", label: "Team Members" },
+            { value: "5+", label: "Years Active" },
+            { value: "40+", label: "Happy Clients" },
+            { value: "70+", label: "Projects Delivered" },
+            { value: "12+", label: "Team Members" },
           ].map((stat, index) => (
             <div
               key={index}

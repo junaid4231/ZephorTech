@@ -22,8 +22,14 @@ const positions: Position[] = [
     department: "Engineering",
     location: "Remote / Hybrid",
     type: "Full-time",
-    description: "Lead the development of scalable web applications using React, Node.js, and cloud technologies.",
-    requirements: ["5+ years experience", "React/Next.js expert", "Node.js/TypeScript", "Cloud (AWS/GCP)"],
+    description:
+      "Lead the development of scalable web applications using React, Node.js, and cloud technologies.",
+    requirements: [
+      "5+ years experience",
+      "React/Next.js expert",
+      "Node.js/TypeScript",
+      "Cloud (AWS/GCP)",
+    ],
   },
   {
     id: "ai-ml-engineer",
@@ -32,7 +38,12 @@ const positions: Position[] = [
     location: "Remote",
     type: "Full-time",
     description: "Build intelligent systems and AI agents that transform how businesses operate.",
-    requirements: ["3+ years ML experience", "Python/TensorFlow", "LLM experience", "Production ML systems"],
+    requirements: [
+      "3+ years ML experience",
+      "Python/TensorFlow",
+      "LLM experience",
+      "Production ML systems",
+    ],
   },
   {
     id: "ui-ux-designer",
@@ -50,7 +61,12 @@ const positions: Position[] = [
     location: "Remote",
     type: "Full-time",
     description: "Build and maintain robust infrastructure that powers our applications at scale.",
-    requirements: ["3+ years DevOps", "Kubernetes/Docker", "CI/CD pipelines", "Infrastructure as Code"],
+    requirements: [
+      "3+ years DevOps",
+      "Kubernetes/Docker",
+      "CI/CD pipelines",
+      "Infrastructure as Code",
+    ],
   },
   {
     id: "product-manager",
@@ -59,7 +75,12 @@ const positions: Position[] = [
     location: "Remote / Hybrid",
     type: "Full-time",
     description: "Drive product strategy and execution for cutting-edge digital products.",
-    requirements: ["4+ years PM experience", "Technical background", "Agile methodology", "B2B SaaS experience"],
+    requirements: [
+      "4+ years PM experience",
+      "Technical background",
+      "Agile methodology",
+      "B2B SaaS experience",
+    ],
   },
   {
     id: "mobile-developer",
@@ -68,7 +89,12 @@ const positions: Position[] = [
     location: "Remote",
     type: "Full-time",
     description: "Build high-performance mobile applications for iOS and Android platforms.",
-    requirements: ["4+ years mobile dev", "React Native/Flutter", "Native iOS/Android", "App Store deployment"],
+    requirements: [
+      "4+ years mobile dev",
+      "React Native/Flutter",
+      "Native iOS/Android",
+      "App Store deployment",
+    ],
   },
 ];
 
@@ -93,11 +119,9 @@ export function OpenPositions() {
       id="positions"
       ref={ref}
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #05070B 0%, #0A111C 50%, #05070B 100%)",
-      }}
+      style={{ background: "#080D14" }}
     >
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div
           className="mb-6 text-center md:mb-8"
@@ -107,14 +131,13 @@ export function OpenPositions() {
             transition: "all 0.8s ease",
           }}
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-primary md:text-sm">
+          <p className="text-primary mb-3 text-xs font-semibold uppercase tracking-wider md:text-sm">
             Open Positions
           </p>
-          <h2 className="heading-2 mb-3 font-bold text-white md:mb-4">
-            Join Our Team
-          </h2>
+          <h2 className="heading-2 mb-3 font-bold text-white md:mb-4">Join Our Team</h2>
           <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
-            We're always looking for talented individuals to join our mission. Explore our open positions and find your next adventure.
+            We're always looking for talented individuals to join our mission. Explore our open
+            positions and find your next adventure.
           </p>
         </div>
 
@@ -135,7 +158,7 @@ export function OpenPositions() {
               placeholder="Search positions..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-12 pr-4 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+              className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 py-2.5 pl-12 pr-4 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
             />
           </div>
 
@@ -162,7 +185,7 @@ export function OpenPositions() {
           {filteredPositions.map((position, index) => (
             <div
               key={position.id}
-              className="group rounded-xl backdrop-blur-sm p-5 transition-all duration-300 hover:-translate-y-1 md:rounded-2xl md:p-6"
+              className="group rounded-xl p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 md:rounded-2xl md:p-6"
               style={{
                 background: "rgba(255, 255, 255, 0.05)",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -174,7 +197,7 @@ export function OpenPositions() {
               {/* Header */}
               <div className="mb-4">
                 <div className="mb-3 flex items-start justify-between">
-                  <h3 className="font-poppins text-xl font-bold text-white transition-colors group-hover:text-primary md:text-2xl">
+                  <h3 className="font-poppins group-hover:text-primary text-xl font-bold text-white transition-colors md:text-2xl">
                     {position.title}
                   </h3>
                 </div>
@@ -195,16 +218,20 @@ export function OpenPositions() {
               </div>
 
               {/* Description */}
-              <p className="mb-4 text-sm leading-relaxed text-white/70 md:text-base">{position.description}</p>
+              <p className="mb-4 text-sm leading-relaxed text-white/70 md:text-base">
+                {position.description}
+              </p>
 
               {/* Requirements */}
               <div className="mb-5 md:mb-6">
-                <p className="mb-2 text-xs font-semibold text-white/80 md:text-sm">Key Requirements:</p>
+                <p className="mb-2 text-xs font-semibold text-white/80 md:text-sm">
+                  Key Requirements:
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {position.requirements.map((req, i) => (
                     <span
                       key={i}
-                      className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary"
+                      className="border-primary/20 bg-primary/10 text-primary rounded-full border px-2.5 py-0.5 text-xs font-medium"
                     >
                       {req}
                     </span>
@@ -215,7 +242,7 @@ export function OpenPositions() {
               {/* Apply Button */}
               <Link
                 href={`/contact?position=${encodeURIComponent(position.title)}`}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-all hover:gap-2 md:text-base"
+                className="text-primary inline-flex items-center gap-1.5 text-sm font-semibold transition-all hover:gap-2 md:text-base"
               >
                 Apply Now
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -248,7 +275,8 @@ export function OpenPositions() {
             Don't see your perfect role?
           </h3>
           <p className="mx-auto mb-5 max-w-2xl text-sm text-white/70 md:mb-6 md:text-base">
-            We're always looking for exceptional talent. Send us your resume and tell us how you can contribute to ZephorTech.
+            We're always looking for exceptional talent. Send us your resume and tell us how you can
+            contribute to ZephorTech.
           </p>
           <Link
             href="/contact?subject=General%20Application"
@@ -266,4 +294,3 @@ export function OpenPositions() {
     </section>
   );
 }
-

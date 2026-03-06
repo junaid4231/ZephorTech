@@ -77,23 +77,9 @@ export function ContactMethods() {
       ref={ref}
       className="relative py-12 md:py-16"
       style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
+        background: "#080D14",
       }}
     >
-      {/* Background effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
       <div className="container-standard relative z-10">
         {/* Header */}
         <div
@@ -106,19 +92,7 @@ export function ContactMethods() {
           <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1] md:text-sm">
             Get in Touch
           </p>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-              }}
-            >
-              Multiple Ways to Connect
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">Multiple Ways to Connect</h2>
           <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">
             Choose the method that works best for you. We're available across multiple channels.
           </p>
@@ -164,7 +138,7 @@ export function ContactMethods() {
                 >
                   <item.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="mb-3 font-poppins text-lg font-bold text-white">{item.label}</h3>
+                <h3 className="font-poppins mb-3 text-lg font-bold text-white">{item.label}</h3>
                 <p className="mb-2 text-sm font-medium leading-relaxed text-white md:text-base">
                   {item.primary}
                 </p>
@@ -176,14 +150,24 @@ export function ContactMethods() {
               <a
                 key={index}
                 href={item.href}
-                target={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? undefined : "_blank"}
-                rel={item.href.startsWith("mailto:") || item.href.startsWith("tel:") ? undefined : "noopener noreferrer"}
+                target={
+                  item.href.startsWith("mailto:") || item.href.startsWith("tel:")
+                    ? undefined
+                    : "_blank"
+                }
+                rel={
+                  item.href.startsWith("mailto:") || item.href.startsWith("tel:")
+                    ? undefined
+                    : "noopener noreferrer"
+                }
                 className="block h-full"
               >
                 {Content}
               </a>
             ) : (
-              <div key={index} className="h-full">{Content}</div>
+              <div key={index} className="h-full">
+                {Content}
+              </div>
             );
           })}
         </div>

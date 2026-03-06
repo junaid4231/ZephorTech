@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react"; // Imported MapPin
 import HeroVideoBackground from "@/components/HeroVideoBackground";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
 const heroStats = [
-  { value: 500, suffix: "+", label: "Projects Delivered", delay: 500 },
-  { value: 200, suffix: "+", label: "Happy Clients", delay: 650 },
-  { value: 15, suffix: "+", label: "Years Experience", delay: 800 },
-  { value: 98, suffix: "%", label: "Client Satisfaction", delay: 950 },
+  { value: 70, suffix: "+", label: "Projects Delivered", delay: 500 },
+  { value: 40, suffix: "+", label: "Happy Clients", delay: 650 },
+  { value: 5, suffix: "+", label: "Years of Experience", delay: 800 },
+  { value: 99.9, suffix: "%", label: "Uptime SLA", delay: 950 },
 ];
 
 export default function Hero() {
@@ -27,15 +27,14 @@ export default function Hero() {
       style={{
         background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
         minHeight: "85vh",
-        paddingTop: "5rem", // Account for fixed header
+        paddingTop: "5rem",
       }}
     >
       {/* Video Background */}
       <HeroVideoBackground videoSrc="/videos/hero-video.mp4" posterSrc="/videos/hero-poster.jpg" />
 
-      {/* Enhanced Background Effects (Fallback when video not available) */}
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Animated gradient orbs */}
         <div
           className="absolute -right-40 -top-40 h-96 w-96 animate-pulse rounded-full opacity-25 blur-3xl"
           style={{
@@ -51,7 +50,6 @@ export default function Hero() {
             animationDelay: "2s",
           }}
         />
-        {/* Grid pattern overlay */}
         <div
           className="opacity-8 absolute inset-0"
           style={{
@@ -64,11 +62,10 @@ export default function Hero() {
         />
       </div>
 
-      {/* Dark Overlay for Text Readability */}
       <div
         className="absolute inset-0"
         style={{
-          background: "rgba(0, 0, 0, 0.4)",
+          background: "rgba(0, 0, 0, 0.5)", // Darkened slightly for premium feel
           zIndex: 1,
           pointerEvents: "none",
         }}
@@ -77,6 +74,20 @@ export default function Hero() {
 
       {/* Hero Content */}
       <div className="container-standard relative z-20 text-center">
+        {/* NEW: Dubai & Lahore Location Badge */}
+        <div
+          className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all duration-1000"
+          style={{
+            opacity: heroVisible ? 1 : 0,
+            transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+          }}
+        >
+          <MapPin className="h-3 w-3 text-blue-200" />
+          <span className="text-xs font-semibold uppercase tracking-wider text-blue-50">
+            Operating from Dubai & Lahore
+          </span>
+        </div>
+
         {/* Main Heading */}
         <h1
           id="hero-heading"
@@ -87,7 +98,7 @@ export default function Hero() {
             transitionDelay: "100ms",
           }}
         >
-          <span className="mb-1.5 block">Cutting-Edge</span>
+          <span className="mb-1.5 block">We Build Software</span>
           <span
             className="mb-1.5 block bg-clip-text text-transparent"
             style={{
@@ -97,27 +108,29 @@ export default function Hero() {
               filter: "drop-shadow(0 2px 8px rgba(0, 118, 209, 0.3))",
             }}
           >
-            IT Solutions
+            That Drives Results
           </span>
-          <span className="block">For Your Business</span>
+          <span className="mt-2 block text-4xl opacity-90 md:text-5xl">
+            For Ambitious Businesses
+          </span>
         </h1>
 
         {/* Subheading */}
         <p
-          className="subtitle mx-auto mb-8 max-w-2xl text-blue-50/95 transition-all duration-1000"
+          className="subtitle mx-auto mb-8 max-w-2xl transition-all duration-1000"
           style={{
             opacity: heroVisible ? 1 : 0,
             transform: heroVisible ? "translateY(0)" : "translateY(30px)",
             transitionDelay: "200ms",
+            color: "rgba(225, 242, 254, 0.9)",
           }}
         >
-          We deliver innovative technology solutions including web & mobile development, AI agents,
-          SaaS products, and comprehensive digital transformation services.
+          From scalable SaaS platforms to AI automation — we design, build, and ship digital
+          products that grow your business.
         </p>
 
         {/* CTA Buttons */}
         <div
-          // CHANGED: Reduced margin-bottom from mb-16 to mb-8
           className="mb-8 flex flex-col items-center justify-center transition-all duration-1000 sm:flex-row sm:flex-wrap"
           style={{
             gap: "var(--section-inner-gap)",
@@ -133,7 +146,7 @@ export default function Hero() {
               boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3), 0 0 16px rgba(255, 255, 255, 0.2)",
             }}
           >
-            <span className="relative z-10">Hire Us</span>
+            <span className="relative z-10">Start a Project</span>
             <ArrowRight className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
           </Link>
@@ -144,54 +157,78 @@ export default function Hero() {
               boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
             }}
           >
-            <span>See Our Work</span>
+            <span>View Our Work</span>
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 
-        {/* UPDATED: Stats with Animated Circular Progress & Rotating Ball */}
+        {/* Stats — Glowing Ring Circles */}
         <div
-          // CHANGED: Reduced top padding (pt-8) and added bottom padding (pb-16)
-          className="w-full max-w-6xl border-t border-white/10 pb-16 pt-8 transition-all duration-1000"
+          className="w-full pb-16 pt-8 transition-all duration-1000"
           style={{
             opacity: heroVisible ? 1 : 0,
             transform: heroVisible ? "translateY(0)" : "translateY(30px)",
             transitionDelay: "400ms",
           }}
         >
-          <div className="flex flex-wrap justify-center gap-10 md:gap-16">
-            {heroStats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center justify-center">
-                {/* Circle Container */}
-                <div className="relative flex h-40 w-40 items-center justify-center rounded-full sm:h-44 sm:w-44">
-                  {/* 1. Static Background Circle & Border */}
-                  <div className="absolute inset-0 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm" />
-
-                  {/* 2. The Spinner (Invisible container that rotates) */}
-                  <div className="spinner-rotate absolute inset-0 rounded-full">
-                    {/* The Ball (Positioned at the top of the rotating container) */}
-                    <div
-                      className="absolute -top-1.5 left-1/2 h-4 w-4 -translate-x-1/2 rounded-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]"
-                      style={{ top: "-6px" }}
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-14 lg:gap-20">
+            {heroStats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className="group relative flex flex-col items-center justify-center"
+                style={{
+                  opacity: heroVisible ? 1 : 0,
+                  transition: `all 0.6s ease ${400 + i * 100}ms`,
+                }}
+              >
+                {/* Outer glow ring */}
+                <div
+                  className="absolute rounded-full"
+                  style={{
+                    width: "clamp(120px, 14vw, 168px)",
+                    height: "clamp(120px, 14vw, 168px)",
+                    background: "transparent",
+                    border: "1px solid rgba(0,168,255,0.25)",
+                    boxShadow: "0 0 28px rgba(0,168,255,0.15), inset 0 0 28px rgba(0,118,209,0.08)",
+                    borderRadius: "50%",
+                    transition: "box-shadow 0.4s ease",
+                  }}
+                />
+                {/* Inner circle */}
+                <div
+                  className="relative flex flex-col items-center justify-center rounded-full transition-all duration-500 group-hover:scale-105"
+                  style={{
+                    width: "clamp(96px, 11vw, 136px)",
+                    height: "clamp(96px, 11vw, 136px)",
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    backdropFilter: "blur(12px)",
+                    boxShadow: "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
+                  }}
+                >
+                  {/* Number */}
+                  <div
+                    className="font-black leading-none tracking-tight text-white"
+                    style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)" }}
+                  >
+                    <AnimatedCounter
+                      target={stat.value}
+                      suffix={stat.suffix}
+                      duration={1800}
+                      startDelay={stat.delay}
+                      className="inline-block"
                     />
                   </div>
-
-                  {/* 3. Text Content (Absolute centered so it doesn't move) */}
-                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-2 text-center">
-                    <div className="text-3xl font-bold text-white sm:text-4xl">
-                      <AnimatedCounter
-                        target={stat.value}
-                        suffix={stat.suffix}
-                        duration={2000}
-                        startDelay={stat.delay}
-                        // Intentionally not passing label here to avoid duplication
-                        className="inline-block"
-                      />
-                    </div>
-                    <div className="mt-2 max-w-[90%] text-xs font-semibold uppercase tracking-wider text-blue-200/90 sm:text-sm">
-                      {stat.label}
-                    </div>
-                  </div>
+                </div>
+                {/* Label below circle */}
+                <div
+                  className="mt-3 text-center font-semibold uppercase text-blue-200/60"
+                  style={{
+                    fontSize: "clamp(9px, 0.9vw, 11px)",
+                    letterSpacing: "0.18em",
+                  }}
+                >
+                  {stat.label}
                 </div>
               </div>
             ))}
@@ -199,21 +236,7 @@ export default function Hero() {
         </div>
       </div>
 
-
       <style jsx>{`
-        .spinner-rotate {
-          animation: spin-circle 4s linear infinite;
-        }
-
-        @keyframes spin-circle {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
         @keyframes float {
           0%,
           100% {

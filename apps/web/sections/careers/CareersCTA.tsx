@@ -9,25 +9,8 @@ export function CareersCTA() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section
-      ref={ref}
-      className="relative py-24 overflow-hidden"
-      style={{
-        background: "linear-gradient(180deg, #0A111C 0%, #05070B 100%)",
-      }}
-    >
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, #0076D1 1px, transparent 1px),
-            linear-gradient(-45deg, #0076D1 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
-      <div className="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <section ref={ref} className="relative overflow-hidden py-24" style={{ background: "#0A0A0A" }}>
+      <div className="container relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <div
           className="text-center"
           style={{
@@ -41,11 +24,12 @@ export function CareersCTA() {
             Ready to Build the Future?
           </h2>
           <p className="mx-auto mb-4 max-w-2xl text-base leading-relaxed text-white/70 md:mb-5 md:text-lg">
-            Join a team that's pushing the boundaries of what's possible in technology. 
-            Submit your profile and we'll reach out when opportunities arise.
+            Join a team that's pushing the boundaries of what's possible in technology. Submit your
+            profile and we'll reach out when opportunities arise.
           </p>
           <p className="mx-auto mb-8 max-w-xl text-sm text-white/50 md:mb-10 md:text-base">
-            Even without active job postings, we're always building relationships with exceptional talent.
+            Even without active job postings, we're always building relationships with exceptional
+            talent.
           </p>
 
           {/* CTA Buttons */}
@@ -95,4 +79,3 @@ export function CareersCTA() {
     </section>
   );
 }
-

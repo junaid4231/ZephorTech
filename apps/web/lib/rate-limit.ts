@@ -1,3 +1,15 @@
+/**
+ * In-memory rate limiter.
+ *
+ * ⚠️  SERVERLESS WARNING: This Map is stored in module memory. On stateless/serverless
+ * platforms (Vercel, Railway, AWS Lambda) each function instance has its own isolated
+ * memory and the store resets on cold-starts. Requests routed to different instances
+ * bypass this limiter entirely.
+ *
+ * For production-grade rate limiting replace this with a Redis-backed solution,
+ * e.g. Upstash Redis with the @upstash/ratelimit SDK:
+ *   https://github.com/upstash/ratelimit
+ */
 const bucketStore = new Map<string, number[]>();
 
 type RateLimitOptions = {
@@ -24,5 +36,3 @@ export function isRateLimited(
   bucketStore.set(key, recent);
   return false;
 }
-
-

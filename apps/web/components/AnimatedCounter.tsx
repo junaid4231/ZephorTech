@@ -27,26 +27,29 @@ export function AnimatedCounter({
   label,
   labelClassName = "",
 }: AnimatedCounterProps) {
+  // Use a lenient rootMargin so hero-level counters (already in the viewport on load) fire immediately
   const { ref, isVisible } = useScrollAnimation({
-    threshold: 0.3,
-    rootMargin: "0px 0px -100px 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -20px 0px",
   });
 
+  // Pass isVisible as `enabled` — animation starts from 0 the moment the element enters the viewport
   const { formattedValue } = useAnimatedCounter(target, {
     duration,
     startDelay,
     decimals,
     suffix,
     prefix,
+    enabled: isVisible,
   });
 
-  // Only start animation when visible
-  const displayValue = isVisible ? formattedValue : prefix + "0" + suffix;
+  // formattedValue is always "prefix + 0 + suffix" until enabled, then counts up to target
+  const displayValue = formattedValue;
 
   return (
     <div ref={ref} className={className}>
       <div
-        className="mb-2 font-poppins font-bold text-white"
+        className="font-poppins mb-2 font-bold text-white"
         style={{
           fontSize: "clamp(1.875rem, 3vw + 0.5rem, 2.5rem)",
           lineHeight: "1.2",
@@ -69,4 +72,3 @@ export function AnimatedCounter({
     </div>
   );
 }
-

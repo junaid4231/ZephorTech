@@ -41,37 +41,9 @@ export function FeaturedCaseStudy({ caseStudy }: FeaturedCaseStudyProps) {
   return (
     <section
       className="relative overflow-hidden py-12 md:py-16"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      style={{ background: "#080D14" }}
       ref={sectionRef}
     >
-      {/* Enhanced Background Effects */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-      {/* Floating gradient orbs */}
-      <div
-        className="absolute right-0 top-20 h-96 w-96 animate-pulse rounded-full opacity-20 blur-[100px]"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
-      />
-      <div
-        className="absolute bottom-20 left-0 h-96 w-96 animate-pulse rounded-full opacity-20 blur-[100px]"
-        style={{
-          background: "radial-gradient(circle, #00A8FF 0%, transparent 70%)",
-          animationDelay: "1s",
-        }}
-      />
-
       <div className="container-standard relative z-10">
         {/* Enhanced Section Header */}
         <div
@@ -87,21 +59,7 @@ export function FeaturedCaseStudy({ caseStudy }: FeaturedCaseStudyProps) {
               Featured Project
             </p>
           </div>
-          <h2 className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                backgroundSize: "200% 200%",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-                animation: "gradient-shift 3s ease infinite",
-              }}
-            >
-              Success Stories
-            </span>
-          </h2>
+          <h2 className="heading-2 mb-3 text-white">Success Stories</h2>
           <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">
             Real results from real clients. See how we transform businesses through innovative
             technology solutions.
@@ -259,7 +217,7 @@ export function FeaturedCaseStudy({ caseStudy }: FeaturedCaseStudyProps) {
                       >
                         <div className="mb-3 flex items-center gap-2">
                           <div
-                            className="flex h-8 w-8 items-center justify-center rounded-lg transition-transform duration-300 group-hover/stat:scale-110 group-hover/stat:rotate-6"
+                            className="flex h-8 w-8 items-center justify-center rounded-lg transition-transform duration-300 group-hover/stat:rotate-6 group-hover/stat:scale-110"
                             style={{
                               background: `${statColor}20`,
                             }}
@@ -499,7 +457,9 @@ export function FeaturedCaseStudy({ caseStudy }: FeaturedCaseStudyProps) {
                       "{caseStudy.testimonial.quote.slice(0, 120)}..."
                     </p>
                     <div className="border-t border-white/10 pt-4">
-                      <div className="mb-1 font-bold text-white">{caseStudy.testimonial.author}</div>
+                      <div className="mb-1 font-bold text-white">
+                        {caseStudy.testimonial.author}
+                      </div>
                       <div className="text-xs text-gray-400">
                         {caseStudy.testimonial.role}, {caseStudy.testimonial.company}
                       </div>
@@ -528,7 +488,7 @@ export function FeaturedCaseStudy({ caseStudy }: FeaturedCaseStudyProps) {
         <div className="mt-10 text-center">
           <Link
             href="/case-studies"
-            className="group inline-flex items-center gap-2 rounded-lg border border-[#0076D1]/30 bg-[#0076D1]/10 px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:border-[#0076D1]/50 hover:bg-[#0076D1]/20 hover:gap-3"
+            className="group inline-flex items-center gap-2 rounded-lg border border-[#0076D1]/30 bg-[#0076D1]/10 px-6 py-2.5 text-sm font-semibold transition-all duration-300 hover:gap-3 hover:border-[#0076D1]/50 hover:bg-[#0076D1]/20"
             style={{ color: "#0076D1" }}
           >
             <span>View All Case Studies</span>

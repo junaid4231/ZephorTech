@@ -63,12 +63,14 @@ export const servicesData: ServiceDetail[] = [
     id: "1",
     slug: "web-development",
     title: "Web Development",
-    shortDescription: "Next-gen web applications with cutting-edge frameworks, blazing-fast performance, and seamless user experiences.",
-    fullDescription: "Transform your digital presence with our cutting-edge web development services. We build responsive, scalable, and high-performance web applications using modern technologies like React, Next.js, and TypeScript. From single-page applications to complex enterprise solutions, we deliver web experiences that drive engagement and conversions.",
+    shortDescription:
+      "Handcrafted web applications built on Next.js and React — from marketing sites to complex platforms — optimised for speed, SEO, and conversion.",
+    fullDescription:
+      "We build production-grade web applications that perform. Whether you need a fast marketing site, a customer portal, or a complex web platform, our engineering team delivers with Next.js, TypeScript, and modern tooling. Every project ships with responsive design, optimised Core Web Vitals, and the architecture to scale — no shortcuts.",
     iconName: "web",
     heroStats: {
-      projects: 150,
-      successRate: 98,
+      projects: 28,
+      successRate: 97,
       satisfaction: 97,
       deliveryTime: "4-8 weeks",
     },
@@ -108,13 +110,15 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "E-commerce",
         title: "Online Store Development",
-        description: "Complete e-commerce platforms with payment integration, inventory management, and admin dashboards.",
+        description:
+          "Complete e-commerce platforms with payment integration, inventory management, and admin dashboards.",
         examples: ["Product catalogs", "Shopping carts", "Payment processing", "Order management"],
       },
       {
         industry: "SaaS",
         title: "SaaS Platform Development",
-        description: "Scalable software-as-a-service platforms with subscription management and multi-tenancy.",
+        description:
+          "Scalable software-as-a-service platforms with subscription management and multi-tenancy.",
         examples: ["User dashboards", "Subscription billing", "API management", "Analytics"],
       },
       {
@@ -140,54 +144,64 @@ export const servicesData: ServiceDetail[] = [
       {
         step: 1,
         title: "Discovery & Planning",
-        description: "We analyze your requirements, target audience, and business goals to create a comprehensive project plan.",
+        description:
+          "We analyze your requirements, target audience, and business goals to create a comprehensive project plan.",
         duration: "1-2 weeks",
       },
       {
         step: 2,
         title: "Design & Prototyping",
-        description: "Our designers create wireframes and prototypes, ensuring optimal user experience and visual appeal.",
+        description:
+          "Our designers create wireframes and prototypes, ensuring optimal user experience and visual appeal.",
         duration: "2-3 weeks",
       },
       {
         step: 3,
         title: "Development",
-        description: "Agile development with regular sprints, code reviews, and continuous integration for quality assurance.",
+        description:
+          "Agile development with regular sprints, code reviews, and continuous integration for quality assurance.",
         duration: "4-6 weeks",
       },
       {
         step: 4,
         title: "Testing & QA",
-        description: "Comprehensive testing including unit tests, integration tests, and user acceptance testing.",
+        description:
+          "Comprehensive testing including unit tests, integration tests, and user acceptance testing.",
         duration: "1-2 weeks",
       },
       {
         step: 5,
         title: "Deployment & Launch",
-        description: "Smooth deployment to production with monitoring, documentation, and post-launch support.",
+        description:
+          "Smooth deployment to production with monitoring, documentation, and post-launch support.",
         duration: "1 week",
       },
     ],
     faq: [
       {
         question: "What technologies do you use for web development?",
-        answer: "We use modern frameworks like React, Next.js, Vue.js, and Angular for frontend, and Node.js, Python, and various databases for backend. We choose the best technology stack based on your project requirements.",
+        answer:
+          "We use modern frameworks like React, Next.js, Vue.js, and Angular for frontend, and Node.js, Python, and various databases for backend. We choose the best technology stack based on your project requirements.",
       },
       {
         question: "How long does it take to develop a web application?",
-        answer: "Development time varies based on complexity. A simple website takes 4-6 weeks, while complex applications can take 8-12 weeks. We provide detailed timelines during the planning phase.",
+        answer:
+          "Development time varies based on complexity. A simple website takes 4-6 weeks, while complex applications can take 8-12 weeks. We provide detailed timelines during the planning phase.",
       },
       {
         question: "Do you provide ongoing maintenance and support?",
-        answer: "Yes, we offer comprehensive maintenance packages including security updates, bug fixes, performance optimization, and feature enhancements.",
+        answer:
+          "Yes, we offer comprehensive maintenance packages including security updates, bug fixes, performance optimization, and feature enhancements.",
       },
       {
         question: "Can you integrate with existing systems?",
-        answer: "Absolutely! We have extensive experience integrating web applications with CRMs, payment gateways, third-party APIs, and legacy systems.",
+        answer:
+          "Absolutely! We have extensive experience integrating web applications with CRMs, payment gateways, third-party APIs, and legacy systems.",
       },
       {
         question: "What is your pricing model?",
-        answer: "We offer flexible pricing models including fixed-price projects, time & materials, and dedicated team options. Contact us for a customized quote based on your requirements.",
+        answer:
+          "We offer flexible pricing models including fixed-price projects, time & materials, and dedicated team options. Contact us for a customized quote based on your requirements.",
       },
     ],
     relatedServices: ["mobile-apps", "saas", "ecommerce"],
@@ -204,14 +218,16 @@ export const servicesData: ServiceDetail[] = [
     id: "2",
     slug: "mobile-apps",
     title: "Mobile Apps",
-    shortDescription: "Native and cross-platform mobile solutions that deliver exceptional experiences across iOS and Android.",
-    fullDescription: "Create powerful mobile applications that engage users and drive business growth. We develop native iOS and Android apps, as well as cross-platform solutions using React Native and Flutter. Our mobile apps are optimized for performance, user experience, and app store success.",
+    shortDescription:
+      "Cross-platform iOS and Android apps built with React Native — native feel, shared codebase, faster delivery and lower cost.",
+    fullDescription:
+      "We develop mobile applications that feel native and perform reliably at scale. Using React Native, we build once and deploy to both iOS and Android — cutting development time without sacrificing quality. From MVP to production, our mobile projects ship with clean architecture, offline support, and the deep OS integrations users expect.",
     iconName: "mobile",
     heroStats: {
-      projects: 120,
+      projects: 16,
       successRate: 96,
-      satisfaction: 98,
-      deliveryTime: "6-10 weeks",
+      satisfaction: 97,
+      deliveryTime: "8-14 weeks",
     },
     features: [
       {
@@ -249,13 +265,15 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "Healthcare",
         title: "Healthcare Apps",
-        description: "Patient management, telemedicine, and health tracking applications with HIPAA compliance.",
+        description:
+          "Patient management, telemedicine, and health tracking applications with HIPAA compliance.",
         examples: ["Patient portals", "Telemedicine", "Health tracking", "Appointment scheduling"],
       },
       {
         industry: "Finance",
         title: "FinTech Applications",
-        description: "Secure banking, payment, and financial management apps with advanced security.",
+        description:
+          "Secure banking, payment, and financial management apps with advanced security.",
         examples: ["Mobile banking", "Payment apps", "Investment tracking", "Budget management"],
       },
       {
@@ -281,13 +299,15 @@ export const servicesData: ServiceDetail[] = [
       {
         step: 1,
         title: "Strategy & Research",
-        description: "Market research, competitor analysis, and defining app strategy and target audience.",
+        description:
+          "Market research, competitor analysis, and defining app strategy and target audience.",
         duration: "1-2 weeks",
       },
       {
         step: 2,
         title: "UI/UX Design",
-        description: "Creating wireframes, prototypes, and pixel-perfect designs following platform guidelines.",
+        description:
+          "Creating wireframes, prototypes, and pixel-perfect designs following platform guidelines.",
         duration: "2-3 weeks",
       },
       {
@@ -299,32 +319,38 @@ export const servicesData: ServiceDetail[] = [
       {
         step: 4,
         title: "Testing & QA",
-        description: "Comprehensive testing on multiple devices, OS versions, and user acceptance testing.",
+        description:
+          "Comprehensive testing on multiple devices, OS versions, and user acceptance testing.",
         duration: "1-2 weeks",
       },
       {
         step: 5,
         title: "Launch & Optimization",
-        description: "App store submission, ASO optimization, and post-launch monitoring and updates.",
+        description:
+          "App store submission, ASO optimization, and post-launch monitoring and updates.",
         duration: "1-2 weeks",
       },
     ],
     faq: [
       {
         question: "Native vs Cross-Platform: Which is better?",
-        answer: "Native apps offer best performance and platform-specific features. Cross-platform (React Native/Flutter) is faster to develop and maintain. We recommend based on your requirements, budget, and timeline.",
+        answer:
+          "Native apps offer best performance and platform-specific features. Cross-platform (React Native/Flutter) is faster to develop and maintain. We recommend based on your requirements, budget, and timeline.",
       },
       {
         question: "How much does mobile app development cost?",
-        answer: "Costs vary based on complexity, features, and platform. Simple apps start at $15K, while complex apps can range from $50K-$200K+. We provide detailed quotes after understanding your requirements.",
+        answer:
+          "Costs vary based on complexity, features, and platform. Simple apps start at $15K, while complex apps can range from $50K-$200K+. We provide detailed quotes after understanding your requirements.",
       },
       {
         question: "Do you handle app store submissions?",
-        answer: "Yes, we handle complete app store submission process for both iOS App Store and Google Play Store, including ASO optimization.",
+        answer:
+          "Yes, we handle complete app store submission process for both iOS App Store and Google Play Store, including ASO optimization.",
       },
       {
         question: "Can you update existing mobile apps?",
-        answer: "Absolutely! We can update, maintain, and enhance existing mobile applications with new features and improvements.",
+        answer:
+          "Absolutely! We can update, maintain, and enhance existing mobile applications with new features and improvements.",
       },
     ],
     relatedServices: ["web-development", "cloud-devops"],
@@ -342,13 +368,15 @@ export const servicesData: ServiceDetail[] = [
     id: "3",
     slug: "ai-agents",
     title: "AI Agents",
-    shortDescription: "Intelligent automation powered by advanced AI to revolutionize your business processes and workflows.",
-    fullDescription: "Leverage the power of artificial intelligence to automate processes, enhance decision-making, and create intelligent solutions. Our AI agents use machine learning, natural language processing, and computer vision to solve complex business challenges.",
+    shortDescription:
+      "Practical AI integrations — chatbots, automation workflows, and data pipelines — built on OpenAI and LangChain for real business outcomes.",
+    fullDescription:
+      "We build AI solutions grounded in real business problems, not demos. Our AI projects use OpenAI, LangChain, and custom-trained models to automate workflows, classify data, answer customer queries, and surface insights from unstructured content. We handle data preparation, integration with existing systems, and deployment — from first prototype to production-ready.",
     iconName: "ai",
     heroStats: {
-      projects: 80,
-      successRate: 94,
-      satisfaction: 96,
+      projects: 7,
+      successRate: 93,
+      satisfaction: 95,
       deliveryTime: "8-12 weeks",
     },
     features: [
@@ -387,14 +415,25 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "Customer Service",
         title: "AI Chatbots",
-        description: "Intelligent chatbots for 24/7 customer support with natural language understanding.",
-        examples: ["Customer support", "FAQ automation", "Lead qualification", "Appointment scheduling"],
+        description:
+          "Intelligent chatbots for 24/7 customer support with natural language understanding.",
+        examples: [
+          "Customer support",
+          "FAQ automation",
+          "Lead qualification",
+          "Appointment scheduling",
+        ],
       },
       {
         industry: "E-commerce",
         title: "Recommendation Engines",
         description: "Personalized product recommendations based on user behavior and preferences.",
-        examples: ["Product suggestions", "Cross-selling", "Personalized content", "Price optimization"],
+        examples: [
+          "Product suggestions",
+          "Cross-selling",
+          "Personalized content",
+          "Price optimization",
+        ],
       },
       {
         industry: "Healthcare",
@@ -406,7 +445,12 @@ export const servicesData: ServiceDetail[] = [
         industry: "Finance",
         title: "Fraud Detection",
         description: "Real-time fraud detection and risk assessment using ML algorithms.",
-        examples: ["Transaction monitoring", "Risk scoring", "Anomaly detection", "Compliance automation"],
+        examples: [
+          "Transaction monitoring",
+          "Risk scoring",
+          "Anomaly detection",
+          "Compliance automation",
+        ],
       },
     ],
     techStack: {
@@ -450,19 +494,23 @@ export const servicesData: ServiceDetail[] = [
     faq: [
       {
         question: "What types of AI solutions do you build?",
-        answer: "We build chatbots, recommendation engines, predictive analytics, computer vision solutions, process automation, and custom ML models tailored to your business needs.",
+        answer:
+          "We build chatbots, recommendation engines, predictive analytics, computer vision solutions, process automation, and custom ML models tailored to your business needs.",
       },
       {
         question: "Do I need large datasets for AI projects?",
-        answer: "It depends on the use case. Some solutions work with existing data, while others may require data collection. We assess your data situation during the discovery phase.",
+        answer:
+          "It depends on the use case. Some solutions work with existing data, while others may require data collection. We assess your data situation during the discovery phase.",
       },
       {
         question: "How accurate are your AI models?",
-        answer: "We aim for high accuracy (90%+) depending on the use case. We provide accuracy metrics and continuously improve models based on real-world performance.",
+        answer:
+          "We aim for high accuracy (90%+) depending on the use case. We provide accuracy metrics and continuously improve models based on real-world performance.",
       },
       {
         question: "Can AI solutions integrate with our existing systems?",
-        answer: "Yes, we design AI solutions to integrate seamlessly with your existing software, databases, and workflows through APIs and custom integrations.",
+        answer:
+          "Yes, we design AI solutions to integrate seamlessly with your existing software, databases, and workflows through APIs and custom integrations.",
       },
     ],
     relatedServices: ["web-development", "saas"],
@@ -479,13 +527,15 @@ export const servicesData: ServiceDetail[] = [
     id: "4",
     slug: "saas",
     title: "SaaS Solutions",
-    shortDescription: "Scalable cloud-native platforms designed to grow with your business and adapt to market demands.",
-    fullDescription: "Build and launch successful Software-as-a-Service platforms with our comprehensive SaaS development services. From architecture design to subscription management, we create scalable, secure, and user-friendly SaaS applications that drive recurring revenue.",
+    shortDescription:
+      "Full-stack SaaS platform development — multi-tenant architecture, Stripe billing, and the infrastructure to grow from launch to scale.",
+    fullDescription:
+      "We design and build SaaS platforms from the ground up. That means scalable multi-tenant architecture on cloud infrastructure, subscription billing via Stripe, a polished onboarding experience, and an admin dashboard your team will actually use. We've built SaaS for B2B and B2C use cases, and we know what separates products that retain customers from those that don't.",
     iconName: "saas",
     heroStats: {
-      projects: 90,
-      successRate: 97,
-      satisfaction: 96,
+      projects: 11,
+      successRate: 96,
+      satisfaction: 97,
       deliveryTime: "10-16 weeks",
     },
     features: [
@@ -530,7 +580,8 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "Healthcare",
         title: "Healthcare SaaS",
-        description: "HIPAA-compliant platforms for telemedicine, patient management, and medical records.",
+        description:
+          "HIPAA-compliant platforms for telemedicine, patient management, and medical records.",
         examples: ["Telemedicine", "EHR systems", "Practice management", "Medical billing"],
       },
       {
@@ -543,7 +594,12 @@ export const servicesData: ServiceDetail[] = [
         industry: "Finance",
         title: "FinTech SaaS",
         description: "Financial management, accounting, and payment processing platforms.",
-        examples: ["Accounting software", "Payment processing", "Financial planning", "Invoice management"],
+        examples: [
+          "Accounting software",
+          "Payment processing",
+          "Financial planning",
+          "Invoice management",
+        ],
       },
     ],
     techStack: {
@@ -587,19 +643,23 @@ export const servicesData: ServiceDetail[] = [
     faq: [
       {
         question: "What is included in SaaS development?",
-        answer: "SaaS development includes architecture design, frontend/backend development, subscription billing, user management, API development, security implementation, and cloud infrastructure setup.",
+        answer:
+          "SaaS development includes architecture design, frontend/backend development, subscription billing, user management, API development, security implementation, and cloud infrastructure setup.",
       },
       {
         question: "How do you handle subscription billing?",
-        answer: "We integrate with payment processors like Stripe, PayPal, or custom solutions, implementing flexible pricing tiers, usage-based billing, and automated invoicing.",
+        answer:
+          "We integrate with payment processors like Stripe, PayPal, or custom solutions, implementing flexible pricing tiers, usage-based billing, and automated invoicing.",
       },
       {
         question: "Can you migrate existing software to SaaS?",
-        answer: "Yes, we can help migrate existing applications to SaaS model, including architecture redesign, multi-tenancy implementation, and cloud migration.",
+        answer:
+          "Yes, we can help migrate existing applications to SaaS model, including architecture redesign, multi-tenancy implementation, and cloud migration.",
       },
       {
         question: "What about data security and compliance?",
-        answer: "We implement enterprise-grade security including data encryption, access controls, regular security audits, and help achieve compliance (SOC 2, GDPR, HIPAA) as needed.",
+        answer:
+          "We implement enterprise-grade security including data encryption, access controls, regular security audits, and help achieve compliance (SOC 2, GDPR, HIPAA) as needed.",
       },
     ],
     relatedServices: ["web-development", "cloud-devops", "ai-agents"],
@@ -616,12 +676,14 @@ export const servicesData: ServiceDetail[] = [
     id: "5",
     slug: "ecommerce",
     title: "E-commerce",
-    shortDescription: "Complete digital commerce ecosystems with advanced payment systems and intelligent inventory management.",
-    fullDescription: "Build powerful e-commerce platforms that drive sales and provide exceptional shopping experiences. We develop custom e-commerce solutions and work with platforms like Shopify, WooCommerce, and Magento to create online stores that convert visitors into customers.",
+    shortDescription:
+      "Custom online stores and marketplace platforms — streamlined checkout, regional payment gateways, and inventory automation that converts.",
+    fullDescription:
+      "We build e-commerce platforms that turn browsers into buyers. Whether launching on Shopify, building a custom storefront, or creating a multi-vendor marketplace, we focus on the details that drive conversion: fast product pages, frictionless checkout, regional payment gateway support, and a backend your team can manage independently.",
     iconName: "ecommerce",
     heroStats: {
-      projects: 110,
-      successRate: 95,
+      projects: 12,
+      successRate: 96,
       satisfaction: 97,
       deliveryTime: "6-10 weeks",
     },
@@ -667,20 +729,31 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "B2B",
         title: "B2B E-commerce",
-        description: "Wholesale platforms with custom pricing, bulk orders, and account management.",
+        description:
+          "Wholesale platforms with custom pricing, bulk orders, and account management.",
         examples: ["Bulk ordering", "Custom pricing", "Account portals", "Quote management"],
       },
       {
         industry: "Marketplace",
         title: "Multi-Vendor Marketplaces",
         description: "Platforms connecting multiple sellers with buyers in one marketplace.",
-        examples: ["Vendor management", "Commission system", "Multi-seller support", "Rating system"],
+        examples: [
+          "Vendor management",
+          "Commission system",
+          "Multi-seller support",
+          "Rating system",
+        ],
       },
       {
         industry: "Subscription",
         title: "Subscription Commerce",
         description: "Recurring product subscriptions with flexible billing and management.",
-        examples: ["Subscription plans", "Recurring billing", "Subscription management", "Auto-renewal"],
+        examples: [
+          "Subscription plans",
+          "Recurring billing",
+          "Subscription management",
+          "Auto-renewal",
+        ],
       },
     ],
     techStack: {
@@ -693,7 +766,8 @@ export const servicesData: ServiceDetail[] = [
       {
         step: 1,
         title: "Store Planning",
-        description: "Defining product catalog, payment methods, shipping, and business requirements.",
+        description:
+          "Defining product catalog, payment methods, shipping, and business requirements.",
         duration: "1-2 weeks",
       },
       {
@@ -724,19 +798,23 @@ export const servicesData: ServiceDetail[] = [
     faq: [
       {
         question: "Which e-commerce platform is best?",
-        answer: "It depends on your needs. Shopify is great for quick setup, WooCommerce offers flexibility, and custom solutions provide complete control. We recommend based on your requirements.",
+        answer:
+          "It depends on your needs. Shopify is great for quick setup, WooCommerce offers flexibility, and custom solutions provide complete control. We recommend based on your requirements.",
       },
       {
         question: "Do you handle payment gateway integration?",
-        answer: "Yes, we integrate with major payment gateways including Stripe, PayPal, Square, and regional payment providers based on your location and needs.",
+        answer:
+          "Yes, we integrate with major payment gateways including Stripe, PayPal, Square, and regional payment providers based on your location and needs.",
       },
       {
         question: "Can you migrate from one platform to another?",
-        answer: "Absolutely! We can migrate your store, products, orders, and customer data from any platform to another with minimal downtime.",
+        answer:
+          "Absolutely! We can migrate your store, products, orders, and customer data from any platform to another with minimal downtime.",
       },
       {
         question: "What about inventory management?",
-        answer: "We integrate with inventory management systems, implement real-time stock tracking, automated reordering, and warehouse management solutions.",
+        answer:
+          "We integrate with inventory management systems, implement real-time stock tracking, automated reordering, and warehouse management solutions.",
       },
     ],
     relatedServices: ["web-development", "mobile-apps"],
@@ -753,12 +831,14 @@ export const servicesData: ServiceDetail[] = [
     id: "6",
     slug: "cloud-devops",
     title: "Cloud & DevOps",
-    shortDescription: "Enterprise-grade infrastructure with automated CI/CD pipelines and containerized deployments.",
-    fullDescription: "Optimize your infrastructure with our cloud and DevOps services. We design, deploy, and manage scalable cloud architectures, implement CI/CD pipelines, and ensure your applications run smoothly, securely, and efficiently.",
+    shortDescription:
+      "Cloud infrastructure setup, CI/CD pipelines, and container deployments — so your applications ship reliably and your team deploys with confidence.",
+    fullDescription:
+      "We architect and manage cloud infrastructure that works reliably and stays secure. From setting up your first CI/CD pipeline to migrating a legacy system to Kubernetes, our DevOps work reduces deployment risk, cuts infrastructure costs, and gives your team full visibility into production. We work across AWS, Azure, and GCP.",
     iconName: "cloud",
     heroStats: {
-      projects: 100,
-      successRate: 99,
+      projects: 9,
+      successRate: 98,
       satisfaction: 98,
       deliveryTime: "2-6 weeks",
     },
@@ -861,19 +941,23 @@ export const servicesData: ServiceDetail[] = [
     faq: [
       {
         question: "Which cloud provider should I choose?",
-        answer: "AWS, Azure, and Google Cloud all have strengths. We recommend based on your requirements, existing tools, budget, and geographic needs. We're certified in all major platforms.",
+        answer:
+          "AWS, Azure, and Google Cloud all have strengths. We recommend based on your requirements, existing tools, budget, and geographic needs. We're certified in all major platforms.",
       },
       {
         question: "What is included in DevOps services?",
-        answer: "DevOps includes CI/CD pipeline setup, infrastructure as code, containerization, monitoring, logging, security, and automation of deployment processes.",
+        answer:
+          "DevOps includes CI/CD pipeline setup, infrastructure as code, containerization, monitoring, logging, security, and automation of deployment processes.",
       },
       {
         question: "Can you help with existing infrastructure?",
-        answer: "Yes, we can optimize, migrate, or enhance existing infrastructure, improve CI/CD processes, and implement best practices.",
+        answer:
+          "Yes, we can optimize, migrate, or enhance existing infrastructure, improve CI/CD processes, and implement best practices.",
       },
       {
         question: "How do you ensure security?",
-        answer: "We implement security best practices including network security, access controls, encryption, regular security audits, and compliance with industry standards.",
+        answer:
+          "We implement security best practices including network security, access controls, encryption, regular security audits, and compliance with industry standards.",
       },
     ],
     relatedServices: ["web-development", "saas"],
@@ -890,13 +974,15 @@ export const servicesData: ServiceDetail[] = [
     id: "7",
     slug: "digital-marketing",
     title: "Digital Marketing",
-    shortDescription: "Data-driven marketing strategies that amplify your brand, engage audiences, and drive measurable growth.",
-    fullDescription: "Accelerate your business growth with comprehensive digital marketing strategies. We combine SEO, content marketing, social media, paid advertising, and email campaigns to build your brand presence, attract qualified leads, and maximize ROI across all digital channels.",
+    shortDescription:
+      "Performance-first digital marketing — SEO, paid media, and content — with transparent reporting and growth metrics that actually matter.",
+    fullDescription:
+      "We run marketing programmes built around data, not vanity metrics. Our campaigns cover search optimisation, Google and Meta paid advertising, content strategy, and email automation — all managed with clear attribution and monthly performance reporting. We focus on qualified traffic and cost-per-acquisition, not just reach.",
     iconName: "marketing",
     heroStats: {
-      projects: 200,
-      successRate: 96,
-      satisfaction: 98,
+      projects: 14,
+      successRate: 94,
+      satisfaction: 96,
       deliveryTime: "4-8 weeks",
     },
     features: [
@@ -935,14 +1021,21 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "E-commerce",
         title: "E-commerce Growth",
-        description: "Comprehensive marketing to drive traffic, conversions, and customer retention.",
+        description:
+          "Comprehensive marketing to drive traffic, conversions, and customer retention.",
         examples: ["Product promotion", "Shopping campaigns", "Retargeting", "Email automation"],
       },
       {
         industry: "B2B",
         title: "Lead Generation",
-        description: "Targeted campaigns to attract qualified leads and nurture them through the funnel.",
-        examples: ["LinkedIn campaigns", "Content marketing", "Lead magnets", "Marketing automation"],
+        description:
+          "Targeted campaigns to attract qualified leads and nurture them through the funnel.",
+        examples: [
+          "LinkedIn campaigns",
+          "Content marketing",
+          "Lead magnets",
+          "Marketing automation",
+        ],
       },
       {
         industry: "SaaS",
@@ -959,7 +1052,12 @@ export const servicesData: ServiceDetail[] = [
     ],
     techStack: {
       frontend: ["WordPress", "HubSpot", "Webflow", "Landing page builders"],
-      backend: ["Google Analytics", "Google Tag Manager", "CRM integrations", "Marketing automation"],
+      backend: [
+        "Google Analytics",
+        "Google Tag Manager",
+        "CRM integrations",
+        "Marketing automation",
+      ],
       tools: ["SEMrush", "Ahrefs", "Moz", "Google Ads", "Meta Business Suite", "Mailchimp"],
       cloud: ["Google Marketing Platform", "Facebook Ads Manager", "LinkedIn Campaign Manager"],
     },
@@ -967,25 +1065,29 @@ export const servicesData: ServiceDetail[] = [
       {
         step: 1,
         title: "Research & Strategy",
-        description: "Market analysis, competitor research, audience profiling, and strategic roadmap.",
+        description:
+          "Market analysis, competitor research, audience profiling, and strategic roadmap.",
         duration: "1-2 weeks",
       },
       {
         step: 2,
         title: "Campaign Setup",
-        description: "Channel setup, creative development, landing pages, and tracking implementation.",
+        description:
+          "Channel setup, creative development, landing pages, and tracking implementation.",
         duration: "2-3 weeks",
       },
       {
         step: 3,
         title: "Execution & Launch",
-        description: "Campaign launch, content publishing, ad deployment, and initial optimization.",
+        description:
+          "Campaign launch, content publishing, ad deployment, and initial optimization.",
         duration: "1-2 weeks",
       },
       {
         step: 4,
         title: "Optimization",
-        description: "A/B testing, performance analysis, budget reallocation, and continuous improvement.",
+        description:
+          "A/B testing, performance analysis, budget reallocation, and continuous improvement.",
         duration: "Ongoing",
       },
       {
@@ -998,23 +1100,28 @@ export const servicesData: ServiceDetail[] = [
     faq: [
       {
         question: "How long does it take to see results from digital marketing?",
-        answer: "SEO typically shows results in 3-6 months, while paid ads can generate immediate traffic. Content marketing builds momentum over 2-4 months. We provide regular reporting to track progress.",
+        answer:
+          "SEO typically shows results in 3-6 months, while paid ads can generate immediate traffic. Content marketing builds momentum over 2-4 months. We provide regular reporting to track progress.",
       },
       {
         question: "What is your pricing model for digital marketing?",
-        answer: "We offer monthly retainers based on scope and channels. Packages start at $2K/month for basic services and scale based on campaign complexity, ad spend management, and channels covered.",
+        answer:
+          "We offer monthly retainers based on scope and channels. Packages start at $2K/month for basic services and scale based on campaign complexity, ad spend management, and channels covered.",
       },
       {
         question: "Do you create content or just strategy?",
-        answer: "We offer both! Our services include strategy, content creation (blog posts, social posts, ad copy, videos), design, and execution across all channels.",
+        answer:
+          "We offer both! Our services include strategy, content creation (blog posts, social posts, ad copy, videos), design, and execution across all channels.",
       },
       {
         question: "Can you work with our existing marketing team?",
-        answer: "Absolutely! We can augment your team, provide specialized expertise, or handle specific channels while collaborating with your in-house marketers.",
+        answer:
+          "Absolutely! We can augment your team, provide specialized expertise, or handle specific channels while collaborating with your in-house marketers.",
       },
       {
         question: "How do you measure marketing success?",
-        answer: "We track KPIs aligned with your goals: traffic, leads, conversions, cost per acquisition, ROI, engagement rates, and revenue attribution through comprehensive analytics.",
+        answer:
+          "We track KPIs aligned with your goals: traffic, leads, conversions, cost per acquisition, ROI, engagement rates, and revenue attribution through comprehensive analytics.",
       },
     ],
     relatedServices: ["seo-performance", "web-development", "ecommerce"],
@@ -1031,13 +1138,15 @@ export const servicesData: ServiceDetail[] = [
     id: "8",
     slug: "seo-performance",
     title: "SEO & Performance",
-    shortDescription: "Technical optimization and strategic SEO that drives organic traffic, improves rankings, and maximizes conversions.",
-    fullDescription: "Dominate search rankings and deliver lightning-fast user experiences. Our technical SEO and performance optimization services combine search engine best practices with advanced performance tuning to increase organic visibility, improve Core Web Vitals, and drive qualified traffic that converts.",
+    shortDescription:
+      "Technical SEO and web performance audits that improve search rankings, Core Web Vitals, and organic traffic — backed by clear monthly reporting.",
+    fullDescription:
+      "We fix the technical and on-page factors holding your website back in search. Our work starts with a comprehensive audit of site structure, crawlability, page speed, and content gaps — then moves into implementation fast. We also optimise Core Web Vitals because page experience and SEO are the same problem. You get ranking improvements, faster pages, and transparent reporting with no jargon.",
     iconName: "seo",
     heroStats: {
-      projects: 180,
-      successRate: 97,
-      satisfaction: 96,
+      projects: 11,
+      successRate: 96,
+      satisfaction: 97,
       deliveryTime: "2-6 weeks",
     },
     features: [
@@ -1076,39 +1185,51 @@ export const servicesData: ServiceDetail[] = [
       {
         industry: "E-commerce",
         title: "Product SEO",
-        description: "Optimizing product pages, category pages, and shopping experiences for search engines.",
+        description:
+          "Optimizing product pages, category pages, and shopping experiences for search engines.",
         examples: ["Product optimization", "Category structure", "Rich snippets", "Shopping SEO"],
       },
       {
         industry: "SaaS",
         title: "SaaS SEO Strategy",
-        description: "Content-driven SEO for software companies to attract qualified organic traffic.",
+        description:
+          "Content-driven SEO for software companies to attract qualified organic traffic.",
         examples: ["Feature pages", "Comparison content", "Use case optimization", "Blog SEO"],
       },
       {
         industry: "Local Business",
         title: "Local SEO",
-        description: "Local search optimization, Google Business Profile, and geo-targeted content.",
+        description:
+          "Local search optimization, Google Business Profile, and geo-targeted content.",
         examples: ["Local citations", "GMB optimization", "Local content", "Map rankings"],
       },
       {
         industry: "Enterprise",
         title: "Enterprise SEO",
-        description: "Large-scale SEO for complex sites with thousands of pages and international presence.",
+        description:
+          "Large-scale SEO for complex sites with thousands of pages and international presence.",
         examples: ["International SEO", "Site migrations", "Technical audits", "Content at scale"],
       },
     ],
     techStack: {
       frontend: ["Next.js", "React", "Schema.org", "JSON-LD", "Semantic HTML"],
       backend: ["Node.js", "Python", "SEO APIs", "Analytics integrations"],
-      tools: ["Google Search Console", "SEMrush", "Ahrefs", "Screaming Frog", "Lighthouse", "PageSpeed Insights"],
+      tools: [
+        "Google Search Console",
+        "SEMrush",
+        "Ahrefs",
+        "Screaming Frog",
+        "Lighthouse",
+        "PageSpeed Insights",
+      ],
       cloud: ["Cloudflare", "CDN networks", "Google Cloud", "AWS CloudFront"],
     },
     process: [
       {
         step: 1,
         title: "SEO Audit",
-        description: "Comprehensive analysis of technical SEO, on-page factors, backlinks, and performance.",
+        description:
+          "Comprehensive analysis of technical SEO, on-page factors, backlinks, and performance.",
         duration: "1 week",
       },
       {
@@ -1120,42 +1241,50 @@ export const servicesData: ServiceDetail[] = [
       {
         step: 3,
         title: "Technical Implementation",
-        description: "Fixing technical issues, implementing schema markup, and performance optimization.",
+        description:
+          "Fixing technical issues, implementing schema markup, and performance optimization.",
         duration: "2-4 weeks",
       },
       {
         step: 4,
         title: "Content Optimization",
-        description: "On-page optimization, content updates, internal linking, and new content creation.",
+        description:
+          "On-page optimization, content updates, internal linking, and new content creation.",
         duration: "2-4 weeks",
       },
       {
         step: 5,
         title: "Monitoring & Iteration",
-        description: "Ongoing tracking, ranking monitoring, traffic analysis, and continuous optimization.",
+        description:
+          "Ongoing tracking, ranking monitoring, traffic analysis, and continuous optimization.",
         duration: "Ongoing",
       },
     ],
     faq: [
       {
         question: "How long does SEO take to show results?",
-        answer: "SEO is a long-term strategy. Technical fixes can show improvements in 2-4 weeks, while significant ranking gains typically take 3-6 months. Competitive industries may take longer.",
+        answer:
+          "SEO is a long-term strategy. Technical fixes can show improvements in 2-4 weeks, while significant ranking gains typically take 3-6 months. Competitive industries may take longer.",
       },
       {
         question: "What is the difference between technical SEO and on-page SEO?",
-        answer: "Technical SEO focuses on site architecture, speed, crawlability, and indexation. On-page SEO optimizes individual pages with keywords, content quality, meta tags, and user experience.",
+        answer:
+          "Technical SEO focuses on site architecture, speed, crawlability, and indexation. On-page SEO optimizes individual pages with keywords, content quality, meta tags, and user experience.",
       },
       {
         question: "Do you guarantee first-page rankings?",
-        answer: "We don't guarantee specific rankings (no one can), but we use proven strategies to improve visibility. We focus on increasing qualified organic traffic and conversions, which are measurable outcomes.",
+        answer:
+          "We don't guarantee specific rankings (no one can), but we use proven strategies to improve visibility. We focus on increasing qualified organic traffic and conversions, which are measurable outcomes.",
       },
       {
         question: "What are Core Web Vitals and why do they matter?",
-        answer: "Core Web Vitals (LCP, FID, CLS) are Google's user experience metrics. They directly impact SEO rankings and user satisfaction. We optimize all three to improve both rankings and conversions.",
+        answer:
+          "Core Web Vitals (LCP, FID, CLS) are Google's user experience metrics. They directly impact SEO rankings and user satisfaction. We optimize all three to improve both rankings and conversions.",
       },
       {
         question: "Can you help with SEO for a new website?",
-        answer: "Yes! We can build SEO foundations from day one: proper site structure, schema markup, optimized content, and performance best practices to accelerate organic growth.",
+        answer:
+          "Yes! We can build SEO foundations from day one: proper site structure, schema markup, optimized content, and performance best practices to accelerate organic growth.",
       },
     ],
     relatedServices: ["digital-marketing", "web-development", "saas"],
@@ -1200,4 +1329,3 @@ export function getRelatedServices(currentSlug: string, limit: number = 3): Serv
     .filter((service) => currentService.relatedServices.includes(service.slug))
     .slice(0, limit);
 }
-

@@ -19,13 +19,7 @@ const skillOptions = [
   "Blockchain",
 ];
 
-const experienceLevels = [
-  "0-1 years",
-  "1-3 years",
-  "3-5 years",
-  "5-10 years",
-  "10+ years",
-];
+const experienceLevels = ["0-1 years", "1-3 years", "3-5 years", "5-10 years", "10+ years"];
 
 interface FormData {
   fullName: string;
@@ -59,7 +53,9 @@ export function CareerApplicationForm() {
 
   const [dragActive, setDragActive] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -103,7 +99,11 @@ export function CareerApplicationForm() {
 
   const handleFile = (file: File) => {
     // Validate file type
-    const validTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    const validTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
     if (!validTypes.includes(file.type)) {
       setErrorMessage("Please upload a PDF or Word document");
       return;
@@ -138,7 +138,7 @@ export function CareerApplicationForm() {
       submitData.append("skills", JSON.stringify(formData.skills));
       submitData.append("experienceLevel", formData.experienceLevel);
       submitData.append("coverLetter", formData.coverLetter);
-      
+
       if (formData.resume) {
         submitData.append("resume", formData.resume);
       }
@@ -154,7 +154,7 @@ export function CareerApplicationForm() {
       }
 
       setSubmitStatus("success");
-      
+
       // Reset form
       setFormData({
         fullName: "",
@@ -177,10 +177,10 @@ export function CareerApplicationForm() {
 
   if (submitStatus === "success") {
     return (
-      <section className="px-4 py-12 md:py-16">
+      <section className="px-4 py-12 md:py-16" style={{ background: "#080D14" }}>
         <div className="container mx-auto max-w-2xl text-center">
           <div
-            className="rounded-xl backdrop-blur-sm p-5 md:rounded-2xl md:p-6"
+            className="rounded-xl p-5 backdrop-blur-sm md:rounded-2xl md:p-6"
             style={{
               background: "rgba(0, 118, 209, 0.1)",
               border: "1px solid rgba(0, 118, 209, 0.3)",
@@ -193,8 +193,8 @@ export function CareerApplicationForm() {
               Application Submitted Successfully!
             </h2>
             <p className="mb-6 text-sm text-white/70 md:mb-8 md:text-base">
-              Thank you for your interest in joining ZephorTech. We've received your profile and will review it carefully. 
-              We'll reach out when opportunities match your expertise.
+              Thank you for your interest in joining ZephorTech. We've received your profile and
+              will review it carefully. We'll reach out when opportunities match your expertise.
             </p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
               <a
@@ -220,7 +220,7 @@ export function CareerApplicationForm() {
   }
 
   return (
-    <section ref={ref} className="px-4 py-12 md:py-16">
+    <section ref={ref} className="px-4 py-12 md:py-16" style={{ background: "#0A0A0A" }}>
       <div className="container mx-auto max-w-4xl">
         {/* Header */}
         <div
@@ -231,26 +231,28 @@ export function CareerApplicationForm() {
             transition: "all 0.8s ease",
           }}
         >
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 backdrop-blur-sm md:mb-4 md:px-4 md:py-2"
+          <div
+            className="mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1.5 backdrop-blur-sm md:mb-4 md:px-4 md:py-2"
             style={{
               background: "rgba(0, 118, 209, 0.1)",
               border: "1px solid rgba(0, 118, 209, 0.3)",
             }}
           >
-            <span className="text-xs font-semibold text-primary md:text-sm">Talent Network Application</span>
+            <span className="text-primary text-xs font-semibold md:text-sm">
+              Talent Network Application
+            </span>
           </div>
-          <h1 className="heading-2 mb-3 font-bold text-white md:mb-4">
-            Submit Your Profile
-          </h1>
+          <h1 className="heading-2 mb-3 font-bold text-white md:mb-4">Submit Your Profile</h1>
           <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
-            Join our talent network and be the first to know when opportunities arise that match your expertise.
+            Join our talent network and be the first to know when opportunities arise that match
+            your expertise.
           </p>
         </div>
 
         {/* Form */}
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl backdrop-blur-sm p-5 md:rounded-2xl md:p-6"
+          className="rounded-xl p-5 backdrop-blur-sm md:rounded-2xl md:p-6"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
             border: "1px solid rgba(255, 255, 255, 0.08)",
@@ -261,7 +263,9 @@ export function CareerApplicationForm() {
         >
           {/* Personal Information */}
           <div className="mb-6 md:mb-8">
-            <h3 className="font-poppins mb-4 text-lg font-bold text-white md:mb-5 md:text-xl">Personal Information</h3>
+            <h3 className="font-poppins mb-4 text-lg font-bold text-white md:mb-5 md:text-xl">
+              Personal Information
+            </h3>
             <div className="grid gap-4 md:grid-cols-2 md:gap-5">
               <div>
                 <label className="mb-2 block text-xs font-medium text-white/80 md:text-sm">
@@ -273,7 +277,7 @@ export function CareerApplicationForm() {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+                  className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
                   placeholder="John Doe"
                 />
               </div>
@@ -287,7 +291,7 @@ export function CareerApplicationForm() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+                  className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
                   placeholder="john@example.com"
                 />
               </div>
@@ -300,7 +304,7 @@ export function CareerApplicationForm() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+                  className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
                   placeholder="+971521257034"
                 />
               </div>
@@ -313,11 +317,15 @@ export function CareerApplicationForm() {
                   value={formData.experienceLevel}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+                  className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all focus:outline-none focus:ring-1 md:text-base"
                 >
-                  <option value="" className="bg-gray-900">Select experience level</option>
+                  <option value="" className="bg-gray-900">
+                    Select experience level
+                  </option>
                   {experienceLevels.map((level) => (
-                    <option key={level} value={level} className="bg-gray-900">{level}</option>
+                    <option key={level} value={level} className="bg-gray-900">
+                      {level}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -326,7 +334,9 @@ export function CareerApplicationForm() {
 
           {/* Professional Links */}
           <div className="mb-6 md:mb-8">
-            <h3 className="font-poppins mb-4 text-lg font-bold text-white md:mb-5 md:text-xl">Professional Links</h3>
+            <h3 className="font-poppins mb-4 text-lg font-bold text-white md:mb-5 md:text-xl">
+              Professional Links
+            </h3>
             <div className="grid gap-4 md:grid-cols-2 md:gap-5">
               <div>
                 <label className="mb-2 block text-xs font-medium text-white/80 md:text-sm">
@@ -337,7 +347,7 @@ export function CareerApplicationForm() {
                   name="linkedinUrl"
                   value={formData.linkedinUrl}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+                  className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
                   placeholder="https://linkedin.com/in/johndoe"
                 />
               </div>
@@ -350,7 +360,7 @@ export function CareerApplicationForm() {
                   name="portfolioUrl"
                   value={formData.portfolioUrl}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+                  className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
                   placeholder="https://yourportfolio.com"
                 />
               </div>
@@ -359,7 +369,9 @@ export function CareerApplicationForm() {
 
           {/* Skills */}
           <div className="mb-6 md:mb-8">
-            <h3 className="font-poppins mb-3 text-lg font-bold text-white md:mb-4 md:text-xl">Skills & Expertise</h3>
+            <h3 className="font-poppins mb-3 text-lg font-bold text-white md:mb-4 md:text-xl">
+              Skills & Expertise
+            </h3>
             <p className="mb-3 text-xs text-white/60 md:mb-4 md:text-sm">Select all that apply</p>
             <div className="flex flex-wrap gap-2 md:gap-3">
               {skillOptions.map((skill) => (
@@ -384,7 +396,7 @@ export function CareerApplicationForm() {
             <h3 className="font-poppins mb-3 text-lg font-bold text-white md:mb-4 md:text-xl">
               Resume / CV <span className="text-red-400">*</span>
             </h3>
-            
+
             {!formData.resume ? (
               <div
                 onDragEnter={handleDrag}
@@ -401,7 +413,7 @@ export function CareerApplicationForm() {
                 <p className="mb-2 text-sm font-medium text-white/80 md:text-base">
                   Drag and drop your resume here, or
                 </p>
-                <label className="inline-block cursor-pointer rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:scale-105 md:text-base">
+                <label className="bg-primary inline-block cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all hover:scale-105 md:text-base">
                   Browse Files
                   <input
                     type="file"
@@ -417,9 +429,11 @@ export function CareerApplicationForm() {
               </div>
             ) : (
               <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-3 md:gap-4 md:p-4">
-                <FileText className="h-8 w-8 flex-shrink-0 text-primary md:h-10 md:w-10" />
+                <FileText className="text-primary h-8 w-8 flex-shrink-0 md:h-10 md:w-10" />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-white md:text-base">{formData.resume.name}</p>
+                  <p className="truncate text-sm font-medium text-white md:text-base">
+                    {formData.resume.name}
+                  </p>
                   <p className="text-xs text-white/40 md:text-sm">
                     {(formData.resume.size / 1024 / 1024).toFixed(2)} MB
                   </p>
@@ -437,7 +451,9 @@ export function CareerApplicationForm() {
 
           {/* Cover Letter */}
           <div className="mb-6 md:mb-8">
-            <h3 className="font-poppins mb-3 text-lg font-bold text-white md:mb-4 md:text-xl">Cover Letter</h3>
+            <h3 className="font-poppins mb-3 text-lg font-bold text-white md:mb-4 md:text-xl">
+              Cover Letter
+            </h3>
             <p className="mb-3 text-xs text-white/60 md:mb-4 md:text-sm">
               Tell us about yourself and why you'd be a great addition to ZephorTech
             </p>
@@ -446,7 +462,7 @@ export function CareerApplicationForm() {
               value={formData.coverLetter}
               onChange={handleChange}
               rows={5}
-              className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white placeholder:text-white/40 transition-all focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary md:text-base"
+              className="focus:border-primary focus:ring-primary w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
               placeholder="I'm passionate about..."
             />
           </div>
@@ -490,4 +506,3 @@ export function CareerApplicationForm() {
     </section>
   );
 }
-

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import {
-  ArrowRight,
+  ArrowUpRight,
   Brain,
   Cloud,
   Code,
@@ -14,11 +14,14 @@ import {
   TrendingUp,
   Palette,
   Wrench,
-  Database,
   Server,
   GitBranch,
   Layers,
   CheckCircle2,
+  Clock,
+  BarChart3,
+  Star,
+  ChevronRight,
 } from "lucide-react";
 import type { ServiceDetail } from "@/lib/services";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
@@ -43,9 +46,18 @@ interface ServiceCardData {
     cloud: string[];
   };
   benefits?: string[];
+  heroStats?: {
+    projects: number;
+    successRate: number;
+    satisfaction: number;
+    deliveryTime: string;
+  };
 }
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<
+  string,
+  React.ComponentType<{ className?: string; style?: React.CSSProperties }>
+> = {
   web: Globe,
   mobile: Smartphone,
   ai: Brain,
@@ -58,40 +70,40 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   maintenance: Wrench,
 };
 
-const gradientMap: Record<string, string> = {
-  web: "from-blue-500/70 via-cyan-500/80 to-blue-600/80",
-  mobile: "from-purple-500/70 via-pink-500/80 to-purple-600/80",
-  ai: "from-indigo-500/70 via-purple-500/80 to-indigo-600/80",
-  saas: "from-green-500/70 via-emerald-500/80 to-green-600/80",
-  ecommerce: "from-orange-500/70 via-red-500/80 to-orange-600/80",
-  cloud: "from-teal-500/70 via-cyan-500/80 to-teal-600/80",
-  marketing: "from-rose-500/70 via-pink-500/80 to-rose-600/80",
-  seo: "from-amber-500/70 via-yellow-500/80 to-amber-600/80",
-  uiux: "from-pink-500/70 via-purple-500/80 to-pink-600/80",
-  maintenance: "from-gray-500/70 via-slate-500/80 to-gray-600/80",
+const serviceAccents: Record<string, { color: string; glow: string; bg: string }> = {
+  web: { color: "#3B82F6", glow: "rgba(59,130,246,0.25)", bg: "rgba(59,130,246,0.08)" },
+  mobile: { color: "#A855F7", glow: "rgba(168,85,247,0.25)", bg: "rgba(168,85,247,0.08)" },
+  ai: { color: "#6366F1", glow: "rgba(99,102,241,0.25)", bg: "rgba(99,102,241,0.08)" },
+  saas: { color: "#10B981", glow: "rgba(16,185,129,0.25)", bg: "rgba(16,185,129,0.08)" },
+  ecommerce: { color: "#F59E0B", glow: "rgba(245,158,11,0.25)", bg: "rgba(245,158,11,0.08)" },
+  cloud: { color: "#06B6D4", glow: "rgba(6,182,212,0.25)", bg: "rgba(6,182,212,0.08)" },
+  marketing: { color: "#EC4899", glow: "rgba(236,72,153,0.25)", bg: "rgba(236,72,153,0.08)" },
+  seo: { color: "#F97316", glow: "rgba(249,115,22,0.25)", bg: "rgba(249,115,22,0.08)" },
+  uiux: { color: "#8B5CF6", glow: "rgba(139,92,246,0.25)", bg: "rgba(139,92,246,0.08)" },
+  maintenance: { color: "#64748B", glow: "rgba(100,116,139,0.25)", bg: "rgba(100,116,139,0.08)" },
+  default: { color: "#0076D1", glow: "rgba(0,118,209,0.25)", bg: "rgba(0,118,209,0.08)" },
 };
 
-// Tech colors - actual brand colors for technologies
+const getAccent = (iconName: string) => serviceAccents[iconName] || serviceAccents.default;
+
 const techColors: Record<string, string> = {
   React: "#61DAFB",
-  "Next.js": "#000000",
+  "Next.js": "#7C7C7C",
   TypeScript: "#3178C6",
   "Tailwind CSS": "#06B6D4",
   "Vue.js": "#4FC08D",
   Angular: "#DD0031",
   "Node.js": "#339933",
   Python: "#3776AB",
-  Express: "#000000",
+  Express: "#999999",
   FastAPI: "#009688",
   PostgreSQL: "#336791",
   MongoDB: "#47A248",
   Git: "#F05032",
   Docker: "#2496ED",
   Jest: "#C21325",
-  Webpack: "#8DD6F9",
   Vite: "#646CFF",
-  ESLint: "#4B32C3",
-  Vercel: "#000000",
+  Vercel: "#888888",
   AWS: "#FF9900",
   Azure: "#0078D4",
   Cloudflare: "#F38020",
@@ -100,99 +112,267 @@ const techColors: Record<string, string> = {
   Flutter: "#02569B",
   Swift: "#FA7343",
   Kotlin: "#7F52FF",
-  Ionic: "#3880FF",
   TensorFlow: "#FF6F00",
-  OpenAI: "#412991",
+  OpenAI: "#10A37F",
   LangChain: "#1C3C3C",
   PyTorch: "#EE4C2C",
   default: "#0076D1",
 };
 
-const techIconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  React: Code,
-  "Next.js": Code,
-  TypeScript: Code,
-  "Tailwind CSS": Layers,
-  "Vue.js": Code,
-  Angular: Code,
-  "Node.js": Server,
-  Python: Server,
-  Express: Server,
-  FastAPI: Server,
-  PostgreSQL: Database,
-  MongoDB: Database,
-  Git: GitBranch,
-  Docker: Cloud,
-  Jest: Code,
-  Webpack: Code,
-  Vite: Code,
-  ESLint: Code,
-  Vercel: Cloud,
-  AWS: Cloud,
-  Azure: Cloud,
-  Cloudflare: Cloud,
-  Netlify: Cloud,
-  "React Native": Smartphone,
-  Flutter: Smartphone,
-  Swift: Smartphone,
-  Kotlin: Smartphone,
-  Ionic: Smartphone,
-  TensorFlow: Brain,
-  OpenAI: Brain,
-  LangChain: Brain,
-  PyTorch: Brain,
-  default: Code,
-};
+const getTechColor = (t: string) => techColors[t] || techColors.default;
 
-const getTechIcon = (techName: string): React.ComponentType<{ className?: string }> => {
-  return techIconMap[techName] || techIconMap.default || Code;
-};
+// ─────────────────────────────────────────────────────────────────────────────
+// Detail Panel (shared between desktop and mobile layouts)
+// ─────────────────────────────────────────────────────────────────────────────
+function DetailPanel({
+  selectedService,
+  activeTechTab,
+  setActiveTechTab,
+  accent,
+  sectionVisible,
+  getAvailableCategories,
+}: {
+  selectedService: ServiceCardData;
+  activeTechTab: "frontend" | "backend" | "tools" | "cloud";
+  setActiveTechTab: (cat: "frontend" | "backend" | "tools" | "cloud") => void;
+  accent: { color: string; glow: string; bg: string };
+  sectionVisible: boolean;
+  getAvailableCategories: (
+    s: ServiceCardData | null
+  ) => Array<"frontend" | "backend" | "tools" | "cloud">;
+}) {
+  return (
+    <div
+      className="overflow-hidden rounded-2xl border transition-all duration-500"
+      style={{
+        opacity: sectionVisible ? 1 : 0,
+        transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+        transitionDelay: "200ms",
+        borderColor: accent.color + "35",
+        background: "rgba(255,255,255,0.02)",
+        backdropFilter: "blur(16px)",
+      }}
+    >
+      {/* Header band */}
+      <div
+        className="relative overflow-hidden px-7 py-6"
+        style={{ background: `linear-gradient(135deg, ${accent.bg}, ${accent.color}05)` }}
+      >
+        <div
+          className="absolute right-8 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full blur-3xl"
+          style={{ background: accent.glow }}
+        />
+        <div className="relative flex items-center gap-4">
+          <div
+            className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl transition-all duration-300"
+            style={{
+              background: accent.color + "22",
+              border: `1.5px solid ${accent.color}45`,
+              boxShadow: `0 4px 24px ${accent.glow}`,
+            }}
+          >
+            {React.createElement(iconMap[selectedService.iconName] || Globe, {
+              className: "h-7 w-7",
+              style: { color: accent.color } as React.CSSProperties,
+            })}
+          </div>
+          <div>
+            <h3 className="font-poppins text-2xl font-bold text-white">{selectedService.title}</h3>
+            {selectedService.heroStats && (
+              <p className="mt-0.5 text-xs text-white/40">
+                {selectedService.heroStats.projects}+ projects ·{" "}
+                {selectedService.heroStats.deliveryTime}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
 
-const getTechColor = (techName: string): string => {
-  return techColors[techName] || techColors.default;
-};
+      {/* Body */}
+      <div className="px-7 py-6">
+        {/* Stats row */}
+        {selectedService.heroStats && (
+          <div className="mb-7 grid grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.025]">
+            {[
+              {
+                icon: BarChart3,
+                label: "Projects Delivered",
+                value: `${selectedService.heroStats.projects}+`,
+              },
+              {
+                icon: Star,
+                label: "Success Rate",
+                value: `${selectedService.heroStats.successRate}%`,
+              },
+              {
+                icon: Clock,
+                label: "Typical Delivery",
+                value: selectedService.heroStats.deliveryTime,
+              },
+            ].map(({ icon: Icon, label, value }) => (
+              <div key={label} className="flex flex-col items-center py-5 text-center">
+                <Icon className="mb-2 h-4 w-4 opacity-50" style={{ color: accent.color }} />
+                <p className="text-2xl font-black text-white">{value}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-wider text-white/35">{label}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
+        {/* Description */}
+        <p className="mb-7 text-[15px] leading-relaxed text-white/70">
+          {selectedService.fullDescription || selectedService.description}
+        </p>
+
+        {/* Benefits */}
+        {selectedService.benefits && selectedService.benefits.length > 0 && (
+          <div className="mb-7">
+            <p
+              className="mb-3 text-[11px] font-bold uppercase tracking-widest"
+              style={{ color: accent.color }}
+            >
+              Key Benefits
+            </p>
+            <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {selectedService.benefits.slice(0, 6).map((benefit, idx) => (
+                <li key={idx} className="flex items-start gap-2.5">
+                  <CheckCircle2
+                    className="mt-0.5 h-4 w-4 flex-shrink-0"
+                    style={{ color: accent.color }}
+                  />
+                  <span className="text-sm leading-snug text-white/65">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Tech stack */}
+        {selectedService.techStack && (
+          <div className="mb-7">
+            <p
+              className="mb-3 text-[11px] font-bold uppercase tracking-widest"
+              style={{ color: accent.color }}
+            >
+              Technology Stack
+            </p>
+            {/* Category tabs */}
+            <div className="mb-3 flex flex-wrap gap-1.5">
+              {getAvailableCategories(selectedService).map((cat) => {
+                const CatIcon = {
+                  frontend: Layers,
+                  backend: Server,
+                  tools: GitBranch,
+                  cloud: Cloud,
+                }[cat];
+                const catLabel = {
+                  frontend: "Frontend",
+                  backend: "Backend",
+                  tools: "Tools",
+                  cloud: "Cloud",
+                }[cat];
+                const isActive = activeTechTab === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveTechTab(cat)}
+                    className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[11px] font-medium transition-all duration-200"
+                    style={{
+                      background: isActive ? accent.color + "20" : "rgba(255,255,255,0.04)",
+                      border: `1px solid ${isActive ? accent.color + "65" : "rgba(255,255,255,0.08)"}`,
+                      color: isActive ? "white" : "rgba(255,255,255,0.4)",
+                    }}
+                  >
+                    <CatIcon className="h-3 w-3" />
+                    {catLabel}
+                  </button>
+                );
+              })}
+            </div>
+            {/* Tech pills */}
+            <div className="flex flex-wrap gap-2">
+              {(selectedService.techStack[activeTechTab] || [])
+                .filter((t) => t !== "N/A")
+                .map((tech, idx) => {
+                  const tc = getTechColor(tech);
+                  return (
+                    <div
+                      key={idx}
+                      className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs text-white/80 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.1]"
+                    >
+                      <div
+                        className="h-1.5 w-1.5 flex-shrink-0 rounded-full"
+                        style={{ background: tc }}
+                      />
+                      {tech}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        )}
+
+        {/* CTA */}
+        <Link
+          href={`/services/${selectedService.slug}`}
+          className="group inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 sm:w-auto"
+          style={{
+            background: `linear-gradient(135deg, ${accent.color}BB 0%, ${accent.color} 100%)`,
+            boxShadow: `0 4px 24px ${accent.glow}`,
+          }}
+        >
+          Deep-Dive Into {selectedService.title}
+          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Main component
+// ─────────────────────────────────────────────────────────────────────────────
 export function InteractiveServices({
   services,
   title = "Explore Our Services",
-  subtitle = "Click on any service to learn more",
+  subtitle = "Select a service to explore capabilities, technology stack, and delivery timelines",
 }: InteractiveServicesProps) {
   const { ref: sectionRef, isVisible: sectionVisible } = useScrollAnimation({
-    threshold: 0.1,
+    threshold: 0.05,
     rootMargin: "0px 0px -50px 0px",
   });
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   const resolvedServices: ServiceCardData[] = services
-    .filter((service) => service && service.slug)
-    .map((service) => ({
-      id: service.slug,
-      iconName: service.iconName || "web",
-      title: service.title,
-      description: service.shortDescription || service.fullDescription || "",
-      slug: service.slug,
-      fullDescription: service.fullDescription,
-      techStack: service.techStack,
-      benefits: service.benefits,
+    .filter((s) => s && s.slug)
+    .map((s) => ({
+      id: s.slug,
+      iconName: s.iconName || "web",
+      title: s.title,
+      description: s.shortDescription || s.fullDescription || "",
+      slug: s.slug,
+      fullDescription: s.fullDescription,
+      techStack: s.techStack,
+      benefits: s.benefits,
+      heroStats: s.heroStats,
     }));
 
   const [selectedService, setSelectedService] = useState<ServiceCardData | null>(
     resolvedServices[0] || null
   );
-
   const [activeTechTab, setActiveTechTab] = useState<"frontend" | "backend" | "tools" | "cloud">(
     "frontend"
   );
 
-  // Get available tech categories for selected service
   const getAvailableCategories = useCallback(
     (service: ServiceCardData | null): Array<"frontend" | "backend" | "tools" | "cloud"> => {
       if (!service?.techStack) return [];
-      const categories: Array<"frontend" | "backend" | "tools" | "cloud"> = [];
-      if (service.techStack.frontend?.length > 0) categories.push("frontend");
-      if (service.techStack.backend?.length > 0) categories.push("backend");
-      if (service.techStack.tools?.length > 0) categories.push("tools");
-      if (service.techStack.cloud?.length > 0) categories.push("cloud");
-      return categories;
+      const cats: Array<"frontend" | "backend" | "tools" | "cloud"> = [];
+      if (service.techStack.frontend?.length > 0) cats.push("frontend");
+      if (service.techStack.backend?.length > 0) cats.push("backend");
+      if (service.techStack.tools?.length > 0) cats.push("tools");
+      if (service.techStack.cloud?.length > 0) cats.push("cloud");
+      return cats;
     },
     []
   );
@@ -201,9 +381,9 @@ export function InteractiveServices({
     if (resolvedServices.length > 0 && !selectedService) {
       setSelectedService(resolvedServices[0]);
     }
-  }, [resolvedServices, selectedService]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // Reset active tab when service changes
   useEffect(() => {
     if (selectedService) {
       const available = getAvailableCategories(selectedService);
@@ -215,328 +395,185 @@ export function InteractiveServices({
 
   const handleServiceClick = (service: ServiceCardData) => {
     setSelectedService(service);
-    // Set active tab to first available category
     const available = getAvailableCategories(service);
-    if (available.length > 0) {
-      setActiveTechTab(available[0]);
-    }
+    if (available.length > 0) setActiveTechTab(available[0]);
   };
+
+  const accent = selectedService ? getAccent(selectedService.iconName) : getAccent("default");
 
   return (
     <section
-      className="relative overflow-hidden py-16 md:py-20"
-      style={{
-        background: "linear-gradient(180deg, #0A0A0A 0%, #0F1419 50%, #0A0A0A 100%)",
-      }}
+      className="relative overflow-hidden py-16 md:py-24"
+      style={{ background: "#080D14" }}
       aria-labelledby="services-heading"
       ref={sectionRef}
     >
-      {/* Animated background */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, #0076D1 1px, transparent 1px),
-              linear-gradient(to bottom, #0076D1 1px, transparent 1px)
-            `,
-            backgroundSize: "40px 40px",
-          }}
-        />
-      </div>
-
-      {/* Floating gradient orbs */}
+      {/* Dot grid */}
       <div
-        className="absolute right-0 top-20 h-96 w-96 animate-pulse rounded-full opacity-20 blur-[100px]"
-        style={{ background: "radial-gradient(circle, #0076D1 0%, transparent 70%)" }}
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      {/* Ambient orbs — react to selected service */}
+      <div
+        className="pointer-events-none absolute -right-32 top-0 h-[600px] w-[600px] rounded-full blur-[120px] transition-all duration-1000"
+        style={{ background: `radial-gradient(circle, ${accent.glow} 0%, transparent 70%)` }}
       />
       <div
-        className="absolute bottom-20 left-0 h-96 w-96 animate-pulse rounded-full opacity-20 blur-[100px]"
-        style={{
-          background: "radial-gradient(circle, #00A8FF 0%, transparent 70%)",
-          animationDelay: "1s",
-        }}
+        className="pointer-events-none absolute -left-32 bottom-0 h-[400px] w-[400px] rounded-full opacity-40 blur-[100px]"
+        style={{ background: "radial-gradient(circle, rgba(0,118,209,0.12) 0%, transparent 70%)" }}
       />
 
       <div className="container-standard relative z-10">
         {/* Section Header */}
         <div
-          className="mb-8 text-center transition-all duration-1000 ease-out md:mb-10"
+          className="mb-12 text-center transition-all duration-700"
           style={{
             opacity: sectionVisible ? 1 : 0,
-            transform: sectionVisible ? "translateY(0)" : "translateY(20px)",
+            transform: sectionVisible ? "translateY(0)" : "translateY(24px)",
           }}
         >
-          <div className="mb-4 inline-flex items-center gap-2">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1]">
-              What We Offer
-            </p>
-          </div>
-          <h2 id="services-heading" className="heading-2 mb-3">
-            <span
-              className="bg-clip-text text-transparent"
-              style={{
-                backgroundImage: "linear-gradient(135deg, #004E8F 0%, #0076D1 50%, #00A8FF 100%)",
-                backgroundSize: "200% 200%",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                color: "transparent",
-                animation: "gradient-shift 3s ease infinite",
-              }}
-            >
-              {title}
-            </span>
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.25em] text-[#0076D1]">
+            What We Build
+          </p>
+          <h2 id="services-heading" className="heading-2 mb-4 text-white">
+            {title}
           </h2>
-          <p className="mx-auto max-w-2xl text-sm text-gray-400 md:text-base">{subtitle}</p>
+          <p className="mx-auto max-w-xl text-base text-white/50">{subtitle}</p>
         </div>
 
-        {/* Interactive Services Layout */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[38%_62%] lg:gap-8">
-          {/* Left Side - Services Grid */}
-          <div className="grid grid-cols-3 gap-x-2.5 gap-y-2.5 sm:gap-x-3 sm:gap-y-3">
+        {/* ── MOBILE LAYOUT: horizontal scrollable tabs + detail panel ── */}
+        <div className="lg:hidden">
+          {/* Scrollable tab strip */}
+          <div
+            ref={tabsRef}
+            className="scrollbar-hide -mx-4 flex gap-2 overflow-x-auto px-4 pb-4"
+            style={{ scrollbarWidth: "none" }}
+          >
+            {resolvedServices.map((service) => {
+              const IconComponent = iconMap[service.iconName] || Globe;
+              const isSelected = selectedService?.id === service.id;
+              const ac = getAccent(service.iconName);
+              return (
+                <button
+                  key={service.id}
+                  onClick={() => handleServiceClick(service)}
+                  className="inline-flex flex-shrink-0 items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200"
+                  style={{
+                    background: isSelected ? ac.bg : "rgba(255,255,255,0.04)",
+                    border: `1px solid ${isSelected ? ac.color + "60" : "rgba(255,255,255,0.08)"}`,
+                    color: isSelected ? "white" : "rgba(255,255,255,0.55)",
+                  }}
+                >
+                  <IconComponent
+                    className="h-4 w-4 flex-shrink-0"
+                    style={{ color: isSelected ? ac.color : "rgba(255,255,255,0.4)" }}
+                  />
+                  {service.title}
+                </button>
+              );
+            })}
+          </div>
+          {/* Detail panel */}
+          {selectedService && (
+            <DetailPanel
+              selectedService={selectedService}
+              activeTechTab={activeTechTab}
+              setActiveTechTab={setActiveTechTab}
+              accent={accent}
+              sectionVisible={sectionVisible}
+              getAvailableCategories={getAvailableCategories}
+            />
+          )}
+        </div>
+
+        {/* ── DESKTOP LAYOUT: two-panel ── */}
+        <div className="hidden grid-cols-1 items-start gap-6 lg:grid lg:grid-cols-[320px_1fr]">
+          {/* Left: service list */}
+          <div className="flex flex-col gap-1.5">
             {resolvedServices.map((service, index) => {
               const IconComponent = iconMap[service.iconName] || Globe;
-              const gradient = gradientMap[service.iconName] || gradientMap.web;
               const isSelected = selectedService?.id === service.id;
+              const ac = getAccent(service.iconName);
 
               return (
                 <button
                   key={service.id}
                   onClick={() => handleServiceClick(service)}
-                  className={`group relative flex aspect-square flex-col items-center justify-center rounded-lg border-2 p-3 transition-all duration-300 ${
-                    isSelected
-                      ? "scale-[1.02] border-[#FF6B35] bg-white/10 shadow-lg shadow-[#FF6B35]/30"
-                      : "border-white/10 bg-white/5 hover:border-white/20 hover:bg-white/[0.07]"
-                  }`}
+                  className="group relative flex items-start gap-3.5 rounded-xl px-4 py-4 text-left transition-all duration-200"
                   style={{
                     opacity: sectionVisible ? 1 : 0,
-                    transform: sectionVisible
-                      ? isSelected
-                        ? "translateY(0) scale(1.02)"
-                        : "translateY(0) scale(1)"
-                      : "translateY(15px) scale(0.95)",
-                    transitionDelay: `${index * 30}ms`,
+                    transform: sectionVisible ? "translateX(0)" : "translateX(-20px)",
+                    transitionDelay: `${index * 40}ms`,
+                    background: isSelected ? ac.bg : "transparent",
+                    border: `1px solid ${isSelected ? ac.color + "50" : "rgba(255,255,255,0.06)"}`,
                   }}
-                  aria-label={`Select ${service.title} service`}
+                  aria-label={`View ${service.title}`}
                   aria-pressed={isSelected}
                 >
+                  {/* Left accent bar */}
+                  <div
+                    className="absolute inset-y-0 left-0 w-[3px] rounded-r-full transition-all duration-200"
+                    style={{ background: isSelected ? ac.color : "transparent" }}
+                  />
+
                   {/* Icon */}
                   <div
-                    className={`mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br sm:h-10 sm:w-10 ${gradient} transition-all duration-300 ${
-                      isSelected ? "scale-110 ring-1 ring-[#FF6B35]" : "group-hover:scale-110"
-                    }`}
-                    style={
-                      isSelected
-                        ? {
-                            background: "linear-gradient(135deg, #FF6B35 0%, #FF8C42 100%)",
-                          }
-                        : undefined
-                    }
-                  >
-                    <IconComponent className="h-4 w-4 text-white sm:h-5 sm:w-5" />
-                  </div>
-
-                  {/* Title */}
-                  <h3
-                    className={`text-center text-[10px] font-semibold leading-tight text-white transition-colors duration-300 sm:text-xs ${
-                      isSelected ? "text-[#FF6B35]" : "group-hover:text-white"
-                    }`}
+                    className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg transition-all duration-200"
                     style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      overflow: "hidden",
+                      background: isSelected ? ac.color + "25" : "rgba(255,255,255,0.05)",
+                      boxShadow: isSelected ? `0 0 12px ${ac.glow}` : "none",
                     }}
                   >
-                    {service.title}
-                  </h3>
+                    <IconComponent
+                      className="h-[18px] w-[18px] transition-colors duration-200"
+                      style={{ color: isSelected ? ac.color : "rgba(255,255,255,0.45)" }}
+                    />
+                  </div>
 
-                  {/* Selection Indicator */}
-                  {isSelected && (
-                    <div className="absolute -right-1 -top-1 h-2 w-2 animate-pulse rounded-full bg-[#FF6B35]" />
-                  )}
+                  {/* Text */}
+                  <div className="min-w-0 flex-1">
+                    <p
+                      className="text-sm font-semibold leading-tight transition-colors duration-200"
+                      style={{ color: isSelected ? "#fff" : "rgba(255,255,255,0.75)" }}
+                    >
+                      {service.title}
+                    </p>
+                    {isSelected && service.description && (
+                      <p className="mt-1 line-clamp-2 text-xs leading-snug text-white/45">
+                        {service.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Arrow */}
+                  <ChevronRight
+                    className="mt-0.5 h-4 w-4 flex-shrink-0 transition-all duration-200"
+                    style={{
+                      color: isSelected ? ac.color : "rgba(255,255,255,0.2)",
+                      opacity: isSelected ? 1 : 0.6,
+                    }}
+                  />
                 </button>
               );
             })}
           </div>
 
-          {/* Right Side - Service Details */}
+          {/* Right: detail panel */}
           {selectedService && (
-            <div
-              className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-500"
-              style={{
-                opacity: sectionVisible ? 1 : 0,
-                transform: sectionVisible ? "translateX(0)" : "translateX(20px)",
-                background: "rgba(255, 255, 255, 0.03)",
-                boxShadow: "0 4px 24px rgba(0, 0, 0, 0.3)",
-              }}
-            >
-              {/* Animated gradient background */}
-              <div
-                className="absolute right-0 top-0 h-64 w-64 rounded-full opacity-20 blur-[80px] transition-opacity duration-500"
-                style={{
-                  background: `radial-gradient(circle, ${getTechColor(selectedService.techStack?.frontend[0] || "React")} 0%, transparent 70%)`,
-                }}
-              />
-
-              {/* Service Title with gradient accent */}
-              <div className="relative mb-5">
-                <div className="mb-3 flex items-center gap-3">
-                  <div
-                    className="h-1 w-12 rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg, ${getTechColor(selectedService.techStack?.frontend[0] || "React")}, transparent)`,
-                    }}
-                  />
-                  <h3 className="font-poppins text-xl font-bold text-white md:text-2xl">
-                    {selectedService.title}
-                  </h3>
-                </div>
-                <p className="text-sm leading-relaxed text-gray-300 md:text-base">
-                  {selectedService.fullDescription || selectedService.description}
-                </p>
-              </div>
-
-              {/* Benefits Section */}
-              {selectedService.benefits && selectedService.benefits.length > 0 && (
-                <div className="mb-6 rounded-lg border border-white/5 bg-white/5 p-4">
-                  <div className="mb-3 flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#FF6B35]" />
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
-                      Key Benefits
-                    </h4>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {selectedService.benefits.slice(0, 4).map((benefit, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
-                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-[#FF6B35]" />
-                        <span className="text-[11px] leading-tight text-gray-300">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Technology Stack with Clickable Categories */}
-              {selectedService.techStack && (
-                <div className="relative mb-6">
-                  <div className="mb-4 flex items-center gap-2">
-                    <Code className="h-4 w-4 text-[#0076D1]" />
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
-                      Technologies We Use
-                    </h4>
-                  </div>
-
-                  {/* Category Buttons */}
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {getAvailableCategories(selectedService).map((category) => {
-                      const isActive = activeTechTab === category;
-                      const categoryIcons = {
-                        frontend: Layers,
-                        backend: Server,
-                        tools: GitBranch,
-                        cloud: Cloud,
-                      };
-                      const CategoryIcon = categoryIcons[category];
-                      const categoryLabels = {
-                        frontend: "Frontend",
-                        backend: "Backend",
-                        tools: "Tools",
-                        cloud: "Cloud",
-                      };
-
-                      return (
-                        <button
-                          key={category}
-                          onClick={() => setActiveTechTab(category)}
-                          className={`inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[10px] font-semibold capitalize transition-all duration-300 ${
-                            isActive
-                              ? "border-[#0076D1] bg-gradient-to-r from-[#004E8F]/20 to-[#0076D1]/20 text-white shadow-lg shadow-[#0076D1]/20"
-                              : "border-white/10 bg-white/5 text-white/60 hover:border-white/20 hover:bg-white/10 hover:text-white"
-                          }`}
-                        >
-                          <CategoryIcon className="h-3 w-3" />
-                          <span>{categoryLabels[category]}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Active Category Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {(selectedService.techStack[activeTechTab] || []).map((tech, idx) => {
-                      const TechIcon = getTechIcon(tech);
-                      const techColor = getTechColor(tech);
-                      return (
-                        <div
-                          key={idx}
-                          className="group/tech inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-medium text-white transition-all duration-300 hover:scale-105 hover:border-white/20 hover:bg-white/15"
-                          style={{
-                            boxShadow: `0 2px 8px ${techColor}20`,
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.boxShadow = `0 4px 12px ${techColor}40`;
-                            e.currentTarget.style.borderColor = `${techColor}60`;
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.boxShadow = `0 2px 8px ${techColor}20`;
-                            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                          }}
-                        >
-                          <div
-                            className="rounded p-1"
-                            style={{
-                              background: `${techColor}20`,
-                              color: techColor,
-                            }}
-                          >
-                            <div style={{ color: techColor }}>
-                              <TechIcon className="h-3.5 w-3.5" />
-                            </div>
-                          </div>
-                          <span>{tech}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* CTA Button with enhanced styling */}
-              <Link
-                href={`/services/${selectedService.slug}`}
-                className="focus:ring-primary focus:ring-offset-dark group relative inline-flex items-center gap-2 overflow-hidden rounded-lg px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                style={{
-                  background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
-                  boxShadow: "0 4px 16px rgba(0, 118, 209, 0.4)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = "0 6px 20px rgba(0, 118, 209, 0.6)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = "0 4px 16px rgba(0, 118, 209, 0.4)";
-                }}
-              >
-                <span className="relative z-10">View Full Details</span>
-                <ArrowRight className="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
-              </Link>
-            </div>
+            <DetailPanel
+              selectedService={selectedService}
+              activeTechTab={activeTechTab}
+              setActiveTechTab={setActiveTechTab}
+              accent={accent}
+              sectionVisible={sectionVisible}
+              getAvailableCategories={getAvailableCategories}
+            />
           )}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes gradient-shift {
-          0%,
-          100% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-        }
-      `}</style>
     </section>
   );
 }

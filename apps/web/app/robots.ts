@@ -8,12 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/api/",
-          "/admin/",
-          "/_next/",
-          "/private/",
-        ],
+        disallow: ["/api/", "/admin/", "/_next/", "/private/", "/philippines"],
       },
       {
         userAgent: "Googlebot",
@@ -28,4 +23,3 @@ export default function robots(): MetadataRoute.Robots {
     host: baseUrl,
   };
 }
-
