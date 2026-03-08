@@ -678,7 +678,7 @@ html {
   .heading-1 {
     font-size: var(--h1);
     line-height: 1.1;
-    @apply font-poppins font-black;
+    @apply font-poppins font-bold;
     /* Professional font rendering for large headings */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -693,7 +693,7 @@ html {
   .heading-2 {
     font-size: var(--h2);
     line-height: 1.2;
-    @apply font-poppins font-black;
+    @apply font-poppins font-bold;
     /* Professional font rendering for medium headings */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

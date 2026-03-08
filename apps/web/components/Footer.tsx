@@ -6,9 +6,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  Twitter,
   Linkedin,
-  Github,
+  Instagram,
   Facebook,
   ArrowRight,
   ArrowUp,
@@ -18,9 +17,8 @@ import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import { getAllServices } from "@/lib/services";
 
 const socialIcons = {
-  twitter: Twitter,
   linkedin: Linkedin,
-  github: Github,
+  instagram: Instagram,
   facebook: Facebook,
 };
 

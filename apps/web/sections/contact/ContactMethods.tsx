@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Linkedin, Instagram, Facebook } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import { siteConfig } from "@/config";
 
@@ -43,26 +43,20 @@ const socialLinks = [
   {
     icon: Linkedin,
     name: "LinkedIn",
-    href: "https://linkedin.com/company/zephortech",
+    href: "https://www.linkedin.com/company/zephortech",
     color: "#0A66C2",
   },
   {
-    icon: Twitter,
-    name: "Twitter",
-    href: "https://twitter.com/zephortech",
-    color: "#1DA1F2",
+    icon: Instagram,
+    name: "Instagram",
+    href: "https://www.instagram.com/zephortech",
+    color: "#E1306C",
   },
   {
-    icon: Github,
-    name: "GitHub",
-    href: "https://github.com/zephortech",
-    color: "#FFFFFF",
-  },
-  {
-    icon: MessageCircle,
-    name: "Discord",
-    href: "https://discord.gg/zephortech",
-    color: "#5865F2",
+    icon: Facebook,
+    name: "Facebook",
+    href: "https://www.facebook.com/profile.php?id=61585394263054",
+    color: "#1877F2",
   },
 ];
 

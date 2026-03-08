@@ -1,25 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Analytics, SplashScreen } from "@/components";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-poppins",
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -105,11 +86,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${poppins.variable} scroll-smooth`}
-      data-scroll-behavior="smooth"
-    >
+    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className="font-inter bg-dark flex min-h-screen flex-col text-white antialiased"
         style={{

@@ -11,10 +11,9 @@ export const siteConfig = {
   phone: "+971521257034",
   address: "Dubai, United Arab Emirates",
   social: {
-    twitter: "https://twitter.com/zephortech",
-    linkedin: "https://linkedin.com/company/zephortech",
-    github: "https://github.com/zephortech",
-    facebook: "https://facebook.com/zephortech",
+    linkedin: "https://www.linkedin.com/company/zephortech",
+    instagram: "https://www.instagram.com/zephortech",
+    facebook: "https://www.facebook.com/profile.php?id=61585394263054",
   },
   company: {
     links: [
@@ -36,4 +35,3 @@ export const siteConfig = {
     ],
   },
 } as const;
-

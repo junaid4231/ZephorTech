@@ -17,9 +17,8 @@ export function StructuredData() {
       availableLanguage: "English",
     },
     sameAs: [
-      siteConfig.social.twitter,
       siteConfig.social.linkedin,
-      siteConfig.social.github,
+      siteConfig.social.instagram,
       siteConfig.social.facebook,
     ],
     address: {
