@@ -4,29 +4,20 @@ import React from "react";
 import { Linkedin, Github, Twitter } from "lucide-react";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 
+type TeamMember = {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  social: {
+    linkedin?: string;
+    github?: string;
+    twitter?: string;
+  };
+};
+
 // Core founding team — update social links with real profiles
-const team = [
-  {
-    name: "Ahmad Habib",
-    role: "Co-Founder & CEO",
-    bio: "Entrepreneur with a background in building and scaling B2B software products across the MENA region. Leads client strategy, partnerships, and commercial direction at ZephorTech.",
-    image: "AH",
-    social: {
-      linkedin: "https://linkedin.com/company/zephortech",
-      twitter: "https://twitter.com/zephortech",
-    },
-  },
-  {
-    name: "Muhammad Junaid",
-    role: "Co-Founder & CTO",
-    bio: "Full-stack architect with deep experience in cloud-native systems, AI integration, and production engineering. Oversees technical delivery and platform architecture across all ZephorTech engagements.",
-    image: "MJ",
-    social: {
-      linkedin: "https://linkedin.com/company/zephortech",
-      github: "https://github.com/zephortech",
-    },
-  },
-];
+const team: TeamMember[] = [];
 
 export function AboutTeam() {
   const { ref, isVisible } = useScrollAnimation({
@@ -59,36 +50,36 @@ export function AboutTeam() {
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div
-          className="mx-auto grid max-w-2xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
-          style={{
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? "translateY(0)" : "translateY(30px)",
-            transition: "all 0.8s ease",
-            transitionDelay: "200ms",
-          }}
-        >
-          {team.map((member, index) => (
-            <div
-              key={index}
-              className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
-              style={{
-                background: "rgba(255, 255, 255, 0.03)",
-                backdropFilter: "blur(20px)",
-                borderColor: "rgba(255, 255, 255, 0.1)",
-                boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
-                transitionDelay: `${index * 100}ms`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(0, 118, 209, 0.3)";
-                e.currentTarget.style.boxShadow = "0 16px 48px rgba(0, 118, 209, 0.2)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.3)";
-              }}
-            >
+        {team.length > 0 && (
+          <div
+            className="mx-auto grid max-w-sm grid-cols-1 gap-4 md:gap-5"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? "translateY(0)" : "translateY(30px)",
+              transition: "all 0.8s ease",
+              transitionDelay: "200ms",
+            }}
+          >
+            {team.map((member, index) => (
+              <div
+                key={index}
+                className="group relative rounded-xl border p-4 transition-all duration-500 hover:-translate-y-1 hover:scale-105 md:p-5"
+                style={{
+                  background: "rgba(255, 255, 255, 0.03)",
+                  backdropFilter: "blur(20px)",
+                  borderColor: "rgba(255, 255, 255, 0.1)",
+                  boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
+                  transitionDelay: `${index * 100}ms`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(0, 118, 209, 0.3)";
+                  e.currentTarget.style.boxShadow = "0 16px 48px rgba(0, 118, 209, 0.2)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+                  e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.3)";
+                }}
+              >
               {/* Avatar */}
               <div className="relative mb-4">
                 <div
@@ -186,9 +177,10 @@ export function AboutTeam() {
                   </a>
                 )}
               </div>
-            </div>
-          ))}
-        </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Join Team CTA */}
         <div
