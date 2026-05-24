@@ -24,6 +24,14 @@ export interface CaseStudyTestimonial {
   company: string;
 }
 
+export interface CaseStudyVisualReference {
+  title: string;
+  subtitle: string;
+  accent: string;
+  image?: string;
+  points: string[];
+}
+
 export interface CaseStudy {
   id: string;
   slug: string;
@@ -35,6 +43,7 @@ export interface CaseStudy {
   services: string[];
   timeline: string;
   headquarters: string;
+  isInHouse?: boolean;
   hero: {
     subtitle: string;
     description: string;
@@ -47,9 +56,235 @@ export interface CaseStudy {
   outcome: CaseStudySection & { highlights?: string[] };
   testimonial: CaseStudyTestimonial;
   technologies: string[];
+  visualReferences?: CaseStudyVisualReference[];
 }
 
 const caseStudiesData: CaseStudy[] = [
+  {
+    id: "cs-finmatrix",
+    slug: "finmatrix-accounting-platform",
+    title: "FinMatrix — Accounting Platform",
+    client: "ZephorTech (In-House)",
+    industry: "FinTech",
+    isInHouse: true,
+    summary:
+      "FinMatrix is our own enterprise accounting platform — designed and built in-house with role-based admin controls, company approvals, subscription management, and a polished business portal experience for mobile-first operations.",
+    excerpt:
+      "FinMatrix is a ZephorTech original product. We built a professional accounting ecosystem from the ground up — covering onboarding, secure sign-in, admin dashboards, company review workflows, plan management, analytics, and operational settings.",
+    services: ["Mobile App Development", "SaaS Development", "UI/UX Design"],
+    timeline: "10 Weeks",
+    headquarters: "Pakistan",
+    hero: {
+      subtitle: "A ZephorTech Original Product",
+      description:
+        "We built FinMatrix to bring business accounting, subscription governance, and platform administration into one refined mobile-first product. The experience was crafted around clarity, trust, and fast operational decision-making for both company users and administrators.",
+      stats: [
+        { value: 2, suffix: "", label: "User Portals", delay: 200 },
+        { value: 14, suffix: "+", label: "Companies Managed", delay: 300 },
+        { value: 7, suffix: "", label: "Active Subscriptions", delay: 400 },
+        { value: 100, suffix: "%", label: "Mobile-First UX", delay: 500 },
+      ],
+    },
+    highlights: [
+      "Separate business and admin experiences with secure authentication flows",
+      "Platform overview dashboard for companies, pending reviews, active accounts, and subscriptions",
+      "Settings and governance screens for admin profile, security, maintenance, demo mode, and database status",
+    ],
+    metrics: [
+      { label: "Product surfaces", value: "2", detail: "Business portal and platform admin app" },
+      { label: "Admin actions", value: "3+", detail: "Review companies, manage plans, and monitor registrations" },
+      { label: "UX coverage", value: "100%", detail: "Mobile-first screens from splash to dashboard and settings" },
+    ],
+    challenge: {
+      title: "Making accounting operations feel simple on mobile",
+      description:
+        "As product owners, the core challenge was handling serious business workflows without overwhelming users on a small screen. Admins needed quick visibility into companies, subscriptions, approvals, and settings while business users needed a secure and trustworthy login flow.",
+      bullets: [
+        "Create a credible financial-product interface that feels secure and modern",
+        "Separate admin control workflows from business portal authentication",
+        "Surface platform health, companies, subscriptions, and pending reviews without clutter",
+        "Keep every interaction mobile-friendly for real-world business users",
+      ],
+    },
+    strategy: {
+      title: "Role-based product architecture and premium mobile UI",
+      description:
+        "We structured the experience around clear roles, dashboard cards, quick actions, and persistent navigation. A restrained navy-blue visual system, rounded cards, and consistent spacing helped the platform feel enterprise-ready without sacrificing usability.",
+      bullets: [
+        "Designed admin dashboard modules for overview metrics, review queues, companies, plans, and settings",
+        "Built a business login flow with secure visual cues, remember-me behavior, and account creation path",
+        "Used consistent card hierarchy and bottom navigation to keep frequent actions within reach",
+      ],
+    },
+    outcome: {
+      title: "A polished accounting SaaS we're proud to ship",
+      description:
+        "FinMatrix now presents as a credible enterprise accounting product with a strong mobile identity, admin governance workflows, and the product structure required to scale company onboarding and subscription operations.",
+      bullets: [
+        "Admins can review companies, manage plans, and monitor platform activity from a focused mobile dashboard",
+        "Business users receive a clean, secure sign-in experience aligned with financial-product expectations",
+        "The product design system can scale into analytics, companies, plans, and future accounting modules",
+      ],
+      highlights: [
+        "Professional financial UI language with high contrast, clear hierarchy, and trust-focused styling",
+        "Operational workflows designed for quick mobile decision-making",
+      ],
+    },
+    testimonial: {
+      quote:
+        "FinMatrix is a product born from our belief that accounting software doesn't have to look boring. We built it to feel like a serious financial product from the first screen — and we're proud of the result.",
+      author: "ZephorTech Team",
+      role: "Product & Engineering",
+      company: "ZephorTech",
+    },
+    technologies: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "REST APIs", "Figma"],
+    visualReferences: [
+      {
+        title: "Admin Dashboard",
+        subtitle: "Platform overview, company approvals, and quick actions",
+        accent: "#0F62D8",
+        image: "/images/case-studies/finmatrix/admin-dashboard.png",
+        points: ["14 companies", "3 pending reviews", "7 active subscriptions"],
+      },
+      {
+        title: "Settings & Controls",
+        subtitle: "Profile, security, database, demo and maintenance modes",
+        accent: "#2563EB",
+        image: "/images/case-studies/finmatrix/settings-controls.png",
+        points: ["Super admin", "API online", "Version 2.4.1"],
+      },
+      {
+        title: "Subscription Plans",
+        subtitle: "Plan management with pricing tiers and feature breakdowns",
+        accent: "#1D4ED8",
+        image: "/images/case-studies/finmatrix/subscription-plans.png",
+        points: ["4 plans configured", "Monthly & yearly pricing", "Edit & delete controls"],
+      },
+      {
+        title: "Brand Identity",
+        subtitle: "Enterprise splash experience with premium visual identity",
+        accent: "#0A1628",
+        image: "/images/case-studies/finmatrix/splash.png",
+        points: ["FinMatrix branding", "Enterprise theme", "Mobile-first launch"],
+      },
+    ],
+  },
+  {
+    id: "cs-sukoon",
+    slug: "sukoon-quran-guidance-app",
+    title: "Sukoon — Quran Guidance App",
+    client: "ZephorTech (In-House)",
+    industry: "Spiritual Wellness",
+    isInHouse: true,
+    summary:
+      "Sukoon is our own product — a peaceful Quran guidance mobile app we designed and built in-house. It offers search-led spiritual support, full Quran reading, saved verses, Salah tracking, and daily Islamic tools through a calm, intentional mobile experience.",
+    excerpt:
+      "Sukoon is a ZephorTech original product. We conceived, designed, and engineered a mobile app for Quranic guidance and daily spiritual habits — with mood-based search, Quran browsing, saved verses, Salah tracking, and a suite of Islamic tools, all wrapped in a serene green visual identity.",
+    services: ["Mobile App Development", "UI/UX Design", "Product Strategy"],
+    timeline: "8 Weeks",
+    headquarters: "Pakistan",
+    hero: {
+      subtitle: "A ZephorTech Original Product",
+      description:
+        "We built Sukoon to help users find peace through Quranic guidance. It lets people search for spiritual support by mood, continue reading the Quran, save meaningful verses, track Salah habits, and access daily Islamic tools — all from a calm, thoughtfully crafted interface.",
+      stats: [
+        { value: 114, suffix: "", label: "Surahs Indexed", delay: 200 },
+        { value: 5, suffix: "+", label: "Spiritual Tools", delay: 300 },
+        { value: 6, suffix: "", label: "Mood Paths", delay: 400 },
+        { value: 100, suffix: "%", label: "Mobile Experience", delay: 500 },
+      ],
+    },
+    highlights: [
+      "Home experience with Quranic guidance search, mood prompts, reading continuation, and prayer context",
+      "Quran module with surah search, last seen state, last audio state, and structured surah listing",
+      "Saved verses and Salah tracker flows for long-term spiritual habit building",
+    ],
+    metrics: [
+      { label: "Surahs", value: "114", detail: "Structured Quran browsing with search and continuation states" },
+      { label: "Core tools", value: "5+", detail: "Salah tracker, Tasbeeh counter, Qiblah finder, prayer times, progress" },
+      { label: "Habit support", value: "Daily", detail: "Prayer streaks, saved verses, and reading continuity" },
+    ],
+    challenge: {
+      title: "Designing a spiritual app that feels calm, not crowded",
+      description:
+        "As product owners, we faced the same tension every spiritual app struggles with: how to combine Quran reading, emotional guidance, saved content, prayer habits, and practical tools without making the experience feel heavy. It had to be simple enough for daily use while still feeling meaningful and respectful.",
+      bullets: [
+        "Balance spiritual content, tools, and navigation without overwhelming the user",
+        "Create a calm interface that supports reflection and repeated daily usage",
+        "Make Quran search, saved verses, and Salah tracking easy to access from mobile navigation",
+        "Maintain readability for Arabic, English, Urdu, and utility-focused content blocks",
+      ],
+    },
+    strategy: {
+      title: "Calm interaction design and habit-centered architecture",
+      description:
+        "We crafted the product around a warm green identity, large rounded surfaces, clear bottom navigation, and focused modules. Each screen was designed to support a specific spiritual intent: guidance, Quran reading, saving, tools, or tracking.",
+      bullets: [
+        "Designed mood-based guidance entry points for users seeking Quranic support",
+        "Structured Quran and saved verse screens around readability, context, and fast return paths",
+        "Created a Salah tracker with calendar-based progress and daily prayer completion states",
+      ],
+    },
+    outcome: {
+      title: "A refined spiritual companion we're proud to ship",
+      description:
+        "Sukoon now has a cohesive mobile product experience that feels peaceful, practical, and polished. Users can move from emotional guidance to Quran reading, saved verses, and daily spiritual tools without friction — exactly the product we set out to build.",
+      bullets: [
+        "Users can continue Quran reading, search surahs, save verses, and revisit spiritual content",
+        "Daily tools are grouped into a clear More Tools section for easy discovery",
+        "Salah tracking supports prayer completion, monthly progress, and habit visibility",
+      ],
+      highlights: [
+        "Soft green visual system with calm cards and focused mobile navigation",
+        "Spiritual habit loops designed around daily return moments",
+      ],
+    },
+    testimonial: {
+      quote:
+        "Sukoon is a product that came from our own team's desire to build something meaningful. We wanted a spiritual companion that felt peaceful and useful — and we're proud that the final product delivers exactly that experience.",
+      author: "ZephorTech Team",
+      role: "Product & Engineering",
+      company: "ZephorTech",
+    },
+    technologies: ["React Native", "TypeScript", "SQLite", "Quran Data APIs", "Figma", "Expo"],
+    visualReferences: [
+      {
+        title: "Guidance Home",
+        subtitle: "Search-led Quranic guidance with mood prompts",
+        accent: "#145A3E",
+        image: "/images/case-studies/sukoon/guidance-home.png",
+        points: ["Next prayer", "Continue reading", "Mood paths"],
+      },
+      {
+        title: "Holy Quran",
+        subtitle: "Surah browsing, search, last seen, and audio states",
+        accent: "#1D6B4C",
+        image: "/images/case-studies/sukoon/holy-quran.png",
+        points: ["114 surahs", "Resume ayah", "Search by name"],
+      },
+      {
+        title: "Salah Tracker",
+        subtitle: "Prayer calendar, streaks, and daily completion state",
+        accent: "#0F5138",
+        image: "/images/case-studies/sukoon/salah-tracker.png",
+        points: ["Monthly view", "Prayer streak", "Daily progress"],
+      },
+      {
+        title: "Saved Verses",
+        subtitle: "Personal Quranic collection with Arabic, English, and Urdu",
+        accent: "#1A5D42",
+        image: "/images/case-studies/sukoon/saved-verses.png",
+        points: ["Bookmark ayahs", "Multi-language", "Share & manage"],
+      },
+      {
+        title: "More Tools",
+        subtitle: "Spiritual toolkit with Tasbeeh, Qiblah, prayer times, and progress",
+        accent: "#1B5E3F",
+        image: "/images/case-studies/sukoon/more-tools.png",
+        points: ["Tasbeeh counter", "Qiblah finder", "Spiritual progress"],
+      },
+    ],
+  },
   {
     id: "cs-neo-bank",
     slug: "apex-neobank-platform",

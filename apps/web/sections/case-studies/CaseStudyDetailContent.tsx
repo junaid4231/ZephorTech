@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
+import { useState } from "react";
 import { Quote, CheckCircle2, ArrowRight, Target } from "lucide-react";
-import type { CaseStudy, CaseStudySection } from "@/lib/case-studies";
+import type { CaseStudy, CaseStudySection, CaseStudyVisualReference } from "@/lib/case-studies";
 import { useScrollAnimation } from "@/lib/useScrollAnimation";
 import Link from "next/link";
 
@@ -17,6 +19,9 @@ export function CaseStudyDetailContent({ study }: CaseStudyDetailContentProps) {
     threshold: 0.2,
   });
   const { ref: challengeRef, isVisible: challengeVisible } = useScrollAnimation({
+    threshold: 0.2,
+  });
+  const { ref: visualsRef, isVisible: visualsVisible } = useScrollAnimation({
     threshold: 0.2,
   });
   const { ref: outcomesRef, isVisible: outcomesVisible } = useScrollAnimation({
@@ -59,14 +64,29 @@ export function CaseStudyDetailContent({ study }: CaseStudyDetailContentProps) {
       >
         <div className="grid gap-4 p-4 md:grid-cols-2 md:gap-5 md:p-5">
           <div>
-            <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[#0076D1] md:mb-3">
-              Project Overview
-            </p>
+            <div className="mb-2 flex items-center gap-3 md:mb-3">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#0076D1]">
+                Project Overview
+              </p>
+              {study.isInHouse && (
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
+                  style={{
+                    background: "linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15))",
+                    border: "1px solid rgba(16, 185, 129, 0.3)",
+                    color: "#10B981",
+                  }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  In-House Product
+                </span>
+              )}
+            </div>
             <h3 className="font-poppins mb-3 text-2xl font-bold text-white md:mb-4 md:text-3xl">{study.title}</h3>
             <p className="text-sm leading-relaxed text-gray-400 md:text-base">{study.excerpt}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 md:gap-4">
-            <InfoTile label="Client" value={study.client} />
+            <InfoTile label={study.isInHouse ? "Built By" : "Client"} value={study.client} />
             <InfoTile label="Industry" value={study.industry} />
             <InfoTile label="Headquarters" value={study.headquarters} />
             <InfoTile label="Timeline" value={study.timeline} />
@@ -112,6 +132,53 @@ export function CaseStudyDetailContent({ study }: CaseStudyDetailContentProps) {
           </div>
         ))}
       </section>
+
+      {study.visualReferences && study.visualReferences.length > 0 && (
+        <section
+          ref={visualsRef}
+          className="rounded-xl border p-5 transition-all duration-500 md:rounded-2xl md:p-8"
+          style={{
+            opacity: visualsVisible ? 1 : 0,
+            transform: visualsVisible ? "translateY(0)" : "translateY(30px)",
+            transition: "all 0.8s ease",
+            background: "linear-gradient(160deg, rgba(255,255,255,0.03) 0%, rgba(0,118,209,0.04) 50%, rgba(255,255,255,0.02) 100%)",
+            borderColor: "rgba(255, 255, 255, 0.08)",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05)",
+          }}
+        >
+          <div className="mb-6 md:mb-8">
+            <div className="mb-3 flex items-center gap-3">
+              <div
+                className="flex h-8 w-8 items-center justify-center rounded-lg"
+                style={{ background: "rgba(0, 118, 209, 0.15)" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0076D1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1]">
+                Product Showcase
+              </p>
+            </div>
+            <h3 className="font-poppins mb-2 text-xl font-bold text-white md:text-2xl">
+              Product experience highlights
+            </h3>
+            <p className="max-w-3xl text-sm leading-relaxed text-gray-400 md:text-base">
+              Actual production screens from the live application, showcasing the product's
+              design language, user flows, and interaction quality.
+            </p>
+          </div>
+          <div className={`grid gap-5 md:gap-6 ${
+            study.visualReferences.length <= 3
+              ? 'md:grid-cols-3'
+              : study.visualReferences.length === 4
+              ? 'md:grid-cols-2 lg:grid-cols-4'
+              : 'md:grid-cols-3 lg:grid-cols-5'
+          }`}>
+            {study.visualReferences.map((visual, index) => (
+              <VisualReferenceCard key={visual.title} visual={visual} index={index} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Challenge / Strategy */}
       <section
@@ -323,6 +390,122 @@ export function CaseStudyDetailContent({ study }: CaseStudyDetailContentProps) {
           </Link>
         </div>
       </section>
+    </div>
+  );
+}
+
+function VisualReferenceCard({
+  visual,
+  index,
+}: {
+  visual: CaseStudyVisualReference;
+  index: number;
+}) {
+  const [imageFailed, setImageFailed] = useState(false);
+
+  return (
+    <div
+      className="group relative flex flex-col overflow-hidden rounded-2xl border transition-all duration-500 hover:-translate-y-2"
+      style={{
+        background: "rgba(0, 0, 0, 0.4)",
+        borderColor: "rgba(255, 255, 255, 0.06)",
+        transitionDelay: `${index * 80}ms`,
+        boxShadow: "0 4px 24px rgba(0, 0, 0, 0.3)",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = `${visual.accent}40`;
+        e.currentTarget.style.boxShadow = `0 12px 40px ${visual.accent}20, 0 4px 16px rgba(0, 0, 0, 0.4)`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.06)";
+        e.currentTarget.style.boxShadow = "0 4px 24px rgba(0, 0, 0, 0.3)";
+      }}
+    >
+      {/* Phone mockup area */}
+      <div className="relative flex items-center justify-center px-4 pb-2 pt-5">
+        {/* Subtle glow behind device */}
+        <div
+          className="absolute inset-0 opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40"
+          style={{
+            background: `radial-gradient(ellipse at center 30%, ${visual.accent}30, transparent 70%)`,
+          }}
+        />
+
+        {/* Device frame */}
+        <div
+          className="relative w-full max-w-[200px] overflow-hidden rounded-[1.75rem] border transition-transform duration-500 group-hover:scale-[1.04]"
+          style={{
+            borderColor: "rgba(255, 255, 255, 0.12)",
+            boxShadow: `0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.06)`,
+            background: "#000",
+            aspectRatio: "9 / 19.5",
+          }}
+        >
+
+          {visual.image && !imageFailed ? (
+            <Image
+              src={visual.image}
+              alt={`${visual.title} screenshot`}
+              fill
+              sizes="200px"
+              className="object-cover object-top"
+              unoptimized
+              onError={() => setImageFailed(true)}
+            />
+          ) : (
+            <div className="flex h-full flex-col p-3 pt-6" style={{ background: `linear-gradient(160deg, ${visual.accent}, #070B14 72%)` }}>
+              <div className="mb-4 flex items-center justify-between text-[10px] text-white/65">
+                <span>9:41</span>
+                <span>● ● ●</span>
+              </div>
+              <div className="mb-4">
+                <div className="mb-2 h-2 w-12 rounded-full bg-white/35" />
+                <h4 className="text-lg font-bold leading-tight text-white">{visual.title}</h4>
+                <p className="mt-1 text-xs leading-relaxed text-white/65">{visual.subtitle}</p>
+              </div>
+              <div className="space-y-2">
+                {visual.points.map((point) => (
+                  <div key={point} className="rounded-2xl border border-white/10 bg-white/12 p-3">
+                    <div className="mb-2 h-2 w-10 rounded-full bg-white/30" />
+                    <p className="text-xs font-semibold text-white/85">{point}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-auto grid grid-cols-4 gap-2 pt-5">
+                {[0, 1, 2, 3].map((item) => (
+                  <div key={item} className="h-8 rounded-xl bg-white/12" />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Info area */}
+      <div className="flex flex-1 flex-col px-4 pb-4 pt-3">
+        <h4 className="mb-1 text-center text-sm font-semibold text-white md:text-base">{visual.title}</h4>
+        <p className="mx-auto mb-3 max-w-xs text-center text-xs leading-relaxed text-gray-500">
+          {visual.subtitle}
+        </p>
+
+        {/* Feature tags */}
+        <div className="mt-auto flex flex-wrap items-center justify-center gap-1.5">
+          {visual.points.map((point) => (
+            <span
+              key={point}
+              className="rounded-full px-2 py-0.5 text-[10px] font-medium transition-all duration-300"
+              style={{
+                background: `${visual.accent}15`,
+                color: `${visual.accent}`,
+                border: `1px solid ${visual.accent}25`,
+                filter: "brightness(1.6)",
+              }}
+            >
+              {point}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

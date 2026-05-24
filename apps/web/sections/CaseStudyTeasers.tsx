@@ -58,12 +58,12 @@ export function CaseStudyTeasers({ caseStudies }: CaseStudyTeasersProps) {
             <div className="mb-3 inline-flex items-center gap-2">
               <Target className="h-4 w-4 text-[#0076D1]" />
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0076D1]">
-                Latest Wins
+                Featured Projects
               </p>
             </div>
-            <h2 className="heading-2 mb-2 text-white">Proof Points from the Field</h2>
+            <h2 className="heading-2 mb-2 text-white">Products We’ve Shipped</h2>
             <p className="max-w-xl text-sm text-white/60 md:text-base">
-              Real results from real projects across AI platforms, commerce, and SaaS.
+              Real mobile and web products crafted with strategy, UI/UX, engineering, and delivery discipline.
             </p>
           </div>
           <Link
