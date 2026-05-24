@@ -5,6 +5,7 @@ import {
   BenefitsSection,
   CultureSection,
   CareersCTA,
+  CareerApplicationForm,
 } from "@/sections/careers";
 
 export const metadata: Metadata = {
@@ -38,6 +39,9 @@ export default function CareersPage() {
       <BenefitsSection />
       <CultureSection />
       <CareersCTA />
+      <div id="apply">
+        <CareerApplicationForm />
+      </div>
       <Footer />
     </>
   );

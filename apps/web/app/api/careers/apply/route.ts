@@ -167,7 +167,7 @@ async function sendEmailNotification(data: {
   }
 
   const emailContent = `
-    <h2>New Talent Network Application</h2>
+    <h2>New Internship Application</h2>
     <p><strong>Name:</strong> ${data.fullName}</p>
     <p><strong>Email:</strong> ${data.email}</p>
     <p><strong>Phone:</strong> ${data.phone || "Not provided"}</p>
@@ -189,7 +189,7 @@ async function sendEmailNotification(data: {
     body: JSON.stringify({
       from: "careers@zephortech.com",
       to: "careers@zephortech.com",
-      subject: `New Talent Network Application - ${data.fullName}`,
+      subject: `New Internship Application - ${data.fullName}`,
       html: emailContent,
     }),
   });

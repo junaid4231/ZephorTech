@@ -25,24 +25,23 @@ export function CareersCTA() {
           </h2>
           <p className="mx-auto mb-4 max-w-2xl text-base leading-relaxed text-white/70 md:mb-5 md:text-lg">
             Join a team that's pushing the boundaries of what's possible in technology. Submit your
-            profile and we'll reach out when opportunities arise.
+            internship application and start building real-world products with us.
           </p>
           <p className="mx-auto mb-8 max-w-xl text-sm text-white/50 md:mb-10 md:text-base">
-            Even without active job postings, we're always building relationships with exceptional
-            talent.
+            We're actively hiring interns across engineering, design, marketing, and operations.
           </p>
 
           {/* CTA Buttons */}
           <div className="mb-8 flex flex-col justify-center gap-3 sm:flex-row md:mb-10 md:gap-4">
             <Link
-              href="/careers/apply"
+              href="/careers#apply"
               className="group inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 md:gap-3 md:px-8 md:py-4"
               style={{
                 background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
                 boxShadow: "0 4px 16px rgba(0, 118, 209, 0.4)",
               }}
             >
-              <span>Submit Your Profile</span>
+              <span>Apply for Internship</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 md:h-5 md:w-5" />
             </Link>
 
@@ -63,7 +62,7 @@ export function CareersCTA() {
           <div className="flex flex-col items-center justify-center gap-4 text-xs text-white/60 md:flex-row md:gap-6 md:text-sm">
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 rounded-full bg-green-400"></div>
-              <span>Actively hiring talented professionals</span>
+              <span>Actively hiring interns</span>
             </div>
             <div className="hidden h-4 w-px bg-white/20 md:block"></div>
             <div>

@@ -239,13 +239,13 @@ export function CareerApplicationForm() {
             }}
           >
             <span className="text-primary text-xs font-semibold md:text-sm">
-              Talent Network Application
+              Internship Application
             </span>
           </div>
-          <h1 className="heading-2 mb-3 font-bold text-white md:mb-4">Submit Your Profile</h1>
+          <h1 className="heading-2 mb-3 font-bold text-white md:mb-4">Apply for Internship</h1>
           <p className="mx-auto max-w-2xl text-sm text-white/70 md:text-base">
-            Join our talent network and be the first to know when opportunities arise that match
-            your expertise.
+            Apply for an internship and show us how you want to learn, contribute, and grow with
+            ZephorTech.
           </p>
         </div>
 
@@ -278,7 +278,7 @@ export function CareerApplicationForm() {
                   onChange={handleChange}
                   required
                   className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
-                  placeholder="John Doe"
+                  placeholder="Enter your full name"
                 />
               </div>
               <div>
@@ -292,7 +292,7 @@ export function CareerApplicationForm() {
                   onChange={handleChange}
                   required
                   className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
-                  placeholder="john@example.com"
+                  placeholder="Enter your email address"
                 />
               </div>
               <div>
@@ -305,7 +305,7 @@ export function CareerApplicationForm() {
                   value={formData.phone}
                   onChange={handleChange}
                   className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
-                  placeholder="+971521257034"
+                  placeholder="Enter your phone number"
                 />
               </div>
               <div>
@@ -348,7 +348,7 @@ export function CareerApplicationForm() {
                   value={formData.linkedinUrl}
                   onChange={handleChange}
                   className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
-                  placeholder="https://linkedin.com/in/johndoe"
+                  placeholder="Enter your LinkedIn profile URL"
                 />
               </div>
               <div>
@@ -361,7 +361,7 @@ export function CareerApplicationForm() {
                   value={formData.portfolioUrl}
                   onChange={handleChange}
                   className="focus:border-primary focus:ring-primary w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
-                  placeholder="https://yourportfolio.com"
+                  placeholder="Enter your portfolio URL"
                 />
               </div>
             </div>
@@ -463,7 +463,7 @@ export function CareerApplicationForm() {
               onChange={handleChange}
               rows={5}
               className="focus:border-primary focus:ring-primary w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition-all placeholder:text-white/40 focus:outline-none focus:ring-1 md:text-base"
-              placeholder="I'm passionate about..."
+              placeholder="Tell us why you're interested in this internship"
             />
           </div>
 

@@ -83,8 +83,7 @@ export function CareersHero() {
             }}
           >
             <span className="text-center text-xs text-white/80 md:text-sm">
-              While we don't have open positions right now, we're always interested in connecting
-              with talented professionals.
+              Actively hiring interns who are ready to learn, build, and grow with ZephorTech.
             </span>
           </div>
 
@@ -132,14 +131,14 @@ export function CareersHero() {
             }}
           >
             <a
-              href="/careers/apply"
+              href="#apply"
               className="btn-primary group text-white hover:scale-105"
               style={{
                 background: "linear-gradient(135deg, #004E8F 0%, #0076D1 100%)",
                 boxShadow: "0 4px 16px rgba(0, 118, 209, 0.4)",
               }}
             >
-              Join Our Talent Network
+              Apply for Internship
             </a>
             <a
               href="#culture"

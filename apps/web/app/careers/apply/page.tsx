@@ -3,12 +3,12 @@ import { Header, Footer } from "@/components";
 import { CareerApplicationForm } from "@/sections/careers/CareerApplicationForm";
 
 export const metadata: Metadata = {
-  title: "Join Our Talent Network | ZephorTech Careers",
+  title: "Internship Application | ZephorTech Careers",
   description:
-    "Submit your profile to join ZephorTech's talent network. We'll reach out when opportunities match your expertise.",
+    "Apply for an internship at ZephorTech and start building real-world products with our team.",
   openGraph: {
-    title: "Join Our Talent Network | ZephorTech Careers",
-    description: "Connect with us and be the first to know about career opportunities at ZephorTech.",
+    title: "Internship Application | ZephorTech Careers",
+    description: "Apply for an internship at ZephorTech and grow with a remote-first technology team.",
     type: "website",
     url: "https://zephortech.com/careers/apply",
   },
