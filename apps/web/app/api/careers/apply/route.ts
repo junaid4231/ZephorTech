@@ -1,202 +1,195 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import fs from "node:fs";
+import path from "node:path";
 
-// Initialize Supabase client with validation
-function getSupabaseClient() {
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseBucket = process.env.SUPABASE_BUCKET || "applications";
+const supabaseDirectory = process.env.SUPABASE_DIRECTORY || "career-resumes";
+const notificationEmail = process.env.CAREER_NOTIFICATION_EMAIL || "info@zephortech.com";
 
-  if (!supabaseUrl) {
-    throw new Error("NEXT_PUBLIC_SUPABASE_URL environment variable is not set");
-  }
-
-  if (!supabaseServiceKey) {
-    throw new Error("SUPABASE_SERVICE_ROLE_KEY environment variable is not set");
-  }
-
-  return createClient(supabaseUrl, supabaseServiceKey);
+function safeFileName(name: string) {
+  return name.replace(/[^a-zA-Z0-9.\-_]/g, "-");
 }
 
 export async function POST(request: NextRequest) {
   try {
-    // Initialize Supabase client
-    const supabase = getSupabaseClient();
+    const useSupabase = !!(supabaseUrl && supabaseServiceRoleKey);
+    const supabase = useSupabase ? createClient(supabaseUrl!, supabaseServiceRoleKey!) : null;
 
     const formData = await request.formData();
 
-    // Extract form fields
-    const fullName = formData.get("fullName") as string;
-    const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
-    const linkedinUrl = formData.get("linkedinUrl") as string;
-    const portfolioUrl = formData.get("portfolioUrl") as string;
-    const skills = JSON.parse(formData.get("skills") as string);
-    const experienceLevel = formData.get("experienceLevel") as string;
-    const coverLetter = formData.get("coverLetter") as string;
-    const resumeFile = formData.get("resume") as File;
-
-    // Validate required fields
-    if (!fullName || !email || !experienceLevel || !resumeFile) {
-      return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
+    // Extract expected fields
+    const fields: Record<string, string> = {};
+    for (const [k, v] of formData.entries()) {
+      if (k === "resume") continue;
+      if (typeof v === "string") fields[k] = v;
     }
 
-    // Upload resume to Supabase Storage
-    const fileExt = resumeFile.name.split(".").pop();
-    const fileName = `${Date.now()}-${fullName.toLowerCase().replace(/\s+/g, "-")}.${fileExt}`;
-    const filePath = `career-resumes/${new Date().getFullYear()}/${fileName}`;
+    // Handle resume upload (if present)
+    let resumeUrl: string | null = null;
+    const resumeFile = formData.get("resume") as File | null;
+    if (resumeFile && (resumeFile as any).size) {
+      const arrayBuffer = await (resumeFile as any).arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      const year = new Date().getFullYear();
+      const safeName = safeFileName((resumeFile as File).name || "resume.pdf");
+      const fileName = `${Date.now()}-${safeName}`;
+      const key = `${supabaseDirectory}/${year}/${fileName}`;
 
-    const { error: uploadError } = await supabase.storage
-      .from("applications")
-      .upload(filePath, resumeFile, {
-        cacheControl: "3600",
-        upsert: false,
-      });
+      if (useSupabase && supabase) {
+        const { error: uploadError } = await supabase.storage
+          .from(supabaseBucket)
+          .upload(key, buffer, { contentType: (resumeFile as File).type, upsert: false });
 
-    if (uploadError) {
-      console.error("Upload error:", uploadError);
-      return NextResponse.json({ message: "Failed to upload resume" }, { status: 500 });
+        if (uploadError) {
+          console.error("Resume upload failed:", uploadError);
+          // Try local fallback when Supabase upload is not possible (dev environment)
+          try {
+            const uploadsDir = path.join(process.cwd(), "public", "_uploads", supabaseDirectory, String(year));
+            fs.mkdirSync(uploadsDir, { recursive: true });
+            const filePath = path.join(uploadsDir, fileName);
+            fs.writeFileSync(filePath, buffer);
+            const origin = request.nextUrl?.origin || `${request.headers.get("x-forwarded-proto") || "http"}://${request.headers.get("host")}`;
+            resumeUrl = `${origin.replace(/\/$/, "")}/_uploads/${encodeURIComponent(supabaseDirectory)}/${year}/${encodeURIComponent(fileName)}`;
+          } catch (fsErr) {
+            console.error("Local resume save failed after Supabase error:", fsErr);
+            return NextResponse.json({ message: "Failed to upload resume." }, { status: 500 });
+          }
+        } else {
+          // Construct public URL (works for public buckets)
+          resumeUrl = `${supabaseUrl!.replace(/\/$/, "")}/storage/v1/object/public/${encodeURIComponent(
+            supabaseBucket
+          )}/${encodeURIComponent(key)}`;
+        }
+      } else {
+        // Local fallback: save file to public/_uploads so it can be served during dev
+        const uploadsDir = path.join(process.cwd(), "public", "_uploads", supabaseDirectory, String(year));
+        try {
+          fs.mkdirSync(uploadsDir, { recursive: true });
+          const filePath = path.join(uploadsDir, fileName);
+          fs.writeFileSync(filePath, buffer);
+          const origin = request.nextUrl?.origin || `${request.headers.get("x-forwarded-proto") || "http"}://${request.headers.get("host")}`;
+          resumeUrl = `${origin.replace(/\/$/, "")}/_uploads/${encodeURIComponent(supabaseDirectory)}/${year}/${encodeURIComponent(fileName)}`;
+        } catch (fsErr) {
+          console.error("Local resume save failed:", fsErr);
+          return NextResponse.json({ message: "Failed to save resume locally." }, { status: 500 });
+        }
+      }
     }
-
-    // Get public URL for the uploaded file
-    const { data: urlData } = supabase.storage.from("applications").getPublicUrl(filePath);
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const resumeUrl = (urlData as any)?.publicUrl ?? (urlData as any)?.publicURL ?? null;
 
     // Save application to database
-    const { data: dbData, error: dbError } = await supabase
-      .from("career_applications")
-      .insert([
-        {
-          full_name: fullName,
-          email: email,
-          phone: phone || null,
-          linkedin_url: linkedinUrl || null,
-          portfolio_url: portfolioUrl || null,
-          skills: skills,
-          experience_level: experienceLevel,
-          cover_letter: coverLetter || null,
-          resume_url: resumeUrl,
-          status: "new",
-          submitted_at: new Date().toISOString(),
-        },
-      ])
-      .select();
+    const insertPayload: any = {
+      full_name: fields.fullName || fields.full_name || null,
+      email: fields.email || null,
+      phone: fields.phone || null,
+      city: fields.city || null,
+      university: fields.university || null,
+      degree: fields.degree || null,
+      semester: fields.semester || null,
+      graduation_year: fields.graduationYear || null,
+      role: fields.role || null,
+      internship_type: fields.internshipType || null,
+      start_date: fields.startDate || null,
+      skills: fields.skills ? fields.skills.split(/,\s*/) : [],
+      linkedin_url: fields.linkedin || null,
+      portfolio_url: fields.portfolio || null,
+      experience: fields.experience || null,
+      why_zephortech: fields.whyZephortech || null,
+      heard_from: fields.heardFrom || null,
+      resume_url: resumeUrl,
+      source: "web-careers-form",
+      submitted_at: new Date().toISOString(),
+    };
 
-    if (dbError) {
-      console.error("Database error:", dbError);
-      return NextResponse.json({ message: "Failed to save application" }, { status: 500 });
+    if (useSupabase && supabase) {
+      const { error: dbError } = await supabase.from("career_applications").insert([insertPayload]);
+      if (dbError) {
+        console.error("Failed to save application to Supabase:", dbError);
+        // Fall back to local storage if Supabase fails
+        console.log("Falling back to local storage...");
+        const applicationsFile = path.join(process.cwd(), "public", "applications.json");
+        try {
+          let existing: any[] = [];
+          if (fs.existsSync(applicationsFile)) {
+            const data = fs.readFileSync(applicationsFile, "utf-8");
+            existing = JSON.parse(data) || [];
+          }
+          existing.push({ ...insertPayload, id: `app-${Date.now()}` });
+          fs.writeFileSync(applicationsFile, JSON.stringify(existing, null, 2));
+          console.log(`✅ Application saved locally (Supabase fallback) to ${applicationsFile}`);
+        } catch (fsErr) {
+          console.error("Local fallback also failed:", fsErr);
+          return NextResponse.json({ message: "Failed to save application." }, { status: 500 });
+        }
+      }
+    } else {
+      // Local fallback: save to JSON file for development/testing
+      const applicationsFile = path.join(process.cwd(), "public", "applications.json");
+      try {
+        let existing: any[] = [];
+        if (fs.existsSync(applicationsFile)) {
+          const data = fs.readFileSync(applicationsFile, "utf-8");
+          existing = JSON.parse(data) || [];
+        }
+        existing.push({ ...insertPayload, id: `app-${Date.now()}` });
+        fs.writeFileSync(applicationsFile, JSON.stringify(existing, null, 2));
+        console.log(`✅ Application saved locally to ${applicationsFile}`);
+      } catch (fsErr) {
+        console.error("Failed to save application locally:", fsErr);
+        return NextResponse.json({ message: "Failed to save application." }, { status: 500 });
+      }
     }
 
-    // Send email notification (using Resend if configured)
+    // Send notification email (best-effort)
     try {
-      await sendEmailNotification({
-        fullName,
-        email,
-        phone,
-        linkedinUrl,
-        portfolioUrl,
-        skills,
-        experienceLevel,
-        resumeUrl,
-      });
-    } catch (emailError) {
-      console.error("Email notification failed:", emailError);
-      // Don't fail the request if email fails
+      await sendNotificationEmail({ payload: insertPayload });
+    } catch (emailErr) {
+      console.error("Failed to send notification email:", emailErr);
     }
 
-    return NextResponse.json(
-      {
-        message: "Application submitted successfully",
-        applicationId: dbData[0].id,
-      },
-      { status: 200 }
-    );
-  } catch (error: unknown) {
+    return NextResponse.json({ message: "Application submitted successfully.", ok: true }, { status: 200 });
+  } catch (error) {
     console.error("Application submission error:", error);
-
-    // Provide helpful error messages for missing env vars
-    if (error instanceof Error && error.message.includes("NEXT_PUBLIC_SUPABASE_URL")) {
-      return NextResponse.json(
-        {
-          message:
-            "Server configuration error: NEXT_PUBLIC_SUPABASE_URL is not set. Please check your .env.local file.",
-          error: "Missing environment variable",
-        },
-        { status: 500 }
-      );
-    }
-
-    if (error instanceof Error && error.message.includes("SUPABASE_SERVICE_ROLE_KEY")) {
-      return NextResponse.json(
-        {
-          message:
-            "Server configuration error: SUPABASE_SERVICE_ROLE_KEY is not set. Please check your .env.local file.",
-          error: "Missing environment variable",
-        },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json(
-      {
-        message: error instanceof Error ? error.message : "Internal server error",
-        error: "Application submission failed",
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: error instanceof Error ? error.message : "Internal server error" }, { status: 500 });
   }
 }
 
-async function sendEmailNotification(data: {
-  fullName: string;
-  email: string;
-  phone: string;
-  linkedinUrl: string;
-  portfolioUrl: string;
-  skills: string[];
-  experienceLevel: string;
-  resumeUrl: string | null;
-}) {
-  // Check if Resend API key is configured
-  const resendApiKey = process.env.RESEND_API_KEY;
+async function sendNotificationEmail({ payload }: { payload: any }) {
+  const formspreeFormId = "mykvdkjb";
 
-  if (!resendApiKey) {
-    console.log("Resend API key not configured, skipping email notification");
-    return;
-  }
+  const emailFormData = new FormData();
+  emailFormData.append("fullName", payload.full_name || "");
+  emailFormData.append("email", payload.email || "");
+  emailFormData.append("phone", payload.phone || "");
+  emailFormData.append("city", payload.city || "");
+  emailFormData.append("university", payload.university || "");
+  emailFormData.append("degree", payload.degree || "");
+  emailFormData.append("semester", payload.semester || "");
+  emailFormData.append("graduationYear", payload.graduation_year || "");
+  emailFormData.append("role", payload.role || "");
+  emailFormData.append("internshipType", payload.internship_type || "");
+  emailFormData.append("startDate", payload.start_date || "");
+  emailFormData.append("skills", Array.isArray(payload.skills) ? payload.skills.join(", ") : (payload.skills || ""));
+  emailFormData.append("linkedin", payload.linkedin_url || "");
+  emailFormData.append("portfolio", payload.portfolio_url || "");
+  emailFormData.append("experience", payload.experience || "");
+  emailFormData.append("whyZephortech", payload.why_zephortech || "");
+  emailFormData.append("heardFrom", payload.heard_from || "");
+  emailFormData.append("resumeUrl", payload.resume_url || "");
+  emailFormData.append("subject", `New Career Application - ${payload.full_name || "Applicant"}`);
 
-  const emailContent = `
-    <h2>New Internship Application</h2>
-    <p><strong>Name:</strong> ${data.fullName}</p>
-    <p><strong>Email:</strong> ${data.email}</p>
-    <p><strong>Phone:</strong> ${data.phone || "Not provided"}</p>
-    <p><strong>Experience Level:</strong> ${data.experienceLevel}</p>
-    <p><strong>Skills:</strong> ${data.skills.join(", ")}</p>
-    ${data.linkedinUrl ? `<p><strong>LinkedIn:</strong> <a href="${data.linkedinUrl}">${data.linkedinUrl}</a></p>` : ""}
-    ${data.portfolioUrl ? `<p><strong>Portfolio:</strong> <a href="${data.portfolioUrl}">${data.portfolioUrl}</a></p>` : ""}
-    ${data.resumeUrl ? `<p><strong>Resume:</strong> <a href="${data.resumeUrl}">Download Resume</a></p>` : ""}
-    <hr />
-    <p style="color: #666; font-size: 12px;">View all applications in your Supabase dashboard</p>
-  `;
-
-  const response = await fetch("https://api.resend.com/emails", {
+  const response = await fetch(`https://formspree.io/f/${formspreeFormId}`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "careers@zephortech.com",
-      to: "careers@zephortech.com",
-      subject: `New Internship Application - ${data.fullName}`,
-      html: emailContent,
-    }),
+    headers: { Accept: "application/json" },
+    body: emailFormData,
   });
 
+  const responseText = await response.text();
   if (!response.ok) {
-    throw new Error(`Email API error: ${response.statusText}`);
+    throw new Error(`Formspree email failed (${response.status}): ${responseText}`);
   }
 
-  return response.json();
+  console.log(`✅ Notification email sent to the Formspree-linked inbox for ${payload.email || "applicant"}`);
 }
